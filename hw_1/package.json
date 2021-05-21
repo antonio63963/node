@@ -8,5 +8,8 @@
     "start": "node ./hw1.js"
   },
   "author": "me",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.29.1"
+  }
 }
