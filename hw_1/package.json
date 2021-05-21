@@ -1,0 +1,12 @@
+{
+  "name": "hw_1",
+  "version": "1.0.0",
+  "description": "start task",
+  "main": "hw1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./hw1.js"
+  },
+  "author": "me",
+  "license": "ISC"
+}
