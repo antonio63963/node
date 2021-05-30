@@ -22,7 +22,7 @@ const request = () => {
 
    const  nextDay = resp.data.list[8];
    const { main, dt_txt} = nextDay
-   const res = `${dt_txt} : ${main.temp} ℃,  `
+   const res = `${dt_txt} : ${main.temp} ℃,  ` + '\n'
    addToFile('weatherList.txt', res)
   });
 }
