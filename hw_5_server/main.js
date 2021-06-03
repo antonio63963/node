@@ -4,8 +4,6 @@ const fs = require('fs');
 
 const urlPic = `https://bigpicture.ru/wp-content/webp-express/webp-images/uploads/2012/07/cats-32.jpg.webp`
 
-
-
 function copyFile(url, fileName) {
   let file = fs.createWriteStream(`./public/${fileName}`)
   https.get(url, response => {
@@ -15,7 +13,7 @@ function copyFile(url, fileName) {
   return file
 }
 
-let f = copyFile(urlPic, 'cat.jpg')
+copyFile(urlPic, 'cat.jpg');
 
 http.createServer((request, response) => {
   const filePath = request.url.substring(1);
