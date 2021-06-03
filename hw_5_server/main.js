@@ -1,12 +1,13 @@
 const http = require('http');
 const https = require('https');
-const { page } = require('./pageHtml');
 const fs = require('fs');
 
 const urlPic = `https://bigpicture.ru/wp-content/webp-express/webp-images/uploads/2012/07/cats-32.jpg.webp`
 
+
+
 function copyFile(url, fileName) {
-  let file = fs.createWriteStream(fileName)
+  let file = fs.createWriteStream(`./public/${fileName}`)
   https.get(url, response => {
     response.pipe(file)
     // console.log(file);
@@ -14,14 +15,23 @@ function copyFile(url, fileName) {
   return file
 }
 
+let f = copyFile(urlPic, 'cat.jpg')
 
 http.createServer((request, response) => {
-
-  let f = copyFile(urlPic, 'cat.jpg')
-  console.log('new File is:  ', f.path);
-  response.end(`<img src="${f.path}"></img>`)
-
+  const filePath = request.url.substring(1);
+  fs.access(`./public/${filePath}`, fs.constants.R_OK, err => {
+    if(err) {
+      response.status = 404;
+      response.end('Page not found');
+    }
+    else {
+      fs.createReadStream(`./public/${filePath}`).pipe(response)
+    }
+  })
 }).listen(3000)
+
+
+
 
 
 
