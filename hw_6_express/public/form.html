@@ -8,24 +8,26 @@
   <link rel="stylesheet" href="form.css">
 </head>
 <body>
+  <!-- <form id="form" name="user" method="POST" action="/userData"> -->
   <form id="form" name="user">
     <label class="userLable">
       Your email: 
-      <input class="userEmail" type="text" placeholder="some@mail.com">
+      <input name="user" class="userEmail" type="text" placeholder="some@mail.com">
     </label>
 
     <label class="userLable">
       Your name: 
-      <input class="userName" type="text" placeholder="your name">
+      <input name="user" class="userName" type="text" placeholder="your name">
     </label>
     <label class="userLable">
       Your password: 
-      <input class="userPassword" type="password" placeholder="****">
+      <input name="user" class="userPassword" type="password" placeholder="****">
     </label>
 
     <button class="submit" type="submit">SUBMIT</button>
   </form>
 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="./form.js"></script>
 </body>
 </html>
