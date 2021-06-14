@@ -32,11 +32,15 @@ mainPage: `
 
 `
 }
+
+
+router.get('/', (req, res) => {
+  const {id} = req.params;
+  res.render('generic', { content: cont.mainPage })
+})
+
 router.get('/:id', (req, res) => {
   const {id} = req.params;
   res.render('generic', { content: cont[id] })
-
 })
-
-
 module.exports = router;
