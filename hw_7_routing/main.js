@@ -6,6 +6,8 @@ const mainRouter = require('./routes/mainRoute');
 const server = express();
 server.use(express.json());
 server.use(express.static(path.join(__dirname, '/public')));
+server.use(express.static(path.join(__dirname, '/public/style'))); 
+server.use(express.static(path.join(__dirname, '/public/asset'))); 
 
 server.set('views', path.join(__dirname, 'views'));
 server.set('view engine', 'ejs');
