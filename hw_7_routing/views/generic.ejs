@@ -7,22 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>generic</title>
   <link rel="stylesheet" href="./index.css">
-  <script src="./index.js"></script>
+  <script src="./main.js"></script>
 </head>
 
 <body>
   <header>
     <nav>
       <ul class="nav-list">
-        <li class="nav-list_link"><a>главная</a></li>
-        <li class="nav-list_link"><a>войти</a></li>
-        <li class="nav-list_link"><a>регистрация</a></li>
+        <li class="nav-list_link main"><a>главная</a></li>
+        <li class="nav-list_link enter"><a>войти</a></li>
+        <li class="nav-list_link registration"><a>регистрация</a></li>
       </ul>
     </nav>
   </header>
-  <h1 class="title">Hello NODE</h1>
-  <p>Lorem ipsum dolor sit amet, consectet</p>
-  <img class="img" src="./nodejsLogo.svg">
+  <div>
+    <%- content %>
+  </div>
 </body>
 
 </html>

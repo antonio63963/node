@@ -1,8 +1,7 @@
 
 const form = document.querySelector('#form');
 const inputArr = [...form.querySelectorAll('input')];
-const url = 'http://localhost:3333/userData'
-const mainUrl= 'http://localhost:3333/'
+const url = 'http://localhost:3333/userData';
 
 const formSubmit = (url) => async (e) => {
   e.preventDefault();
@@ -13,12 +12,7 @@ const formSubmit = (url) => async (e) => {
   axios.post('/userData', userData)
   .then(function (response) {
     console.log(response.status);
-    axios.get(mainUrl)
-    .then(resp => {
-      console.log(resp.data);
-      document.textContent = resp.data;
 
-    })
   })
   .catch(function (error) {
     console.log(error);

@@ -1,26 +1,22 @@
 const path = require('path');
 const express = require('express');
-const mainRouter = require('./routes/mainRoute');
+const mainRouter = require('./routes/mainRoute.js');
 
 
 const server = express();
 server.use(express.json());
-server.use(express.static(path.join(__dirname, '/public')));
+server.use(express.static(path.join(__dirname, '/public/js')));
 server.use(express.static(path.join(__dirname, '/public/style'))); 
 server.use(express.static(path.join(__dirname, '/public/assets'))); 
 
 server.set('views', path.join(__dirname, 'views'));
 server.set('view engine', 'ejs');
 
-server.get('/', mainRouter);
-server.get('/form', (req, res) => {
-  res.render('form')
-})
 
-
+server.use('/', mainRouter);
 server.post('/userData', (req, res) => {
   console.log(req.body);
-  res.send('ok')
 })
+
 
 server.listen(3333)
