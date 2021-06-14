@@ -14,7 +14,11 @@ const formSubmit = (url) => async (e) => {
   .then(function (response) {
     console.log(response.status);
     axios.get(mainUrl)
-    .then(resp => console.log(resp))
+    .then(resp => {
+      console.log(resp.data);
+      document.textContent = resp.data;
+
+    })
   })
   .catch(function (error) {
     console.log(error);
