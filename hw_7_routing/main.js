@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const mainRouter = require('./routes/mainRoute.js');
+const prodRouter = require('./routes/prodRoute.js');
 
 
 const server = express();
@@ -13,6 +14,7 @@ server.set('views', path.join(__dirname, 'views'));
 server.set('view engine', 'ejs');
 
 
+server.use('/prod', prodRouter)
 server.use('/', mainRouter);
 server.post('/userData', (req, res) => {
   console.log(req.body);

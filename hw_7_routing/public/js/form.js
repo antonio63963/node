@@ -1,7 +1,7 @@
 
 const form = document.querySelector('#form');
 const inputArr = [...form.querySelectorAll('input')];
-const container = document.querySelector('.container');
+const btnSubmit = document.querySelector('.submit');
 const url = 'http://localhost:3333/userData';
 const urlMain = 'http://localhost:3333';
 
@@ -14,7 +14,6 @@ const formSubmit = (url) => async (e) => {
 
     axios.post('/userData', userData)
       .then(function (response) {
-        console.log(window);
         console.log(response.status);
         window.location.pathname = ''
         
@@ -26,6 +25,6 @@ const formSubmit = (url) => async (e) => {
 }
 
 
-form.addEventListener('click', formSubmit(url));
+btnSubmit.addEventListener('click', formSubmit(url));
 
 

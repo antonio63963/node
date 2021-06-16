@@ -11,6 +11,7 @@ const cont = {
     <form id="form" name="user">
       <div class="formTop">
         <h1>LOGIN</h1>
+        <button class="btn btn-close">x</button>
       </div>
       <label class="userLable">
         Your email: 
@@ -30,6 +31,7 @@ const cont = {
     
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
       <script src="./form.js"></script>
+      <script src="./general.js"></script>
     `
   ,
 
@@ -37,6 +39,7 @@ const cont = {
   <form id="form" name="user">
     <div class="formTop">
       <h1>REGISTRATION</h1>
+      <button class="btn btn-close">x</button>
     </div>
     <label class="userLable">
       Your email: 
@@ -62,6 +65,7 @@ const cont = {
   
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./form.js"></script>
+    <script src="./general.js"></script>
   `
   ,
 
