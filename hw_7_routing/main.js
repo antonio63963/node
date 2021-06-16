@@ -16,6 +16,7 @@ server.set('view engine', 'ejs');
 server.use('/', mainRouter);
 server.post('/userData', (req, res) => {
   console.log(req.body);
+  res.send('generic')
 })
 
 
