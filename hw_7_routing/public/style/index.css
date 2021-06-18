@@ -66,3 +66,28 @@ input {
   border-radius: 5px;
   padding: 10px;
 }
+
+
+/* prod */
+.containterProd {
+  display: flex;
+  justify-content: space-between;
+}
+.topSide-prod {
+  display: flex;
+  justify-content: center;
+}
+.btn-action { 
+  padding: 15px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 5px;
+  margin: 50px 0;
+}
+
+.card {
+  border-radius: 5px;
+  border: 2px solid rgb(38, 95, 148);
+  margin-right: 30px;
+}

@@ -39,7 +39,7 @@ const cont = {
   <form id="form" name="user">
     <div class="formTop">
       <h1>REGISTRATION</h1>
-      <button class="btn btn-close">x</button>
+      <a href="/"><button class="btn btn-close">x</button></a>
     </div>
     <label class="userLable">
       Your email: 
