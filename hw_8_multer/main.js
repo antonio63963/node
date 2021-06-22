@@ -24,7 +24,6 @@ server.post('/form/req', upload.single('fileSend'), (req, res) => {
   const dir = './public/upload';
   const name = req.file.filename;
   Fs.rename(`${dir}/${name}`, `${dir}/${newName}`);
-
   console.log('req.file: ' ,req.file);
   res.json({status: 'ok'});
 })

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hw 8 multer</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <form id="form" name="changeFile">
+    <div class="formTop">
+      <h1>DOWNLOAD your FILE</h1>
+      <button class="btn btn-close">x</button>
+    </div>
+    <label class="userLable">
+      <input name="fileSend" class="userEmail" type="file" placeholder="some file">
+    </label>
+
+    <!-- <label class="userLable">
+      input file name: 
+      <input name="fileName" class="userName" type="text" placeholder="file name for save">
+    </label> -->
+    
+      <button class="submit btn" type="submit">SEND</button>
+  </form>
+  
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./form.js"></script>
+</body>
+</html>
