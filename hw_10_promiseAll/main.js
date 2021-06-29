@@ -3,7 +3,6 @@ const path = require('path');
 const axios = require('axios');
 const mainRoute = require('./routes/mainRoute');
 
-
 const server = express();
 server.use(express.json());
 server.use(express.static(path.join(__dirname, 'public')));
@@ -30,7 +29,9 @@ server.post('/form/req', async (req, res) => {
      population: planet.population,
      diameter: planet.diameter,
      surfaceWater: planet.surface_water,
-     img: `https://starwars-visualguide.com/assets/img/planets/${reqArr[ind]}.jpg`
+     img: reqArr[ind] != 1 ? 
+     `https://starwars-visualguide.com/assets/img/planets/${reqArr[ind]}.jpg` :
+     `https://starwars-visualguide.com/assets/img/placeholder.jpg`
     }
  })
  console.log(resArr);

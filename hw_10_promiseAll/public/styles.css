@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+  font-family: Helvetica;
+}
+img {
+  width: 100px;
+  height: 100px;
+}
+.planetCard {
+  display: flex;
+  align-items: center;
+}
+.container {
+  display: flex;
+}
