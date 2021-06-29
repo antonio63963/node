@@ -15,16 +15,16 @@ const cont = {
       </div>
       <label class="userLable">
         Your email: 
-        <input name="user" class="userEmail" type="text" placeholder="some@mail.com">
+        <input name="userEmail" class="userEmail" type="text" placeholder="some@mail.com">
       </label>
   
       <label class="userLable">
         Your name: 
-        <input name="user" class="userName" type="text" placeholder="your name">
+        <input name="userName" class="userName" type="text" placeholder="your name">
       </label>
       <label class="userLable">
         Your password: 
-        <input name="user" class="userPassword" type="password" placeholder="****">
+        <input name="userPassword" class="userPassword" type="password" placeholder="****">
       </label>
         <button class="submit btn" type="submit">SUBMIT</button>
     </form>
