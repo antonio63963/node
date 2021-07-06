@@ -6,7 +6,7 @@ const logger = require('morgan');
 // const axios = require('axios');
 const getPlanets = require('./controllers/getPlanetsCtrl');
 
-const indexRouter = require('./routes/index');
+const indexRouter = require('./routes/mainRouter');
 const usersRouter = require('./routes/users');
 
 const server = express();
