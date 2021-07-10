@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <form name="userData">
+      <input name="id" type="text" placeholder="id">
+      <input name="firstName" type="text" placeholder="first name">
+      <input name="lastName" type="text" placeholder="last name">
+      <input name="email" type="text" placeholder="email">
+      <input name="gender" type="text" placeholder="gender">
+      <input name="ipAddress" type="text" placeholder="ip address">
+      <button type="submit">Submit</button>
+    </form>
+
+    <script src="/javascripts/form.js"></script>
+  </body>
+</html>
