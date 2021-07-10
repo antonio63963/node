@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-// const axios = require('axios');
 const getPlanets = require('./controllers/getPlanetsCtrl');
 
 const indexRouter = require('./routes/mainRouter');
