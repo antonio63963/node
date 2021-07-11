@@ -7,6 +7,9 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
+const multer = require('multer');
+const  upload = multer({ dest: 'uploads/' })
+
 const server = express();
 
 // view engine setup
@@ -21,6 +24,9 @@ server.use(express.static(path.join(__dirname, 'public')));
 
 server.use('/', indexRouter);
 server.use('/users', usersRouter);
+server.post('/formreq', upload.none(), function(req, res, next) {
+  console.log("REQQQQQ: ", req.body);
+})
 
 // catch 404 and forward to error handler
 server.use(function(req, res, next) {

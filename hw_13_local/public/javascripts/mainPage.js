@@ -30,13 +30,19 @@ if(orderForm) {
       if(service.classList.contains(selectedMethod)) {
         service.classList.remove('hidden');
       } else {
-        service.classList.add('hidden')
+        service.classList.add('hidden');
       }
     })
-
   })
-orderBtn.addEventListener('submit', (e) => {})
+orderBtn.addEventListener('click', async (e) => {
+  console.log('it works');
+  e.preventDefault();
+  const url = `formreq`;
   const formData = new FormData(orderForm);
-  // console.log(formData.getAll(deliveryMethod));
+  const {data} = await axios.post(url, formData);
+  console.log(data);
+})
+
+
 
 }
