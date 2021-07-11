@@ -38,10 +38,17 @@ orderBtn.addEventListener('click', async (e) => {
   console.log('it works');
   e.preventDefault();
   const url = `formreq`;
+
   const formData = new FormData(orderForm);
+
   const {data} = await axios.post(url, formData);
   console.log(data);
-})
+});
+
+function getUnusefulElem(arr) {
+  const methodName = formData.get(`deliveryMethods`);
+  return arr.filter(elem => elem)
+}
 
 
 
