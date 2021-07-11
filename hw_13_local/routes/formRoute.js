@@ -30,19 +30,33 @@ const schema = {
       "type": "string",
       "minLength": 1
     },
-    "required": [
-      "userName",
-      "userLastname",
-      "city",
-      "deliveryMethods",
-      "methodAddress"
-    ],
-    "additionalProperties": false
-  }
+  },
+  "required": [
+    "userName",
+    "userLastname",
+    "city",
+    "deliveryMethods",
+    "methodAddress"
+  ],
+  "additionalProperties": false
 }
 
 router.post("/", upload.none(), (req, res) => {
-  
+
+//   const schema = {
+//     type: "object",
+//     properties: {
+//       foo: {type: "integer"},
+//       bar: {type: "string"}
+//     },
+//     required: ["foo"],
+//     additionalProperties: false,
+//   }
+
+// const data = {
+//   foo: 1,
+//   bar: "abc"
+// }
   const data = req.body;
   console.log(data);
   const validate = ajv.compile(schema);
