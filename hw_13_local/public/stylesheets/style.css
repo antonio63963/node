@@ -1,6 +1,9 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 a {
@@ -28,6 +31,19 @@ a {
 }
 .submit {
   margin-top: 20px;
+}
+.orderForm {
+  border: 1px solid black;
+  padding: 16px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 35vw;
+}
+lable {
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 
