@@ -23,3 +23,11 @@ a {
   margin: 20px;
   
 }
+.hidden {
+  display: none;
+}
+.submit {
+  margin-top: 20px;
+}
+
+
