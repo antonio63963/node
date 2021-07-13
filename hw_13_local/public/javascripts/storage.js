@@ -18,14 +18,14 @@ function addToStore(id) {
 function decAmount(id) {
   const store = getStore();
   const existProd = store.find(prod => prod.id === id);
-    if(existProd && existProd.amount > 1) {
-      existProd.amount -= 1 
-      setStore(store);
-    } else if (existProd && existProd.amount <= 1) {
-       removeFromStore(id);
-    } else {
-      false;
-    }
+  if(existProd && existProd.amount > 1) {
+    existProd.amount -= 1 
+    setStore(store);
+  } else if (existProd && existProd.amount <= 1) {
+      removeFromStore(id);
+  } else {
+    false;
+  }
 
 };
 function removeFromStore(id) {
