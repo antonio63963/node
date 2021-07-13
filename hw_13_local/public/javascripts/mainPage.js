@@ -1,23 +1,45 @@
 const btnCardArr = [...document.querySelectorAll('.toStore')];
 const orderForm = document.forms.orderForm;
-const orderBtn = orderForm.querySelector('.submit');
+const orderBtn = document.querySelector('.submit');
+const incAmountBtn = document.querySelector('.inc');
+const decAmountBtn = document.querySelector('.dec');
+const deleteProdBtn = document.querySelector('.del');
+
+function setStore(store) {
+  const json = JSON.stringify(store);
+  localStorage.setItem('store', json);
+};
+function getStore() {
+  const dataJson = localStorage.getItem('store') || "[]";
+  const data = JSON.parse(dataJson);
+  return data;
+};
+function addToStore(id) {
+  const store = getStore();
+  const existProd = store.find(prod => prod.id === id);
+    existProd ? 
+    existProd.amount += 1 :
+    store.push({id: id, amount: 1});
+  setStore(store);
+};
+function removeFromStore(id) {
+  const store = getStore();
+  const ind = store.findIndex(item => item.id === id);
+  if(ind !== -1) {
+    delete store[ind];
+  }
+  setStore(store);
+};
+function increaseStoreAmount(id) {
+
+}
 
 
 btnCardArr.forEach(btn => {
   btn.addEventListener('click', (e) => {
     const {id} = e.target.dataset;
-    const dataJson = localStorage.getItem('store') || "[]";
-    const data = JSON.parse(dataJson);
-    const existProd = data.find(prod => prod.id === id);
-    
-    existProd ? 
-    existProd.amount += 1 :
-    data.push({id: id, amount: 1});
-    
-    const storeJson = JSON.stringify(data);
-    console.log(data);
-    localStorage.setItem('store', storeJson)
-    
+  addToStore(id);
+
   })
 });
 
