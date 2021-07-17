@@ -23,9 +23,52 @@ myEmit.on('change', () => {
 })
 const addToCart = (data) => {
   addToStore(data);
-  myEmit.emmit('change')
+  myEmit.emmit('change');
+  renderCart();
 }
+//storage
 
+function setStore(store) {
+  const json = JSON.stringify(store);
+  localStorage.setItem('store', json);
+};
+function getStore() {
+  const dataJson = localStorage.getItem('store') || "[]";
+  const data = JSON.parse(dataJson);
+  return data;
+};
+
+function addToStore(data) {
+  console.log(data);
+  const store = getStore();
+  const existProd = store.find(prod => prod.id === data.id);
+    existProd ? 
+    existProd.amount += 1 :
+    store.push({...data, amount: 1});
+  setStore(store);
+};
+function decAmount(id) {
+  const store = getStore();
+  const existProd = store.find(prod => prod.id === id);
+  if(existProd && existProd.amount > 1) {
+    existProd.amount -= 1 
+    setStore(store);
+  } else if (existProd && existProd.amount <= 1) {
+      removeFromStore(id);
+  } else {
+    false;
+  }
+};
+function removeFromStore(id) {
+  const store = getStore();
+  const ind = store.findIndex(item => item.id === id);
+  console.log(ind);
+  if(ind !== -1) {
+    store.splice(ind, 1);
+  }
+  setStore(store);
+};
+// listeners
 getList.addEventListener('click', async (e) => {
   const {data} = await fetch('/products').then(resp => resp.json());
   const prodArr = data.reduce((acc, {id, name, description, price}) => {
@@ -46,29 +89,45 @@ getList.addEventListener('click', async (e) => {
     return acc;
   }, '');
   container.innerHTML = prodArr;
-  renderCart();
+  
 });
 
 container.addEventListener('click', (e) => {
   if(!e.target.classList.contains('add')) return false;
   const {dataset} = e.target.parentElement;
-  console.log(dataset);
   addToCart(dataset);
-  console.log(addToCart);
-  renderCart()
+  
 });
+function increaseAmount(id) {
+  const store = getStore();
+  const prod = store.find(prod => prod.id === id);
+  prod.amount += 1;
+  setStore(store);
+}
+cart.addEventListener('click', (e) => {
+  if(e.target.classList.contains('increase')) {
+    const {id} = e.target.parentElement.dataset;
+    console.log(id);
+    const store = getStore();
+    const prod = store.find(prod => prod.id === id);
+    prod.amount += 1;
+    setStore(store);
+    renderCart()
+  }
+})
 
 const renderCart = () => {
   const dataStore = JSON.parse(localStorage.getItem('store'));
-console.log(dataStore);
   const cartObj = dataStore.reduce((acc, {name, id, price, amount}) => {
     acc.html += `
       <p>=================================</p>
-      <h3>${name}</h3>
-      <span>price: ${price}</span>
-      <div>amount: ${amount}</div>
-      <button class="increase">+</button>
-      <button class="decrease">-</button>
+      <div class="cartProd" data-id="${id}"
+        <h3>${name}</h3>
+        <span>price: ${price}</span>
+        <div>amount: ${amount}</div>
+        <button class="increase">+</button>
+        <button class="decrease">-</button>
+      </div>
     `;
     acc.sum += price * amount;
     return acc;
@@ -76,7 +135,12 @@ console.log(dataStore);
 
   cart.innerHTML = `<h3>CART</h3` + cartObj.html + `<div> SUMM: ${cartObj.sum}</div>`
 }
-renderCart()
+
+function init() {
+  renderCart();
+  myEmit.on('change', renderCart)
+}
+init()
 
 
 

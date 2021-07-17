@@ -7,6 +7,12 @@ function getStore() {
   const data = JSON.parse(dataJson);
   return data;
 };
+function increaseAmount(id) {
+  const store = getStore();
+  const prod = store.find(prod => prod.id = id);
+  prod.amount += 1;
+  setStore(store);
+}
 function addToStore(data) {
   console.log(data);
   const store = getStore();
