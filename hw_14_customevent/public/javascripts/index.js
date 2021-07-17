@@ -24,50 +24,8 @@ myEmit.on('change', () => {
 const addToCart = (data) => {
   addToStore(data);
   myEmit.emmit('change');
-  // renderCart();
 }
-//storage
 
-function setStore(store) {
-  const json = JSON.stringify(store);
-  localStorage.setItem('store', json);
-};
-function getStore() {
-  const dataJson = localStorage.getItem('store') || "[]";
-  const data = JSON.parse(dataJson);
-  return data;
-};
-
-function addToStore(data) {
-  console.log(data);
-  const store = getStore();
-  const existProd = store.find(prod => prod.id === data.id);
-    existProd ? 
-    existProd.amount += 1 :
-    store.push({...data, amount: 1});
-  setStore(store);
-};
-function decAmount(id) {
-  const store = getStore();
-  const existProd = store.find(prod => prod.id === id);
-  if(existProd && existProd.amount > 1) {
-    existProd.amount -= 1 
-    setStore(store);
-  } else if (existProd && existProd.amount <= 1) {
-      removeFromStore(id);
-  } else {
-    false;
-  }
-};
-function removeFromStore(id) {
-  const store = getStore();
-  const ind = store.findIndex(item => item.id === id);
-  console.log(ind);
-  if(ind !== -1) {
-    store.splice(ind, 1);
-  }
-  setStore(store);
-};
 // listeners
 getList.addEventListener('click', async (e) => {
   const {data} = await fetch('/products').then(resp => resp.json());
@@ -115,14 +73,12 @@ cart.addEventListener('click', (e) => {
     const {id} = e.target.parentElement.dataset;
     console.log(id);
     increaseAmount(id)
-    // renderCart()
     myEmit.emmit('change')
 
   }
   if(e.target.classList.contains('decrease')) {
     const {id} = e.target.parentElement.dataset;
     decreaseAmount(id)
-    // renderCart()
     myEmit.emmit('change')
   }
 })
