@@ -24,7 +24,7 @@ myEmit.on('change', () => {
 const addToCart = (data) => {
   addToStore(data);
   myEmit.emmit('change');
-  renderCart();
+  // renderCart();
 }
 //storage
 
@@ -115,12 +115,15 @@ cart.addEventListener('click', (e) => {
     const {id} = e.target.parentElement.dataset;
     console.log(id);
     increaseAmount(id)
-    renderCart()
+    // renderCart()
+    myEmit.emmit('change')
+
   }
   if(e.target.classList.contains('decrease')) {
     const {id} = e.target.parentElement.dataset;
     decreaseAmount(id)
-    renderCart()
+    // renderCart()
+    myEmit.emmit('change')
   }
 })
 
