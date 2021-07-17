@@ -104,14 +104,22 @@ function increaseAmount(id) {
   prod.amount += 1;
   setStore(store);
 }
+function decreaseAmount(id) {
+  const store = getStore();
+  const prod = store.find(prod => prod.id === id);
+  prod.amount -= 1;
+  setStore(store);
+}
 cart.addEventListener('click', (e) => {
   if(e.target.classList.contains('increase')) {
     const {id} = e.target.parentElement.dataset;
     console.log(id);
-    const store = getStore();
-    const prod = store.find(prod => prod.id === id);
-    prod.amount += 1;
-    setStore(store);
+    increaseAmount(id)
+    renderCart()
+  }
+  if(e.target.classList.contains('decrease')) {
+    const {id} = e.target.parentElement.dataset;
+    decreaseAmount(id)
     renderCart()
   }
 })
