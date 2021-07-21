@@ -16,12 +16,12 @@ const server = http.createServer((req, res) => {
     sendFile(res, 'public/index.html', 'text/html');
     return;
   };
-  if(req.url === '/js/index.js') {
-    sendFile(res, 'public/js/index.js', 'application/javascript')
+  if(req.url === '/styles/style.css') {
+    sendFile(res, 'public/styles/style.css', 'text/css')
     return;
   }
-  if(req.url === 'styles/style.css') {
-    sendFile(res, 'public/styles/style.css', 'text/css')
+  if(req.url === '/js/index.js') {
+    sendFile(res, 'public/js/index.js', 'application/javascript')
     return;
   }
   res.writeHead(404);
