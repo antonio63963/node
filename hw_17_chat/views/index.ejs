@@ -11,18 +11,29 @@
 </head>
 
 <body>
-  <h1><%= title %></h1>
-  <label>
-    Enter your name:
-    <input type="text" class="userName">
-  </label>
-  <label>
+  <!-- <label>
     Enter your message:
     <input type="text" class="userMsg">
     <button class="btn nameSendBtn btn-primary">send</button>
-  </label>
-
-  <div class="messages"></div>
+  </label> -->
+  
+  <div class="container">
+    <h1><%= title %></h1>
+    <label>
+      Enter your name:
+      <input type="text" class="userName">
+    </label>
+    <div class="messages">
+      <!-- <div class="myMsg">
+        <input type="text" class="userMsg">
+        <button class="btn msgSendBtn btn-primary">send</button>
+      </div > -->
+    </div>
+    <div class="input-group mb-3 msgInput">
+      <input type="text" class="form-control userMsg" placeholder="your message" aria-label="message" aria-describedby="basic-addon1">
+      <span class="input-group-text sendMsgBtn" id="basic-addon1">></span>
+    </div>
+  </div>
 
   <script src="./javascripts/front.js"></script>
 </body>

@@ -2,7 +2,7 @@
 console.log('works');
 const socket = io();
 const inputMsg = document.querySelector('.userMsg');
-const msgBtn = document.querySelector('.nameSendBtn');
+const msgBtn = document.querySelector('.sendMsgBtn');
 const allMessages = document.querySelector('.messages');
 const inputName = document.querySelector('.userName');
 let userName = '';
@@ -16,19 +16,19 @@ function showWriting(data) {
   const { id, userName, msg} = data;
   const writer = `
     <div id="${id}">
-    <h1>${userName}</h1>
+    <h4>${userName}</h4>
     <p>${msg}</p>
     </div>
   `;
   allMessages.insertAdjacentHTML("beforeend", writer);
 }
-function addMessage(data) {
+function addMessage(data, typeMes = '') {
   console.log(data);
   const msg = data.msg;
   const name = data.userName;
     const newMess = `
-    <div>
-    <h1>${name}</h1>
+    <div class="newMsg ${typeMes}">
+    <h4>${name}</h4>
     <p>${msg}</p>
     </div>
   `;
@@ -41,14 +41,14 @@ msgBtn.addEventListener('click', (e) => {
   e.preventDefault();
   const msg = inputMsg.value;
   socket.emit('/chat', {msg, userName});
-  addMessage({msg, userName});
+  addMessage({msg, userName}, 'mySms');
   inputMsg.value = '';
   
 });
 
 socket.on('/newMsg', data => {
   console.log(data);
-  addMessage(data);
+  addMessage(data, 'notMySms');
 });
 
 // whatchig for input changes
