@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
 });
  
 connection.connect();
-const queryUsers_projects = "SELECT `users`.`name`, `users`.`last_name`, `projects`.`name` FROM users_project JOIN `users` ON `users`.`id` = `users_project`.`user_id` JOIN `projects` ON `projects`.`id` = `users_project`.`project_id`";
+const queryUsers_projects = "SELECT `users`.`name` as user_name, `users`.`last_name`, `projects`.`name` FROM users_project JOIN `users` ON `users`.`id` = `users_project`.`user_id` JOIN `projects` ON `projects`.`id` = `users_project`.`project_id`";
 
 connection.query(queryUsers_projects, function (error, results, fields) {
   if (error) throw error;
