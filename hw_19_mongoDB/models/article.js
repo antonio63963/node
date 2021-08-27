@@ -7,17 +7,19 @@ const generalSchema = new Schema({
     type: Schema.Types.String,
     maxLength: 255,
     required: true,
+    unique: true
   },
   title: {
     type: Schema.Types.String,
     maxLength: 255,
     required: true,
+    unique: true
   },
-  dateCreate: {
+  published: {
     type: Schema.Types.Date,
     
   },
-  article: {
+  text: {
     type: Schema.Types.String,
     required: true,
   }
