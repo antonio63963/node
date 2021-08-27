@@ -1,6 +1,7 @@
 const  express = require('express');
 const  router = express.Router();
 const ArticleModel = require('../models/article');
+const mongoose = require('mongoose');
 
 const pushAuthor = async (userData) => {
   const article = new ArticleModel;
