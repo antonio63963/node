@@ -10,7 +10,7 @@ formArticle.addEventListener('submit', async (event) => {
   console.log(dateCreate);
   const formData = {
     author: authorInput.value,
-    title: articleInput,
+    title: titleInput.value,
     article: articleInput.value,
     dateCreate
   };
