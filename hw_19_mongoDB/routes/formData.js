@@ -3,7 +3,6 @@ const  router = express.Router();
 const ArticleModel = require('../models/article');
 
 const pushAuthor = async (userData) => {
-  console.log(userData);
   const article = new ArticleModel;
   article.author = userData.author;
   article.title = userData.title;
@@ -11,6 +10,17 @@ const pushAuthor = async (userData) => {
   article.published = userData.dateCreated;
   const doc = await article.save();
   console.log(doc._id);
+};
+const searchArticle = async (searchData) => {
+  const { title, author} = searchData;
+  if(title) {
+   const res = await ArticleModel.find({title});
+   return res;
+  };
+  if(author) {
+    const res = await ArticleModel.find({author})
+    return res;
+  }
 }
 /* GET home page. */
 router.post('/', (req, res, next) => {
@@ -19,6 +29,13 @@ router.post('/', (req, res, next) => {
   pushAuthor(data);
   // res.render('index', { title: 'Express' });
   res.send('status 200');
+});
+router.post('/search', async (req, res) => {
+  const data = req.body;
+  console.log(data);
+  const dbRequest = await searchArticle(data);
+  console.log(dbRequest);
+  res.send(JSON.stringify(dbRequest[0]))
 });
 
 module.exports = router;

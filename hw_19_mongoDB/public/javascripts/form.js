@@ -1,27 +1,30 @@
 const create = document.querySelector('.create-article');
 const search = document.querySelector('.search-article');
-const formArticle = document.forms.article;
-const searchArticle = document.forms.article;
+const createArticle = document.forms.article;
+const searchArticle = document.forms.search;
 const authorInput = document.querySelector('.article_author');
 const titleInput = document.querySelector('.article_title');
+const searchAuthor = document.querySelector('.search_author');
+const searchTitle = document.querySelector('.search_title');
 const articleInput = document.querySelector('.article');
-const url = `/form`;
+const urlCreate = `/form`;
+const urlSearch = `form/search`;
 
 
 create.addEventListener('click', () => {
   create.classList.add('d-none');
-  formArticle.classList.remove('d-none');
+  createArticle.classList.remove('d-none');
   searchArticle.classList.add('d-none');
   search.classList.remove('d-none');
 });
 search.addEventListener('click', () => {
   create.classList.remove('d-none');
-  formArticle.classList.add('d-none');
+  createArticle.classList.add('d-none');
   searchArticle.classList.remove('d-none');
   search.classList.add('d-none');
 });
 
-formArticle.addEventListener('submit', async (event) => {
+createArticle.addEventListener('submit', async (event) => {
   event.preventDefault();
   const dateCreate = moment().toISOString();
   const formData = {
@@ -31,8 +34,17 @@ formArticle.addEventListener('submit', async (event) => {
     dateCreate
   };
   
-  const data = await axios.post(url, formData);
+  const data = await axios.post(urlCreate, formData);
   const formInputs = [...document.querySelectorAll('input, textarea')];
   formInputs.forEach(elem => elem.value = '');
 
+});
+searchArticle.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const formData = {
+    author: searchAuthor.value,
+    title: searchTitle.value
+  }
+  const data = await axios.post(urlSearch, formData);
+  console.log(data);
 })
