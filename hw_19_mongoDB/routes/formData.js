@@ -1,7 +1,7 @@
 const  express = require('express');
 const  router = express.Router();
 const ArticleModel = require('../models/article');
-const mongoose = require('mongoose');
+const db = require('../bin/db')
 
 const pushAuthor = async (userData) => {
   const article = new ArticleModel;
@@ -35,6 +35,9 @@ router.post('/search', async (req, res) => {
   const data = req.body;
   console.log(data);
   const dbRequest = await searchArticle(data);
+  const idArticle = dbRequest[0]._id;
+  // db.articles.updateOne({"_id": idArticle}, {$set: {text: "BLA BLA BLA"}})
+  ArticleModel.updateOne({"_id": idArticle}, {$set: {text: "BLA BLA BLA"}})
   console.log(dbRequest);
   res.send(JSON.stringify(dbRequest[0]))
 });

@@ -12,3 +12,4 @@ db.once('open', () => console.log('DB has run successfully'));
 db.once('close', () => console.log('DB has failed'));
 db.on('error', err => console.log('Error: ' + err));
 
+module.exports = db;
