@@ -22,8 +22,9 @@ const generalSchema = new Schema({
   text: {
     type: Schema.Types.String,
     required: true,
-  }
-});
+  },
+  
+}, {timestamps: true});
 
 const model = mongoose.model('Article', generalSchema);
 module.exports = model;
