@@ -9,7 +9,14 @@ const searchTitle = document.querySelector('.search_title');
 const articleInput = document.querySelector('.article');
 const urlCreate = `/form`;
 const urlSearch = `form/search`;
+const ulArticles = document.querySelector('.articlesList');
 
+ulArticles.addEventListener('click', (e) => {
+  console.log(e.target); 
+  console.log(e.target.dataset.id); 
+  if(!e.target.classList.contains('articleTitle')) return false;
+  axios.get(`article/${e.target.dataset.id}`)
+})
 
 create.addEventListener('click', () => {
   create.classList.add('d-none');

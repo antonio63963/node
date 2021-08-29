@@ -9,3 +9,6 @@ a {
 .hidden {
   display: none
 }
+.articlesList {
+  cursor: pointer;
+}

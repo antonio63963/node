@@ -8,14 +8,13 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <a href="http://localhost:3000/article/6128dc8c0f6290c59bc8f264">click me</a>
     <!-- EXISTING ARTICLES -->
     <h2>Existing articles</h2>
-    <ul class="list-group">
-      <li class="list-group-item">An item</li>
-      <li class="list-group-item">A second item</li>
-      <li class="list-group-item">A third item</li>
-      <li class="list-group-item">A fourth item</li>
-      <li class="list-group-item">And a fifth one</li>
+    <ul class="list-group articlesList">
+      <% articlesList.forEach(art => { %>
+        <li class="list-group-item articleTitle" data-id="<%= art._id %>"><%= art.title %></li>
+      <% }) %>
     </ul>
     <div class="row">
       <button type="button" class="btn btn-primary col-6 mt-3 create-article">Create an article</button>
