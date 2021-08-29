@@ -15,7 +15,7 @@ ulArticles.addEventListener('click', (e) => {
   console.log(e.target); 
   console.log(e.target.dataset.id); 
   if(!e.target.classList.contains('articleTitle')) return false;
-  axios.get(`article/${e.target.dataset.id}`)
+  axios.get(`/article/${e.target.dataset.id}`)
 })
 
 create.addEventListener('click', () => {

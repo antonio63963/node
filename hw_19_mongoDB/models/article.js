@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const generalSchema = new Schema({
+  _id: {
+    type: Schema.Types.ObjectId
+  },
   author: {
     type: Schema.Types.String,
     maxLength: 255,
