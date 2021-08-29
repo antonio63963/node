@@ -13,7 +13,7 @@
     <h2>Existing articles</h2>
     <ul class="list-group articlesList">
       <% articlesList.forEach(art => { %>
-        <li class="list-group-item articleTitle" data-id="<%= art._id %>"><%= art.title %></li>
+        <li class="list-group-item articleTitle" data-id="<%= art._id %>"><a href="http://localhost:3000/article/<%= art._id%>"><%= art.title %></a></li>
       <% }) %>
     </ul>
     <div class="row">
