@@ -7,6 +7,7 @@
 const  app = require('../../servers/http');
 const  debug = require('debug')('hw-19-mongodb:server');
 const  http = require('http');
+const { httpPort } = require('../../config').server;
 
 
 /**
@@ -14,7 +15,7 @@ const  http = require('http');
  */
 function run() {
 
-  const  port = normalizePort(process.env.PORT || '3000');
+  const  port = httpPort;
   app.set('port', port);
   
   /**

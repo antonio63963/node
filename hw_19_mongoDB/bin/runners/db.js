@@ -1,12 +1,7 @@
 const mongoose = require('mongoose');
+const { url, options } = require('../../config').db;
 
 function run() {
-  const url = `mongodb://localhost:27017/blog`;
-  const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  };
-  
   mongoose.connect(url, options);
   const db = mongoose.connection;
   
