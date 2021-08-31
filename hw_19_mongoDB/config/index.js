@@ -1,7 +1,7 @@
 
 const fs = require('fs');
 const path = require('path');
-// const deepFreeze = require('deep-freeze');
+const deepFreeze = require('deep-freeze');
 
 // найдем все файлы в папке конфигов, кроме этого(кроме index.js)
 const configFiles = fs.readdirSync(__dirname).filter((file) => {
@@ -27,7 +27,7 @@ configFiles.forEach((filename) => {
 
 // фризим конфиги, чтобы никто случайно их не поломал в процесе работы приложения.
 // deepFreeze(config);
-Object.freeze(config);
+deepFreeze(config);
 
 // шарим
 module.exports = config;
