@@ -1,0 +1,11 @@
+const httpServerRunner = require('./runners/httpServer');
+const dbRunner = require('./runners/db');
+
+
+async function run() {
+  await dbRunner();
+  await httpServerRunner();
+};
+run();
+
+
