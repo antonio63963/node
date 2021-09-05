@@ -23,7 +23,8 @@ const generalSchema = new Schema({
   text: {
     type: Schema.Types.String,
     required: true,
-  }
+  },
+  tags: [{type: Schema.Types.ObjectId}]
 }, {timestamps: true});
 
 const modelName = path.basename(__filename, '.js');
