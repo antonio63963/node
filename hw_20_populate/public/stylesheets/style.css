@@ -6,3 +6,10 @@ body {
 a {
   color: #00B7FF;
 }
+.card_description {
+  height: 150px;
+  overflow: hidden;
+}
+.card img {
+  height: 262px;
+}

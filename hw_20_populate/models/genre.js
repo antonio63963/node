@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const generalSchema = new Schema({
   name: {
-    type: Schema.Types.String,
+    type: Schema.Types.ObjectId,
     maxLength: 255,
     required: true,
     unique: true

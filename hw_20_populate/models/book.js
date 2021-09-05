@@ -24,7 +24,7 @@ const generalSchema = new Schema({
     
   },
   ganres: [{
-    type: Schema.Types.ObjectId, 
+    type: Schema.Types.ObjectId,
     ref: 'genre',
   }]
 }, {timestamps: true});
