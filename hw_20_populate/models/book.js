@@ -23,7 +23,7 @@ const generalSchema = new Schema({
     type: Schema.Types.String,
     
   },
-  ganres: [{
+  genre: [{
     type: Schema.Types.ObjectId,
     ref: 'genre',
   }]

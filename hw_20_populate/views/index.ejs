@@ -32,8 +32,8 @@
            
 
               <p>
-                <% book.ganres.forEach( (genre, ind) => { %>
-                  <% if(ind == book.ganres.length - 1) { %>
+                <% book.genre.forEach( (genre, ind) => { %>
+                  <% if(ind == book.genre.length - 1) { %>
                     <%=genre.name%>
                   <% } else { %>
                   <%=genre.name + ","%>
@@ -47,7 +47,13 @@
       </div>
    
     </div>
-   
+    <ul class="list-group searchBookList">
+      <!-- <li class="list-group-item">An item</li>
+      <li class="list-group-item">A second item</li>
+      <li class="list-group-item">A third item</li>
+      <li class="list-group-item">A fourth item</li>
+      <li class="list-group-item">And a fifth one</li> -->
+    </ul>
     <!-- ==========SEARCH================= -->
     <form name="search" class="">
       <h2 class="mt-3">Find a book</h2>
@@ -61,7 +67,7 @@
       </div>
 
       <div class="input-group">
-        <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+        <select class="form-select genre-filter" id="inputGroupSelect04" aria-label="Example select with button addon">
           <option selected>Choose...</option>
           <option value="6134a04c60de4e15a6e086b5">Поэзия</option>
           <option value="6134a04c60de4e15a6e086b6">повесть</option>
@@ -77,7 +83,7 @@
       <button type="submit" class="btn btn-primary col-12 mt-3">Search</button>
     </form>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="javascripts/form.js"></script>
   </body>

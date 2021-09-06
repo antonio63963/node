@@ -9,12 +9,15 @@
 - жанр (выпадающий список, можно выдрать несколько
 
 
-   <p>
+  <p>
                 <% book.ganres.forEach( (genre, ind) => { %>
-                  <% if(ind == book.genres.length - 1) { %>
+                  <% if(ind == book.ganres.length - 1) { %>
                     <%=genre.name%>
                   <% } else { %>
                   <%=genre.name + ","%>
                   <% } %>
                 <% }) %>
               </p>
+
+
+              
