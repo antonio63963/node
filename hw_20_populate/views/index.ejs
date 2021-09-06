@@ -30,6 +30,16 @@
                 <% }) %>
               </p>
            
+
+              <p>
+                <% book.ganres.forEach( (genre, ind) => { %>
+                  <% if(ind == book.ganres.length - 1) { %>
+                    <%=genre.name%>
+                  <% } else { %>
+                  <%=genre.name + ","%>
+                  <% } %>
+                <% }) %>
+              </p>
               <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
           </div>
@@ -53,9 +63,13 @@
       <div class="input-group">
         <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
           <option selected>Choose...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option value="6134a04c60de4e15a6e086b5">Поэзия</option>
+          <option value="6134a04c60de4e15a6e086b6">повесть</option>
+          <option value="6134a04c60de4e15a6e086b7">ужастик</option>
+          <option value="6134a04c60de4e15a6e086b8">юмор</option>
+          <option value="6134a04c60de4e15a6e086b2">фантастика</option>
+          <option value="6134a04c60de4e15a6e086b4">сказка</option>
+          <option value="6134a04c60de4e15a6e086b3">приключения</option>
         </select>
         <button class="btn btn-outline-secondary" type="button">Button</button>
       </div>

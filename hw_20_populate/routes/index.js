@@ -23,8 +23,8 @@ router.get('/', async (req, res, next) => {
   // deleteGenre('6134a4cebb009e11c3bdfb7a');
 
 // console.log(await getBookById('6134a4cebb009e11c3bdfb7b'));
-  // insertGenre('6134a4cebb009e11c3bdfb7a', ['6134a04c60de4e15a6e086b2', '6134a04c60de4e15a6e086b3'])
-  res.render('index', { title: 'Books', books});
+  insertGenre('6134a4cebb009e11c3bdfb7a', ['6134a04c60de4e15a6e086b2', '6134a04c60de4e15a6e086b3'])
+  res.render('index', { title: 'Book\'s Hell', books});
 });
 
 module.exports = router;

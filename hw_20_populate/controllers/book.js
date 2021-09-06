@@ -13,7 +13,7 @@ const pushBook = async (userData) => {
 const getAllBooks = async () => {
   const books = await BookModel.find({})
   .populate('author')
-  .populate('genre')
+  .populate('ganres')
     // .exec();
   console.log('RESULT', books);
   return books;
