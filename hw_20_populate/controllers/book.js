@@ -43,6 +43,7 @@ const getBookById = async (bookId) => {
 };
 
 const searchBooks = async (userData) => {
+  console.log('USER: ', userData);
   let queryObj = {};
   for(let i in userData) {
     if(userData[i]) {
