@@ -5,15 +5,16 @@ const pushGenre = async (userData) => {
   genre.name = userData.name;
   const doc = await genre.save();
   console.log( 'new genre: ', doc._id);
+  return doc;
 };
 const getAllGenres = async () => {
   const genres = await GenreModel.find({});
   return genres;
-}
+};
 
 
 
 module.exports = {
   pushGenre,
   getAllGenres
-}
+};

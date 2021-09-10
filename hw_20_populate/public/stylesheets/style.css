@@ -13,3 +13,8 @@ a {
 .card img {
   height: 262px;
 }
+.generalList-wrapper {
+  height: 150px;
+  /* border: 1px solid #888;
+  border-radius: 5px; */
+}
