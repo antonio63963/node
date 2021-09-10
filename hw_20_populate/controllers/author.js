@@ -6,6 +6,7 @@ const pushAuthor = async (userData) => {
   author.name = userData.name;
   const doc = await author.save();
   console.log(doc._id);
+  return doc;
 };
 
 module.exports = {
