@@ -10,6 +10,7 @@ const pushBook = async (userData) => {
   book.pic = userData.pic;
   const doc = await book.save();
   console.log('new book: ', doc._id);
+  return doc;
 };
 
 

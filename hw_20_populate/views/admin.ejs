@@ -68,13 +68,26 @@
       </form>
       <hr class="col-6 offset-3">
       <!-- Authors -->
+      <!-- <div class="searchAuthor col-6 offset-4" >
+        <div class="d-flex justify-content-end">
+          <span class="ml-3">x</span>
+        </div>
+        <ul class="list-group searchAuthor_list">
+          <!-- <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A fourth item</li>
+          <li class="list-group-item">And a fifth one</li> -->
+        </ul>
+      </div> -->
+      
       <div class="row offset-3 mt-3">
         <h3>Authors</h3>
       </div>
       <form name="authors" class="col-6 offset-3 mb-3">
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">@</span>
-          <input type="text" class="form-control authorInput" placeholder="add new author" aria-label="Username"
+          <input type="text" class="form-control authorID" placeholder="add new author" aria-label="Username"
           aria-describedby="basic-addon1">
         </div>
         <button type="submit" class="btn btn-primary addBook">add Author</button>
@@ -91,7 +104,20 @@
           <span class="input-group-text" id="addon-wrapping">@</span>
           <input type="text" class="form-control titleInput" placeholder="Title" aria-label="Title" aria-describedby="addon-wrapping">
         </div>
-        
+        <!-- SEARCH RESULT -->
+        <div class="searchAuthor-book col-6 offset-4" >
+          <div class="d-flex justify-content-end">
+            <span class="ml-3 pointer">x</span>
+          </div>
+          <ul class="list-group searchAuthor-book_list">
+            <!-- <li class="list-group-item">An item</li>
+            <li class="list-group-item">A second item</li>
+            <li class="list-group-item">A third item</li>
+            <li class="list-group-item">A fourth item</li>
+            <li class="list-group-item">And a fifth one</li> -->
+          </ul>
+        </div>
+
         <h5>Search author ID by name:</h5>
         <div class="input-group mb-1">
           <input type="text" class="form-control searchAuthorInput" placeholder="Enter the author name" aria-label="search" aria-describedby="button-addon2">
@@ -117,6 +143,12 @@
         </div>
         <h5>Book's genres: ...</h5>
         <div class="bookGenres"></div>
+
+        <h5>Pic URL:</h5>
+        <div class="input-group flex-nowrap mb-3">
+          <span class="input-group-text" id="addon-wrapping">@</span>
+          <input type="text" class="form-control picInput" placeholder="pic url" aria-label="Description" aria-describedby="addon-wrapping">
+        </div>
 
         <!-- <div class="input-group mb-3">
           <input type="file" name="bookFile" class="form-control book_file" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
