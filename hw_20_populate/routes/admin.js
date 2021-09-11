@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const { pushGenre, getAllGenres } = require('../controllers/genre');
-const { pushAuthor } = require('../controllers/author');
+const { pushAuthor, getIdByName } = require('../controllers/author');
 const multer = require('multer');
 const path = require('path');
 const upload = multer({ dest: path.join(__dirname, '../public/uploads')});
 
 router.get('/', async(req, res) => {
   const genres = await getAllGenres();
+  getIdByName('Ки')
   // console.log('All GENRES: ', genres);
   res.render('admin', {genres: genres});
 });

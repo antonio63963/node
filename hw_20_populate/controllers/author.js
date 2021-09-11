@@ -9,6 +9,14 @@ const pushAuthor = async (userData) => {
   return doc;
 };
 
+const getIdByName = async (partOfName) => {
+  const regular = new RegExp(partOfName, 'i');
+  const authors = await AuthorModel.find({name: {$regex: regular}}, {_id: 1, name: 1});
+  console.log('REGEX: ', authors);
+  return authors;
+}
+
 module.exports = {
-  pushAuthor
+  pushAuthor,
+  getIdByName,
 }

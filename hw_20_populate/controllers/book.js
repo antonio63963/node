@@ -62,10 +62,6 @@ const searchBooks = async (userData) => {
     return genreOrder;
   };
 
-
-  const deleteKey = async () => {
-    await BookModel.update({}, {$unset: {ganres: 1}}, false, true)
-  }
 module.exports = {
   pushBook,
   getAllBooks,
@@ -73,5 +69,5 @@ module.exports = {
   deleteGenre,
   getBookById,
   searchBooks,
-  deleteKey
+  
 }

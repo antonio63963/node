@@ -86,9 +86,41 @@
         <h3>Books</h3>
       </div>
       <form name="books" class="col-6 offset-3">
-        <div class="input-group mb-3">
-          <input type="file" name="bookFile" class="form-control book_file" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+        <h5>Title:</h5>
+        <div class="input-group flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping">@</span>
+          <input type="text" class="form-control titleInput" placeholder="Title" aria-label="Title" aria-describedby="addon-wrapping">
         </div>
+        
+        <h5>Search author ID by name:</h5>
+        <div class="input-group mb-1">
+          <input type="text" class="form-control searchAuthorInput" placeholder="Enter the author name" aria-label="search" aria-describedby="button-addon2">
+          <button class="btn btn-outline-secondary searchAuthorBtn" type="button" id="button-addon2">Search</button>
+        </div>
+
+        <h5>Author ID: ...</h5>
+        <div class="author-id"></div>
+
+        <h5>Description:</h5>
+        <div class="input-group flex-nowrap mb-3">
+          <span class="input-group-text" id="addon-wrapping">@</span>
+          <input type="text" class="form-control descriptionInput" placeholder="description" aria-label="Description" aria-describedby="addon-wrapping">
+        </div>
+        <h5>Select genres</h5>
+        <div class="input-group mb-4">
+          <select class="form-select selectGenre" multiple id="inputGroupSelect04" aria-label="multiple select example">
+            <option selected>Choose...</option>
+            <% genres.forEach( genre => { %>
+              <option value="<%= genre.id%>"><%=genre.name %></option>
+            <% }) %>
+          </select>
+        </div>
+        <h5>Book's genres: ...</h5>
+        <div class="bookGenres"></div>
+
+        <!-- <div class="input-group mb-3">
+          <input type="file" name="bookFile" class="form-control book_file" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+        </div> -->
         <button type="submit" class="btn btn-primary">add Book</button>
       </form>
 
