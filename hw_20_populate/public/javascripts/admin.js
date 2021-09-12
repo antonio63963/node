@@ -54,6 +54,7 @@ authorsForm.addEventListener('submit', async (e) => {
 // BOOKS
 booksForm.addEventListener('submit', async (e) => {
   e.preventDefault();
+  if(!bookPic.value.trim().match(/(.png|.jpg)$/ig)) alert("Please add png or jpg!");
   const formData = {
     title: bookTitle.value.trim(),
     author: [...selectedAuthors.textContent.split(',').slice(0, -1)],
