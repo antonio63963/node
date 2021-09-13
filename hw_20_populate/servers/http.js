@@ -5,7 +5,7 @@ const  cookieParser = require('cookie-parser');
 const  logger = require('morgan');
 
 const  indexRouter = require('../routes/index');
-const formRouter = require('../routes/formData');
+const searchBookRouter = require('../routes/searchBooks');
 const  usersRouter = require('../routes/users');
 const adminRouter = require('../routes/admin');
 // const articleRouter = require('../routes/articles')
@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/form', formRouter);
+app.use('/form', searchBookRouter);
 app.use('/admin', adminRouter);
 // app.use('/article', articleRouter)
 
