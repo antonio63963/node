@@ -1,34 +1,35 @@
-const navList = document.querySelector('.nav-list'),
-  categoryBlock = document.querySelector('.category_wrap'),
-  groupBlock = document.querySelector('.group_wrap'),
-  brandBlock = document.querySelector('.brand_wrap'),
-  productBlock = document.querySelector('.add_product')
+const categoryInput = document.querySelector('.addNewCategory'),
+addCategoryBtn = document.querySelector('.addCategory'),
+newCategoryURL = `/admin/addCategory`,
 
+groupForm = document.forms.group,
+categoryListSelect = document.querySelector('.categoryListSelect'),
+groupInput = document.querySelector('.groupInput'),
+newGroupURL = `/admin/addGroup`,
 
-let showBlock = null;
-navList.addEventListener('click', (e) => {
-  const typeField = e.target.dataset.type;
-  console.log(typeField);
-  switch (typeField) {
-    case 'category': 
-      if(showBlock) showBlock.classList.add('d-none');
-      categoryBlock.classList.remove('d-none');
-      showBlock = categoryBlock;
-      break;
-    case 'group': 
-      if(showBlock) showBlock.classList.add('d-none');
-      groupBlock.classList.remove('d-none');
-      showBlock = groupBlock;
-      break;
-    case 'brand': 
-      if(showBlock) showBlock.classList.add('d-none');
-      brandBlock.classList.remove('d-none');
-      showBlock = brandBlock;
-      break;
-    case 'addProduct': 
-      if(showBlock) showBlock.classList.add('d-none');
-      productBlock.classList.remove('d-none');
-      showBlock = productBlock;
-      break;
+brandForm = document.forms.brand,
+brandInput = document.querySelector('.brandInput'),
+newBrandURL = `/admin/addBrand`
+
+// CATEGORY
+addCategoryBtn.addEventListener('click', async() => {
+  const { data } = await axios.post(newCategoryURL, {name: categoryInput.value});
+  categoryInput.value = '';
+  console.log(data);
+});
+// GROUP
+groupForm.addEventListener('submit', async() => {
+  const dataForm = {
+    category: categoryListSelect.value,
+    name: groupInput.value
   }
-})
+  const { data } = await axios.post(newGroupURL, dataForm);
+});
+// BRAND
+brandForm.addEventListener('submit', async() => {
+  const { data } = await axios.post(newBrandURL, {name: brandInput.value});
+  console.log(data);
+});
+
+
+// PRODUCT
