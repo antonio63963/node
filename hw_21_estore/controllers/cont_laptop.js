@@ -11,7 +11,8 @@ const insertLaptop = async (userData) => {
     brand: userData.brand,
     diagonal: userData.diagonal,
     processor: userData.processor
-  }
+  };
+  laptop.price = userData.price;
   const doc = await laptop.save();
   console.log(doc._id);
   return doc;

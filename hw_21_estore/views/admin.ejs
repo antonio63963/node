@@ -63,11 +63,8 @@
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a href="#"><i class="zmdi zmdi-notifications text-danger"></i>
-              </a>
-            </li>
-            <li><a href="#">Test User</a></li>
+            
+            <li><h2 id="titleDoc">Check an action</h2></li>
           </ul>
         </div>
       </nav>
@@ -105,7 +102,11 @@
 
             <h3>Grpoups</h3>
             <div class="input-group mb-3">
-              <input type="text" class="form-control groupInput" placeholder="add new group" aria-label="Username"
+              <input type="text" class="form-control groupInput" placeholder="add new group's name" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control searchNameGroupInput" placeholder="add search name" aria-label="Username"
                 aria-describedby="basic-addon1">
             </div>
             <button type="submit" class="btn btn-primary addGrpoup">add Grpoup</button>
@@ -124,7 +125,7 @@
         </div>
 
 
-        <div class="add_product d-flex d-none">
+        <div class="productBlock d-flex d-none">
           <div class="selectProduct col-5">
             <h3>Select a product</h3>
             <select class="form-select selecCategory mb-3" aria-label="Default select example">
@@ -134,54 +135,23 @@
               <% }) %>
             </select>
 
-            <select class="form-select selecGroup" aria-label="Default select example">
-              <option selected>select the Grpoup</option>
+            <ul class="list-group selectGroup">
 
               <!-- <option value="category.id">category.name</option> -->
 
-            </select>
+            </ul>
           </div>
 
           <!-- laptop -->
-          <div class="laptop_wrap col-6 offset-1">
-            <h3>Laptop</h3>
-            <form name="laptop">
-
-              <h5>model:</h5>
-              <div class="input-group flex-nowrap">
-                <input type="text" class="form-control modelInput" placeholder="model" aria-label="model"
-                  aria-describedby="addon-wrapping">
-              </div>
-              <!-- SEARCH RESULT -->
-              <div class="searcBrand col-6 offset-4">
-                <div class="d-flex justify-content-end">
-                  <span class="ml-3 pointer">x</span>
-                </div>
-                <ul class="list-group searchAuthor-book_list">
-                  <!-- <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">A fourth item</li>
-                <li class="list-group-item">And a fifth one</li> -->
-                </ul>
-              </div>
-
-              <h5>Search author ID by name:</h5>
-              <div class="input-group mb-1">
-                <input type="text" class="form-control searchAuthorInput" placeholder="Enter the author name"
-                  aria-label="search" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary searchAuthorBtn" type="button"
-                  id="button-addon2">Search</button>
-              </div>
-
-              <h5>Author ID: ...</h5>
-              <div class="author-id"></div>
+          <div class="add_productForm col-6 offset-1">
+            
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  
 
 
 
@@ -191,7 +161,9 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="javascripts/admin_sidebar.js"></script>
+  <script src="javascripts/admin_product.js"></script>
   <script src="javascripts/admin.js"></script>
+
 </body>
 
 </html>

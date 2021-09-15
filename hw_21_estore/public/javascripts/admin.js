@@ -5,11 +5,12 @@ newCategoryURL = `/admin/addCategory`,
 groupForm = document.forms.group,
 categoryListSelect = document.querySelector('.categoryListSelect'),
 groupInput = document.querySelector('.groupInput'),
+searchNameGroupInput = document.querySelector('.searchNameGroupInput'),
 newGroupURL = `/admin/addGroup`,
 
 brandForm = document.forms.brand,
 brandInput = document.querySelector('.brandInput'),
-newBrandURL = `/admin/addBrand`
+newBrandURL = `/admin/addBrand`;
 
 // CATEGORY
 addCategoryBtn.addEventListener('click', async() => {
@@ -18,9 +19,11 @@ addCategoryBtn.addEventListener('click', async() => {
   console.log(data);
 });
 // GROUP
-groupForm.addEventListener('submit', async() => {
+groupForm.addEventListener('submit', async(e) => {
+  e.preventDefault();
   const dataForm = {
     category: categoryListSelect.value,
+    searchName: searchNameGroupInput.value,
     name: groupInput.value
   }
   const { data } = await axios.post(newGroupURL, dataForm);
@@ -32,4 +35,3 @@ brandForm.addEventListener('submit', async() => {
 });
 
 
-// PRODUCT

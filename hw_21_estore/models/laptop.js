@@ -10,6 +10,9 @@ const generalSchema = new Schema({
     required: true,
     unique: true
   },
+  price: {
+    type: Schema.Types.Decimal128
+  },
   group: {
     type: Schema.Types.ObjectId,
     ref: 'group'

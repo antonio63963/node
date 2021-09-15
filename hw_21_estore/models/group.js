@@ -10,6 +10,12 @@ const generalSchema = new Schema({
     required: true,
     unique: true
   },
+  searchName: {
+    type: Schema.Types.String,
+    maxLength: 255,
+    required: true,
+    unique: true
+  },
   category: {
     type: Schema.Types.ObjectId,
     ref: 'category',

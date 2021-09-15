@@ -2,7 +2,7 @@ const navList = document.querySelector('.nav-list'),
   categoryBlock = document.querySelector('.category_wrap'),
   groupBlock = document.querySelector('.group_wrap'),
   brandBlock = document.querySelector('.brand_wrap'),
-  productBlock = document.querySelector('.add_product')
+  productBlock = document.querySelector('.productBlock')
 
 
 let showBlock = null;
