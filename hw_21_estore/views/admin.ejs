@@ -1,14 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin</title>
-  <link rel="stylesheet" href="stylesheets/styles.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 </head>
+
 <body>
-  
+  <div id="viewport">
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <header>
+        <a href="#">My App</a>
+      </header>
+
+
+      </ul>
+      <!-- sidebar list -->
+      <ul class="nav nav-list pointer">
+        <li>
+          <a data-type="category">
+            <i class="zmdi zmdi-view-dashboard"></i>Категория
+          </a>
+        </li>
+        <li>
+          <a data-type="group">
+            <i class="zmdi zmdi-link"></i> Группа
+          </a>
+        </li>
+        <li>
+          <a data-type="brand">
+            <i class="zmdi zmdi-widgets"></i> Бренд
+          </a>
+        </li>
+        <li>
+          <a data-type="addProduct">
+            <i class="zmdi zmdi-calendar"></i> Добавить товар
+          </a>
+        </li>
+
+        <li>
+          <a data-type="">
+            <i class="zmdi zmdi-settings"></i> Services
+          </a>
+        </li>
+        <li>
+          <a data-type="">
+            <i class="zmdi zmdi-comment-more"></i> Contact
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- Content -->
+    <div id="content">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#"><i class="zmdi zmdi-notifications text-danger"></i>
+              </a>
+            </li>
+            <li><a href="#">Test User</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="category_wrap d-none">
+          <h1>Категории</h1>
+
+          <ul class="list-group">
+            <% categories.forEach( category => { %>
+            <li class="list-group-item" data-category="<%= category.id%>"><%=category.name %></li>
+            <% }) %>
+          </ul>
+          <!-- Category -->
+          <h3>Add the new Category</h3>
+          <form name="category" class="col-6  mb-2">
+
+            <div class="input-group  mb-3">
+              <input type="text" class="form-control addNewGenre" placeholder="add new category"
+                aria-label="Recipient's username" aria-describedby="basic-addon2">
+            </div>
+            <button type="submit" class="btn btn-primary">add Category</button>
+          </form>
+        </div>
+        <!-- group -->
+        <div class="group_wrap d-none">
+          <h3>Grpoups</h3>
+
+          <form name="group" class="col-6 mb-3">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control authorID" placeholder="add new group" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+            <button type="submit" class="btn btn-primary addGrpoup">add Grpoup</button>
+          </form>
+        </div>
+        <!-- Brand -->
+        <div class="brand_wrap d-none">
+          <h3>Brand</h3>
+          <form name="brand" class="col-6  mb-3">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control authorID" placeholder="add new brand" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+            <button type="submit" class="btn btn-primary addBrand">add Brand</button>
+          </form>
+        </div>
+
+
+        <div class="add_product d-flex d-none">
+          <div class="selectProduct col-5">
+            <h3>Select a product</h3>
+            <select class="form-select selecCategory mb-3" aria-label="Default select example">
+              <option selected>select the category</option>
+              <% categories.forEach( category => { %>
+              <option value="<%= category.id%>"><%=category.name %></option>
+              <% }) %>
+            </select>
+
+            <select class="form-select selecGroup" aria-label="Default select example">
+              <option selected>select the Grpoup</option>
+
+              <!-- <option value="category.id">category.name</option> -->
+
+            </select>
+          </div>
+
+          <!-- laptop -->
+          <div class="laptop_wrap col-6 offset-1">
+            <h3>Laptop</h3>
+            <form name="laptop">
+
+              <h5>model:</h5>
+              <div class="input-group flex-nowrap">
+                <input type="text" class="form-control modelInput" placeholder="model" aria-label="model"
+                  aria-describedby="addon-wrapping">
+              </div>
+              <!-- SEARCH RESULT -->
+              <div class="searcBrand col-6 offset-4">
+                <div class="d-flex justify-content-end">
+                  <span class="ml-3 pointer">x</span>
+                </div>
+                <ul class="list-group searchAuthor-book_list">
+                  <!-- <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">A fourth item</li>
+                <li class="list-group-item">And a fifth one</li> -->
+                </ul>
+              </div>
+
+              <h5>Search author ID by name:</h5>
+              <div class="input-group mb-1">
+                <input type="text" class="form-control searchAuthorInput" placeholder="Enter the author name"
+                  aria-label="search" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary searchAuthorBtn" type="button"
+                  id="button-addon2">Search</button>
+              </div>
+
+              <h5>Author ID: ...</h5>
+              <div class="author-id"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 
 
 
@@ -16,4 +183,5 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="javascripts/admin.js"></script>
 </body>
+
 </html>

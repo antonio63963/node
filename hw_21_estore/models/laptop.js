@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 
 const generalSchema = new Schema({
-  name: {
+  model: {
     type: Schema.Types.String,
     maxLength: 255,
     required: true,

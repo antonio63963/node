@@ -8,7 +8,12 @@ const insertCategory = async (userData) => {
   console.log(doc._id);
   return doc;
 };
+const getAllCategories = async () => {
+  const categories = await CategoryModel.find({}, {_id: 1, name: 1});
+  return categories;
+}
 
 module.exports = {
   insertCategory,
+  getAllCategories,
 }
