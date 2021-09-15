@@ -2,7 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { getAllCategories, insertCategory } = require('../controllers/cont_category');
 const { insertGroup, getGroupsByCategory, updateSearchName } = require('../controllers/cont_group');
-const { insertBrand } = require('../controllers/cont_brand');
+const { insertBrand, getAllBrands } = require('../controllers/cont_brand');
+const { insertLaptop } = require('../controllers/cont_laptop');
+const multer = require('multer');
+const upload = multer();
 
 /* GET home page. */
 router.get('/', async(req, res) => {
@@ -29,13 +32,19 @@ router.post('/addBrand', async(req, res) => {
 router.post('/selectCategory', async(req, res) => {
   const reqData = req.body;
   const groups = await getGroupsByCategory(reqData.id_category);
-  console.log(groups);
   res.send(groups);
 });
-router.post('/selectGroup', async(req, res) => {
-  const { name } = req.body;
-  const groups = await getGroupsByCategory(reqData.id_category);
-  res.send(groups);
+router.post('/newLaptop', upload.none(), async(req, res) => {
+  const reqData = req.body;
+  const data = await insertLaptop(reqData)
+  console.log(reqData);
+});
+
+router.get('/brands/:id', async(req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  const brands = await getAllBrands();
+  res.send(brands);
 });
 
 module.exports = router;

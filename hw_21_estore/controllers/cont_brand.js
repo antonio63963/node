@@ -8,7 +8,13 @@ const insertBrand = async (userData) => {
   console.log(doc._id);
   return doc;
 };
+const getAllBrands = async () => {
+  const brands = await BrandModel.find({}, {_id: 1, name: 1});
+  console.log("GET ALL BRANDS: ", brands);
+  return brands;
+};
 
 module.exports = {
   insertBrand,
+  getAllBrands
 };

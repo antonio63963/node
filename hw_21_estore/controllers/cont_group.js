@@ -11,7 +11,6 @@ const insertGroup = async (userData) => {
 };
 const getGroupsByCategory = async (id_category) => {
   const groupsArr = await GroupModel.find({id: id_category}, {_id: 1, name: 1, searchName: 1}).sort({name: 1});
-  console.log('WWWWw: ', groupsArr);
   return groupsArr;
 };
 const updateSearchName = (id, fieldValue) => {

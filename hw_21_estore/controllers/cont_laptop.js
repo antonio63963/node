@@ -2,7 +2,7 @@ const LaptopModel = require('../models/laptop');
 
 const insertLaptop = async (userData) => {
   const laptop = new LaptopModel;
-  laptop.name = userData.name;
+  laptop.model = userData.model;
   laptop.group = userData.group;
   laptop.isActive = userData.isActive;
   laptop.isSale = userData.isSale;

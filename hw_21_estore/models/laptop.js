@@ -1,6 +1,8 @@
 const path = require('path');
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const {
+  Schema
+} = mongoose;
 
 
 const generalSchema = new Schema({
@@ -33,25 +35,24 @@ const generalSchema = new Schema({
     type: Schema.Types.String,
   },
   properties: {
-    type: Schema.Types.Map,
-    of: new Schema({
-      brand: {
-        type: Schema.Types.ObjectId,
-        ref: 'brand',
-      },
-      diagonal: {
-        type: Schema.Types.String,
-        maxLength: 2,
-        required: true,
-      },
-      processor: {
-        type: Schema.Types.String,
-        required: true,
-      }
-    })
+    brand: {
+      type: Schema.Types.ObjectId,
+      ref: 'brand',
+    },
+    diagonal: {
+      type: Schema.Types.String,
+      maxLength: 2,
+      required: true,
+    },
+    processor: {
+      type: Schema.Types.String,
+      required: true,
+    }
   }
-  
-}, {timestamps: true});
+
+}, {
+  timestamps: true
+});
 
 const modelName = path.basename(__filename, '.js');
 const model = mongoose.model(modelName, generalSchema);
