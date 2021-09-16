@@ -17,7 +17,17 @@ const insertLaptop = async (userData) => {
   console.log(doc._id);
   return doc;
 };
+const transformPrice = (price) => {
+  const modifyedPrice = price /100;
+  return modifyedPrice;
+}
+const getAllLaptops = async(limit) => {
+  const laptops = await LaptopModel.find({}).sort({price: 1}).limit(limit);
+  laptops.price = transformPrice(laptops.price);
+  return laptops;
+}
 
 module.exports = {
-  insertLaptop
+  insertLaptop,
+  getAllLaptops
 }
