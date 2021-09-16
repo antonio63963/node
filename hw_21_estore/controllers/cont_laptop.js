@@ -18,12 +18,13 @@ const insertLaptop = async (userData) => {
   return doc;
 };
 const transformPrice = (price) => {
-  const modifyedPrice = price /100;
-  return modifyedPrice;
+  const modifyedPrice = price / 100;
+  return modifyedPrice + '.00грн';
 }
 const getAllLaptops = async(limit) => {
   const laptops = await LaptopModel.find({}).sort({price: 1}).limit(limit);
-  laptops.price = transformPrice(laptops.price);
+  laptops.forEach(laptop => laptop.showPrice = transformPrice(laptop.price));
+  console.log(laptops); 
   return laptops;
 }
 

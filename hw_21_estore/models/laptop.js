@@ -13,7 +13,7 @@ const generalSchema = new Schema({
     unique: true
   },
   price: {
-    type: Schema.Types.Decimal128
+    type: Schema.Types.Number,
   },
   group: {
     type: Schema.Types.ObjectId,
