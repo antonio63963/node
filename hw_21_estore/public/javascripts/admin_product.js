@@ -48,7 +48,7 @@ const selecCategory = document.querySelector('.selecCategory'),
   <input name="price" type="text" class="form-control priceInput mb-3" placeholder="Enter price in cents"
   aria-label="search" aria-describedby="button-addon2">
 
-  <input name="category" type="text" class="form-control categoryInput mb-3" placeholder="Enter category id"
+  <input name="group" type="text" class="form-control groupInput mb-3" placeholder="Enter category id"
   aria-label="search" aria-describedby="button-addon2">
 
   <h5>Description</h5>

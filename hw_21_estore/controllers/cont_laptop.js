@@ -22,7 +22,11 @@ const transformPrice = (price) => {
   return modifyedPrice + '.00грн';
 }
 const getAllLaptops = async(limit) => {
-  const laptops = await LaptopModel.find({}).sort({price: 1}).limit(limit);
+  const laptops = await LaptopModel.find({})
+    .populate('properties.brand')
+    .populate('group')
+    .sort({price: 1})
+    .limit(limit);
   laptops.forEach(laptop => laptop.showPrice = transformPrice(laptop.price));
   console.log(laptops); 
   return laptops;
