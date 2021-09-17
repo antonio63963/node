@@ -10,6 +10,7 @@
 const laptopForm = document.forms.laptop;
 const newLaptopURL = `/admin/newLaptop`;
 laptopForm.addEventListener('submit', async(e) => {
+  console.log( document.querySelector('.groupInput').value);
   e.preventDefault();
  
   const formData = new FormData(e.target);

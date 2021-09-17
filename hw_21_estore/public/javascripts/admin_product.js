@@ -48,8 +48,8 @@ const selecCategory = document.querySelector('.selecCategory'),
   <input name="price" type="text" class="form-control priceInput mb-3" placeholder="Enter price in cents"
   aria-label="search" aria-describedby="button-addon2">
 
-  <input name="group" type="text" class="form-control groupInput mb-3" placeholder="Enter category id"
-  aria-label="search" aria-describedby="button-addon2">
+  <input name="group" type="text" class="form-control groupInput mb-3" placeholder="Enter group id"
+  aria-label="search" aria-describedby="button-addon2" value="6141f0649443fc4bb8506a57">
 
   <h5>Description</h5>
   <textarea name="description" class="form-control laptopDescription mb-3" aria-label="With textarea"></textarea>
@@ -74,23 +74,30 @@ selecCategory.addEventListener('change', async (e) => {
 
 selectGroup.addEventListener('click', async (e) => {
   const product = e.target.dataset.searchname;
+  const id_group = e.target.dataset.id;
   for (let i in productForms) {
     if (i == product) {
       addProductForm.innerHTML = productForms[i];
       document.querySelector('#titleDoc').textContent = product;
-      const script = document.createElement('script');
-      script.src = `javascripts/admin_${product}.js`
-      document.querySelector('body').appendChild(script);
-      const { data } = await axios.get(`/admin/brands/${product}`);
-      console.log(data);
+      if(!document.querySelector(`script[src='javascripts/admin_${product}.js']`)) {
+        const script = document.createElement('script');
+        script.src = `javascripts/admin_${product}.js`
+        document.querySelector('body').appendChild(script);
+      }
+      const {
+        data
+      } = await axios.get(`/admin/brands/${product}`);
       let brandList = '';
-      data.forEach( brand => {
+      data.forEach(brand => {
         brandList += `
         <option value="${brand._id}">${brand.name}</option>
         `;
       });
       document.querySelector('.selectBrand').innerHTML += brandList;
-      document.querySelector('.categoryInput').value = e.target.dataset.id;
+      // document.querySelector('.groupInput').value = id_group;
+   
     }
   }
 });
+
+

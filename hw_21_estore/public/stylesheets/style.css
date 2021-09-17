@@ -95,3 +95,6 @@ body {
 .pointer {
   cursor: pointer;
 }
+header .header_content {
+  background-image: url('../images/banner_3.jpg');
+}

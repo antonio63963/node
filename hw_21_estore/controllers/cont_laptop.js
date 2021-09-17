@@ -23,10 +23,10 @@ const transformPrice = (price) => {
 }
 const getAllLaptops = async(limit) => {
   const laptops = await LaptopModel.find({})
-    .populate('properties.brand')
-    .populate('group')
     .sort({price: 1})
-    .limit(limit);
+    .limit(limit)
+    .populate('properties.brand')
+    .populate('group');
   laptops.forEach(laptop => laptop.showPrice = transformPrice(laptop.price));
   console.log(laptops); 
   return laptops;
