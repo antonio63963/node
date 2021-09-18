@@ -95,7 +95,6 @@ selectGroup.addEventListener('click', async (e) => {
       });
       document.querySelector('.selectBrand').innerHTML += brandList;
       // document.querySelector('.groupInput').value = id_group;
-   
     }
   }
 });

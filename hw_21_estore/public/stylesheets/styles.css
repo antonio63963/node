@@ -11279,10 +11279,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-header {
+/* header {
   height: 250px;
   background-image: url('../images/banner_3.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-}
+} */
