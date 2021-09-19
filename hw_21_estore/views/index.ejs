@@ -53,7 +53,7 @@
     </nav>
     <!-- Header-->
     <header class="bg-dark ">
-        <div class="container px-4 px-lg-5  header_content">
+        <div class="container px-0 header_content">
             <!-- <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">Shop in style</h1>
                 <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
@@ -84,37 +84,61 @@
 
     </header>
     <!-- Section-->
-    <section class="py-5">
-        <div class="container px-4 px-lg-5 mt-5">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+    <section class="container">
+       <div class="row">
+            <!-- sidebar -->
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark col-lg-2 " >
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
 
-                <% products.forEach( product => { %>
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Sale badge-->
-                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
-                        </div>
-                        <!-- Product image-->
-                        <img class="card-img-top" src=" <%= product.img%>" alt="..." />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder"><%= product.model%></h5>
-                                <!-- Product price-->
-                                <%= product.showPrice%>
-                            </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <% }) %>
+                  <span class="fs-4">Категории</span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <% categories.forEach( category => { %>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" aria-current="page">
+                            <!-- <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg> -->
+                            <%= category.name %>
+                            </a>
+                        </li>
+                    <% }) %>
+                  
+                </ul>
+                <hr>
             </div>
-        </div>
+            <div class="container  col-lg-10">
+                
+                <!-- <div> -->
+                    <div class="row gx-4 gx-lg-5 row-cols-sm-2 row-cols-md-3 row-cols-xl-3 justify-content-start">
+                        <% products.forEach( product => { %>
+                        <div class="col mt-5">
+                            <div class="card h-100">
+                                <!-- Sale badge-->
+                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
+                                </div>
+                                <!-- Product image-->
+                                <img class="card-img-top" src=" <%= product.img%>" alt="..." />
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder"><%= product.model%></h5>
+                                        <!-- Product price-->
+                                        <%= product.showPrice%>
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                    </div>
+                <!-- </div> -->
+            </div>
+       </div>
     </section>
     <!-- Footer-->
     <footer class="py-5 bg-dark">
