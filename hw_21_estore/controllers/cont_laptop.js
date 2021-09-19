@@ -27,16 +27,17 @@ const getAllLaptops = async(limit) => {
     .populate('properties.brand')
     .populate('group');
   laptops.forEach(laptop => laptop.showPrice = transformPrice(laptop.price));
-  console.log(laptops); 
+  console.log(Object.values(laptops[0])); 
   return laptops;
 };
 const getOrderName = async(order = -1) => {
   const laptops = await LaptopModel.find({})
+  .populate('properties.brand')
     .sort({"properties.brand": order})
     .limit(10)
-    .populate('properties.brand')
     .populate('group');
     laptops.forEach(laptop => laptop.showPrice = transformPrice(laptop.price));
+    console.log(laptops);
   return laptops;
 };
 const getOrderPrice = async(order = -1) => {

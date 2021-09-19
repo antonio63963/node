@@ -9,7 +9,7 @@ const insertBrand = async (userData) => {
   return doc;
 };
 const getAllBrands = async () => {
-  const brands = await BrandModel.find({}, {_id: 1, name: 1});
+  const brands = await BrandModel.find({}, {_id: 1, name: 1}).sort({name: 1});
   console.log("GET ALL BRANDS: ", brands);
   return brands;
 };
