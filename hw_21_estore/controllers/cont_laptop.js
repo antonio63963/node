@@ -23,16 +23,35 @@ const transformPrice = (price) => {
 }
 const getAllLaptops = async(limit) => {
   const laptops = await LaptopModel.find({})
-    .sort({price: 1})
     .limit(limit)
     .populate('properties.brand')
     .populate('group');
   laptops.forEach(laptop => laptop.showPrice = transformPrice(laptop.price));
   console.log(laptops); 
   return laptops;
-}
+};
+const getOrderName = async(order = -1) => {
+  const laptops = await LaptopModel.find({})
+    .sort({"properties.brand": order})
+    .limit(10)
+    .populate('properties.brand')
+    .populate('group');
+    laptops.forEach(laptop => laptop.showPrice = transformPrice(laptop.price));
+  return laptops;
+};
+const getOrderPrice = async(order = -1) => {
+  const laptops = await LaptopModel.find({})
+    .sort({price: order})
+    .limit(10)
+    .populate('properties.brand')
+    .populate('group');
+    laptops.forEach(laptop => laptop.showPrice = transformPrice(laptop.price));
+  return laptops;
+};
 
 module.exports = {
   insertLaptop,
-  getAllLaptops
+  getAllLaptops,
+  getOrderName,
+  getOrderPrice
 }
