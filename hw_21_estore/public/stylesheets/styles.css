@@ -11286,3 +11286,6 @@ li>a.category {
 .next-items {
   font-size: 52px;
 }
+.pointer {
+  cursor: pointer;
+}
