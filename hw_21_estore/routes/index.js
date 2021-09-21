@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 const { getAllLaptops, getOrderName, getOrderPrice } = require('../controllers/cont_laptop');
 const { getAllCategories } = require('../controllers/cont_category');
-const { getGroupsByCategory } = require('../controllers/cont_group')
+const { getGroupsByCategory } = require('../controllers/cont_group');
+const { getBrandsByGroup } = require('../controllers/cont_brand');
 
 /* GET home page. */
 router.get('/', async(req, res) => {
@@ -44,6 +45,13 @@ router.get('/getPriceMax', async(req, res) => {
   const laptops = await getOrderPrice(-1);
   const categories = await getAllCategories();
   res.render('index', { title: 'Express', products: laptops, categories });
+});
+
+router.post('/getFilter', async(req, res) => {
+  const { id } = req.body;
+  console.log(id);
+  const brands = await getBrandsByGroup(id);
+  console.log('BRANDS: ', brands);
 });
 
 module.exports = router;

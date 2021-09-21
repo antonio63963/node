@@ -9,7 +9,11 @@ const generalSchema = new Schema({
     maxLength: 255,
     required: true,
     unique: true
-  }
+  },
+  group: [{
+    type: Schema.Types.ObjectId,
+    ref: 'group',
+  }]
   
 }, {timestamps: true});
 

@@ -50,6 +50,8 @@ const getOrderPrice = async(order = -1) => {
   return laptops;
 };
 
+
+
 module.exports = {
   insertLaptop,
   getAllLaptops,

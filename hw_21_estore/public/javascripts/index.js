@@ -2,9 +2,10 @@
 
 const container = document.querySelector('.container-side-content'),
   categoryList = document.querySelector('.category-list'),
-  titleWrapper = document.querySelector('.title-wrapper');
+  titleWrapper = document.querySelector('.title-wrapper'),
+  searchFilter = document.querySelector('.search');
 let groupTitle = null
-
+// HANDLERS
 //  get group by category
 const categoryListHandler = async (e) => {
   if(!e.target.classList.contains('category-list_item')) return false;
@@ -13,6 +14,12 @@ const categoryListHandler = async (e) => {
   console.log(data);
   buildGroupList(data)
 };
+const onGroupHandler = async (e) => {
+  if(!e.target.classList.contains('group-list_item')) return false;
+  const { id } = e.target.dataset;
+  const{ data } = await axios.post('/getFilter', { id });
+  console.log(data);
+}
 
 categoryList.addEventListener('click', categoryListHandler);
 
@@ -25,14 +32,15 @@ function buildGroupList(data) {
     `;
     return acc; 
   }, '')
-  const groupList = `
+  const groupHTML = `
     <ul class="nav nav-pills flex-column mb-auto group-list">
       ${list}
     </ul>
   `;
 
-  container.innerHTML = groupList;
-
+  container.innerHTML = groupHTML;
+  const groupList = document.querySelector('.group-list');
+  groupList.addEventListener('click', onGroupHandler);
   buildTitle('группы');
 };
 
@@ -76,6 +84,24 @@ function buildCategoryList(data) {
 
 // product filter 
 
+function buildBrandList(brands) {
+  const list = brands.reduce((acc, brand) => {
+    acc += `
+      <div class="brand-check">
+        <input class="brand-check-input" type="checkbox" value="${brand._id}" id="flexCheckDefault">
+        <label class="brand-check-label" for="flexCheckDefault">
+          ${product.brand}
+        </label>
+      </div>
+    `;
+    return acc;
+  }, '')
+  return list;
+};
+
+function getProductFilter(product_id) {
+
+}
 
 
 
