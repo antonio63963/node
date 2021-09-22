@@ -4,6 +4,7 @@ const { getAllLaptops, getOrderName, getOrderPrice } = require('../controllers/c
 const { getAllCategories } = require('../controllers/cont_category');
 const { getGroupsByCategory } = require('../controllers/cont_group');
 const { getBrandsByGroup } = require('../controllers/cont_brand');
+const client_filter = require('../filters/client_filter');
 const multer = require('multer');
 const upload = multer();
 
@@ -50,11 +51,10 @@ router.get('/getPriceMax', async(req, res) => {
 });
 
 router.post('/getFilter', async(req, res) => {
-  const { id } = req.body;
-  console.log(id);
+  const { id, type } = req.body;
   const brands = await getBrandsByGroup(id);
   // console.log('BRANDS: ', brands);
-  res.send(brands);
+  res.send({brands, filter: client_filter[type]});
 });
 router.post('/filterData', upload.none(), async(req, res) => {
  const data = req.body;

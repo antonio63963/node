@@ -67,7 +67,7 @@ selecCategory.addEventListener('change', async (e) => {
   });
   let listGroups = ``;
   data.forEach(group => {
-    listGroups += `<li class="list-group-item pointer" data-searchName="${group.searchName}" data-id="${group._id}">${group.name}</li>`
+    listGroups += `<li class="list-group-item pointer" data-searchName="${group.type}" data-id="${group._id}">${group.name}</li>`
   });
   selectGroup.innerHTML += listGroups;
 });

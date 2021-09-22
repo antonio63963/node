@@ -10,7 +10,7 @@ const insertGroup = async (userData) => {
   return doc;
 };
 const getGroupsByCategory = async (id_category) => {
-  const groupsArr = await GroupModel.find({category: id_category}, {_id: 1, name: 1, searchName: 1}).sort({name: 1});
+  const groupsArr = await GroupModel.find({category: id_category}, {_id: 1, name: 1, searchName: 1, type: 1}).sort({name: 1});
   return groupsArr;
 };
 const updateSearchName = (id, fieldValue) => {

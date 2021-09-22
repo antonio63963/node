@@ -16,19 +16,21 @@ const categoryListHandler = async (e) => {
 };
 const onGroupHandler = async (e) => {
   if(!e.target.classList.contains('group-list_item')) return false;
-  const { id } = e.target.dataset;
-  const{ data } = await axios.post('/getFilter', { id });
-  console.log(data);
-  const brands = buildBrandList(data);
+  const { id, type } = e.target.dataset;
+  const{ data } = await axios.post('/getFilter', { id, type });
+  console.log('FILTER: +++', data);
+  const { brands, filter } = data;
+  const brandList = buildBrandList(brands);
   const filterForm = `
     <form name="filter">
     <h5>Выбрать бренд</h5>
-      ${brands}
+      ${brandList}
+      ${filter}
       <button type="submit" class="btn btn-primary submitFilter">Submit</button>
     </form>
   `;
   container.innerHTML = filterForm;
-  const addTitle = data[0].group[0].name;
+  const addTitle = brands[0].group[0].name;
   buildTitle(addTitle);
   const form = document.forms.filter;
   form.addEventListener('submit', async (e)=> {
@@ -44,7 +46,7 @@ categoryList.addEventListener('click', categoryListHandler);
 function buildGroupList(data) {
   const list = data.reduce((acc, group) => {
     acc += `
-      <li class="nav-item p-2 pointer group-list_item" data-id="${group._id}">
+      <li class="nav-item p-2 pointer group-list_item" data-type="${group.type}" data-id="${group._id}">
       ${group.name}
       </li>
     `;
