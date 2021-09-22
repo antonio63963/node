@@ -108,7 +108,7 @@ function buildBrandList(brands) {
   let list = brands.reduce((acc, brand) => {
     acc += `
       <div class="brand-check">
-        <input name="${brand.name}" class="brand-check-input" type="checkbox" value="${brand._id}" id="flexCheckDefault">
+        <input name="brand" class="brand-check-input" type="checkbox" value="${brand._id}" id="flexCheckDefault">
         <label class="brand-check-label" for="flexCheckDefault">
           ${brand.name}
         </label>
