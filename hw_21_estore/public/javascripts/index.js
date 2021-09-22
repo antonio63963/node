@@ -19,6 +19,24 @@ const onGroupHandler = async (e) => {
   const { id } = e.target.dataset;
   const{ data } = await axios.post('/getFilter', { id });
   console.log(data);
+  const brands = buildBrandList(data);
+  const filterForm = `
+    <form name="filter">
+    <h5>Выбрать бренд</h5>
+      ${brands}
+      <button type="submit" class="btn btn-primary submitFilter">Submit</button>
+    </form>
+  `;
+  container.innerHTML = filterForm;
+  const addTitle = data[0].group[0].name;
+  buildTitle(addTitle);
+  const form = document.forms.filter;
+  form.addEventListener('submit', async (e)=> {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const { data } = await axios.post('/filterData', formData);
+    console.log(data);
+  });
 }
 
 categoryList.addEventListener('click', categoryListHandler);
@@ -85,18 +103,18 @@ function buildCategoryList(data) {
 // product filter 
 
 function buildBrandList(brands) {
-  const list = brands.reduce((acc, brand) => {
+  let list = brands.reduce((acc, brand) => {
     acc += `
       <div class="brand-check">
-        <input class="brand-check-input" type="checkbox" value="${brand._id}" id="flexCheckDefault">
+        <input name="${brand.name}" class="brand-check-input" type="checkbox" value="${brand._id}" id="flexCheckDefault">
         <label class="brand-check-label" for="flexCheckDefault">
-          ${product.brand}
+          ${brand.name}
         </label>
       </div>
     `;
     return acc;
   }, '')
-  return list;
+  return list += `<hr>`;
 };
 
 function getProductFilter(product_id) {

@@ -20,7 +20,7 @@ const setGroupArr = async (id) => {
  });
 };
 const getBrandsByGroup = async (group_id) => {
-  const necessaryBrands = await BrandModel.find({group: {$in: group_id}});
+  const necessaryBrands = await BrandModel.find({group: {$in: group_id}}).populate('group');
   console.log(necessaryBrands);
   return necessaryBrands;
 }

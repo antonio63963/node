@@ -114,12 +114,28 @@
         </div>
         <!-- Brand -->
         <div class="brand_wrap d-none">
-          <h3>Brand</h3>
+          <h2>Brand</h2>
           <form name="brand" class="col-6  mb-3">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control brandInput" placeholder="add new brand" aria-label="Username"
-                aria-describedby="basic-addon1">
-            </div>
+          
+          <h3>Выбрать категорию бренда</h3>
+          <ul class="list-group brand-category">
+            <% categories.forEach( category => { %>
+            <li class="list-group-item pointer" data-category="<%= category.id%>"><%=category.name %></li>
+            <% }) %>
+          </ul>
+          <h3>Выбрать группу бренда</h3>
+          <ul class="list-group brand-group">
+          </ul>
+          <div class="input-group mb-3 row">
+            <input name="group_id" type="text" class="col-4 form-control brand-groupId" placeholder="selected group ID" aria-label="group"
+              aria-describedby="basic-addon1">
+              <span class="col-1 input-group-text pointer clearGroupId" id="basic-addon2">clear input</span>
+          </div>
+          <h3>Добавить новый бренд</h3>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control brandInput" placeholder="add new brand" aria-label="Username"
+              aria-describedby="basic-addon1">
+          </div>
             <button type="submit" class="btn btn-primary addBrand">add Brand</button>
           </form>
         </div>

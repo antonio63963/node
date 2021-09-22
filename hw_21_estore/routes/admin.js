@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getAllCategories, insertCategory } = require('../controllers/cont_category');
 const { insertGroup, getGroupsByCategory, updateSearchName } = require('../controllers/cont_group');
-const { insertBrand, getAllBrands } = require('../controllers/cont_brand');
+const { insertBrand, getAllBrands, getBrandsByGroup } = require('../controllers/cont_brand');
 const { insertLaptop } = require('../controllers/cont_laptop');
 const multer = require('multer');
 const upload = multer();
@@ -46,5 +46,11 @@ router.get('/brands/:id', async(req, res) => {
   const brands = await getAllBrands();
   res.send(brands);
 });
+
+router.post('/groupBrands', async(req, res) => {
+  const { id } = req.body;
+  const brandsByGroup = await getBrandsByGroup(id);
+  res.send(brandsByGroup);
+})
 
 module.exports = router;
