@@ -12,6 +12,10 @@ const generalSchema = new Schema({
     required: true,
     unique: true
   },
+  type: {
+    type: Schema.Types.String,
+    maxLength: 32,
+  },
   price: {
     type: Schema.Types.Number,
   },
@@ -47,6 +51,10 @@ const generalSchema = new Schema({
     processor: {
       type: Schema.Types.String,
       required: true,
+    },
+    processor_series: {
+      type: Schema.Types.String,
+      maxLength: 32
     }
   }
 

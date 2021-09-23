@@ -37,7 +37,7 @@ const onGroupHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const { data } = await axios.post('/filterData', formData);
-    console.log(data);
+    console.log('filterData', data);
   });
 }
 
@@ -118,10 +118,6 @@ function buildBrandList(brands) {
   }, '')
   return list += `<hr>`;
 };
-
-function getProductFilter(product_id) {
-
-}
 
 
 

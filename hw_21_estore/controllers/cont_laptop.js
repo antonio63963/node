@@ -49,6 +49,21 @@ const getOrderPrice = async(order = -1) => {
     laptops.forEach(laptop => laptop.showPrice = transformPrice(laptop.price));
   return laptops;
 };
+const filterLaptop = async (params) => {
+  const query = {};
+  Object.keys(params).forEach(key => {
+    if(Array.isArray(params[key])) {
+      query[`properties.${key}`] = {$in: params[key]};
+    }else {
+      query[`properties.${key}`] = params[key];
+    }
+  });
+console.log("query", query);
+  const laptops = await LaptopModel.find(query)
+    .populate('properties.brand');
+    console.log('LAPTOPS: ====',laptops);
+  return laptops;
+}
 
 
 
@@ -56,5 +71,6 @@ module.exports = {
   insertLaptop,
   getAllLaptops,
   getOrderName,
-  getOrderPrice
+  getOrderPrice,
+  filterLaptop
 }

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { getAllLaptops, getOrderName, getOrderPrice } = require('../controllers/cont_laptop');
+const { getAllLaptops, getOrderName, getOrderPrice, filterLaptop } = require('../controllers/cont_laptop');
 const { getAllCategories } = require('../controllers/cont_category');
 const { getGroupsByCategory } = require('../controllers/cont_group');
 const { getBrandsByGroup } = require('../controllers/cont_brand');
@@ -57,9 +57,9 @@ router.post('/getFilter', async(req, res) => {
   res.send({brands, filter: client_filter[type]});
 });
 router.post('/filterData', upload.none(), async(req, res) => {
- const data = req.body;
- console.log(data);
- res.send(data)
+ const filter = req.body;
+ const laptops = await filterLaptop(filter);
+ res.send(laptops);
 });
 
 
