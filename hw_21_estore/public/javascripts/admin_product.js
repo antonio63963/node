@@ -54,10 +54,20 @@ const selecCategory = document.querySelector('.selecCategory'),
   <h5>Description</h5>
   <textarea name="description" class="form-control laptopDescription mb-3" aria-label="With textarea"></textarea>
 
-  <div class="input-group mb-3">
-    <input type="file" class="form-control" id="inputGroupFile02" name="uploaded_file">
-    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+  <div class="inputPhotoContainer">
+    <div class="inputPhoto-1">
+      <p>
+      <span>Загрузить фото</span> #
+      <span class="PhotoAmaunt"> 1</span>
+      </p>
+      <div class="input-group d-flex flex-nowrap mb-3">
+        <input type="file" class="form-control" id="inputGroupFile02" name="uploaded_file">
+        <button class="btn btn-outline-secondary addOneElse" data-num="1">+ one else</button>
+      </div>
+    </div>
   </div>
+
+
   <button type="submit" class="btn btn-primary submitNewLaptop"> submit </button>
 `
   };
