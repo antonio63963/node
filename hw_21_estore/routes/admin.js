@@ -4,8 +4,23 @@ const { getAllCategories, insertCategory } = require('../controllers/cont_catego
 const { insertGroup, getGroupsByCategory, updateSearchName } = require('../controllers/cont_group');
 const { insertBrand, getAllBrands, getBrandsByGroup } = require('../controllers/cont_brand');
 const { insertLaptop } = require('../controllers/cont_laptop');
+//multer
 const multer = require('multer');
-const upload = multer();
+const fs = require('fs');
+const path = require('path');
+
+const folderUploads = path.resolve('public/images');
+
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, folderUploads)
+  },
+  filename(req, file, cb) {
+    cb(null, file.originalname)
+  }
+});
+
+const upload = multer({storage});
 
 /* GET home page. */
 router.get('/', async(req, res) => {
@@ -34,10 +49,12 @@ router.post('/selectCategory', async(req, res) => {
   const groups = await getGroupsByCategory(reqData.id_category);
   res.send(groups);
 });
-router.post('/newLaptop', upload.none(), async(req, res) => {
+router.post('/newLaptop', upload.array('uploaded_file'), async(req, res) => {
   const reqData = req.body;
-  const data = await insertLaptop(reqData)
-  console.log(reqData);
+  const file = req.files;
+  // const data = await insertLaptop(reqData)
+  console.log('reqData: =====',reqData);
+  console.log('file:::: =====', file);
 });
 
 router.get('/brands/:id', async(req, res) => {

@@ -9,13 +9,17 @@ let groupTitle = null
 //  get group by category
 const categoryListHandler = async (e) => {
   if(!e.target.classList.contains('category-list_item')) return false;
+  const title = e.target.textContent;
   const { id } = e.target.dataset;
   const { data } = await axios.post('/group', { id });
   console.log(data);
-  buildGroupList(data)
+  titleWrapper.innerHTML += `<span class="categoryTitle pointer">/${title}</span>`;
+  buildGroupList(data);
+  buildTitle('группы', id);
 };
 const onGroupHandler = async (e) => {
   if(!e.target.classList.contains('group-list_item')) return false;
+  const title = e.target.textContent;
   const { id, type } = e.target.dataset;
   const{ data } = await axios.post('/getFilter', { id, type });
   console.log('FILTER: +++', data);
@@ -30,8 +34,8 @@ const onGroupHandler = async (e) => {
     </form>
   `;
   container.innerHTML = filterForm;
-  const addTitle = brands[0].group[0].name;
-  buildTitle(addTitle);
+  console.log(id);
+  buildTitle(title, id, type);
   const form = document.forms.filter;
   form.addEventListener('submit', async (e)=> {
     e.preventDefault();
@@ -39,6 +43,8 @@ const onGroupHandler = async (e) => {
     const { data } = await axios.post('/filterData', formData);
     console.log('filterData', data);
   });
+
+  document.querySelector('.groupTitle').dataset.type = type;
 }
 
 categoryList.addEventListener('click', categoryListHandler);
@@ -57,19 +63,18 @@ function buildGroupList(data) {
       ${list}
     </ul>
   `;
-
   container.innerHTML = groupHTML;
   const groupList = document.querySelector('.group-list');
   groupList.addEventListener('click', onGroupHandler);
-  buildTitle('группы');
+  // buildTitle('группы');
 };
 
-function buildTitle(addTitle) {
+function buildTitle(addTitle, id, type) {
   const newTitle = `
-    <span class="fs-4 pointer titleList ${addTitle}">/${addTitle}</span>
+  <span class=" pointer titleList groupTitle" data-id="${id}">/${addTitle}</span>
   `;
   titleWrapper.innerHTML += newTitle;
-  groupTitle = document.querySelector(`.${addTitle}`);
+  groupTitle = document.querySelector(`.${type}`);
 };
 
 // return to category by click on title
@@ -80,6 +85,15 @@ titleWrapper.addEventListener('click', async (e) => {
     buildCategoryList(data);
     const categoryList = document.querySelector('.category-list');
     categoryList.addEventListener('click', categoryListHandler);
+  }
+  if(e.target.dataset.type === 'laptop') {
+    document.querySelector('.categoryTitle').remove();
+    const { id } = e.target.dataset;
+    const { data } = await axios.post('/group', { id });
+    console.log(data);
+    titleWrapper.innerHTML = `<span class="fs-5 titleList category pointer">Категории</span>`;
+    buildGroupList(data);
+    buildTitle('группы', id);
   }
 
 });

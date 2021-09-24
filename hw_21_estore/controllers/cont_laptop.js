@@ -50,6 +50,7 @@ const getOrderPrice = async(order = -1) => {
   return laptops;
 };
 const filterLaptop = async (params) => {
+  console.log(params);
   const query = {};
   Object.keys(params).forEach(key => {
     if(Array.isArray(params[key])) {
