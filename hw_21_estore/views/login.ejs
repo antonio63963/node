@@ -10,22 +10,25 @@
 <body>
   <div class="row">
     <div class="col-6 offset-3 border mt-5">
-      <form class="px-4 py-3" name="login">
+      <form class="px-4 py-3" name="login" enctype="multipart/form-data">
         <div class="d-flex justify-content-between align-items-center">
           <h1>login:</h1>
+          <%if(noSuchUser) {%>
+            <h3>Такой пользователь не зарегистрирован!</h3>
+          <% } %>
           <button class="btn btn-close"></button>
         </div>
         <div class="mb-3">
           <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+          <input type="email" name="email" required class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
         </div>
         <div class="mb-3">
           <label for="exampleDropdownFormPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+          <input type="password" name="password" required id="exampleDropdownFormPassword1" placeholder=""class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
         </div>
         <div class="mb-3">
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+            <input type="checkbox" name="session" class="form-check-input" id="dropdownCheck">
             <label class="form-check-label" for="dropdownCheck">
               Remember me
             </label>

@@ -16,14 +16,14 @@ const generalSchema = new Schema({
     maxLength: 32,
     required: true,
   },
-  role: {
-    type: Schema.Types.String,
-    maxLength: 32,
-    required: true,
+  isAdmin: {
+    type: Schema.Types.Boolean,
+    default: false,
   },
-  ip: [{
+  password: {
     type: Schema.Types.String,
-  }]
+    minLength: 3
+  }
 }, 
 {
   timestamps: true

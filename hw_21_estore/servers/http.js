@@ -8,6 +8,9 @@ const indexRouter = require('../routes/index');
 const usersRouter = require('../routes/users');
 const adminRouter = require('../routes/admin');
 const formRouter = require('../routes/form');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const { url } = require('../config').db;
 
 const app = express();
 
@@ -26,7 +29,16 @@ app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
 app.use('/form', formRouter);
 
+app.use(session({
+  secret: 'adfasdfsdfsdf', // свое
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }, // false если http, не https
+  store: MongoStore.create({
+    mongoUrl: url,
 
+  })
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
