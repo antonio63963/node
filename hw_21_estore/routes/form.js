@@ -23,7 +23,7 @@ router.post('/logData', [upload.none(), login], async (req, res) => {
   const userData = req.body;
   console.log('[[[[[[[[', userData);
   const isLogin = await loginUser(userData);
-  console.log('isLogin:::::::', isLogin);
+  console.log('SESSION#######',req.session);
   res.send({login: isLogin});
 });
 

@@ -10,6 +10,7 @@ const upload = multer();
 
 /* GET home page. */
 router.get('/', async(req, res) => {
+  // console.log("SESSION:::::", req.session.connect.sid);
   const laptops = await getAllLaptops(10);
   const categories = await getAllCategories();
   res.render('index', { title: 'Express', products: laptops, categories });
