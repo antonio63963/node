@@ -3,7 +3,8 @@ const router = express.Router();
 const { getAllCategories, insertCategory } = require('../controllers/cont_category');
 const { insertGroup, getGroupsByCategory, updateSearchName } = require('../controllers/cont_group');
 const { insertBrand, getAllBrands, getBrandsByGroup } = require('../controllers/cont_brand');
-const { insertLaptop } = require('../controllers/cont_laptop');
+const { craeteLaptop } = require('../controllers/cont_laptop');
+const { promises: Fs} = require('fs');
 //multer
 const { uploadArr } = require('../controllers/multer');
 
@@ -32,10 +33,16 @@ router.post('/selectCategory', async(req, res) => {
 });
 router.post('/newLaptop', uploadArr, async(req, res) => {
   const reqData = req.body;
-  const file = req.files;
-  // const data = await insertLaptop(reqData)
+  const files = req.files;
+  const dir = './public/images';
+  const newName = reqData.model;
+  files.forEach((file, index) => {
+    Fs.rename(`${dir}/${file.originalname}`, `${dir}/${newName}(${index + 1})`);
+
+  })
+  // const data = await craeteLaptop(reqData)
   console.log('reqData: =====',reqData);
-  console.log('file:::: =====', file);
+  console.log('file:::: =====', files);
 });
 
 router.get('/brands/:id', async(req, res) => {

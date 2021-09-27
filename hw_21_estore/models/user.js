@@ -10,6 +10,7 @@ const generalSchema = new Schema({
     type: Schema.Types.String,
     maxLength: 255,
     required: true,
+    index: true
   },
   email: {
     type: Schema.Types.String,

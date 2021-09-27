@@ -1,6 +1,6 @@
 const LaptopModel = require('../models/laptop');
 
-const insertLaptop = async (userData) => {
+const craeteLaptop = async (userData) => {
   const laptop = new LaptopModel;
   laptop.model = userData.model;
   laptop.group = userData.group;
@@ -69,7 +69,7 @@ console.log("query", query);
 
 
 module.exports = {
-  insertLaptop,
+  craeteLaptop,
   getAllLaptops,
   getOrderName,
   getOrderPrice,
