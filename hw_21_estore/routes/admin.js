@@ -34,15 +34,18 @@ router.post('/selectCategory', async(req, res) => {
 router.post('/newLaptop', uploadArr, async(req, res) => {
   const reqData = req.body;
   const files = req.files;
-  const dir = './public/images';
+  const dir = './public/images/srcFolder';
   const newName = reqData.model;
+  const productPhotoArr = [];
   files.forEach((file, index) => {
-    Fs.rename(`${dir}/${file.originalname}`, `${dir}/${newName}(${index + 1})`);
-
+    const type = file.mimetype.match(/\/(.*)$/i)[1];
+    const fileName = `${newName}(${index + 1}).${type}`;
+    Fs.rename(`${dir}/${file.originalname}`, `${dir}/${fileName}`);
+    productPhotoArr.push(`images/srcFolder/${fileName}`);
   })
   // const data = await craeteLaptop(reqData)
-  console.log('reqData: =====',reqData);
-  console.log('file:::: =====', files);
+  // console.log('reqData: =====',reqData);
+  // console.log('file:::: =====', files);
 });
 
 router.get('/brands/:id', async(req, res) => {

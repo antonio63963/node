@@ -2,7 +2,7 @@ const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 
-const folderUploads = path.resolve('public/images');
+const folderUploads = path.resolve('public/images/srcFolder');
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
