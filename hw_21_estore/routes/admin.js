@@ -36,20 +36,25 @@ router.post('/newLaptop', uploadArr, async(req, res) => {
   const reqData = req.body;
   const files = req.files;
   const dir = path.resolve('public/images/srcFolder');
-  const newName = reqData.model;
+  const newName = reqData.model.trim().split('').map(item => {
+    if(item === ' ' || item === '/') return  '_';
+    else return item
+  }).join('');
+  // const newName = reqData.model.trim().replace(/\s+/g,"_");
+  console.log('NEW: ######', newName);
   console.log('reqData: =====',reqData);
-  console.log('file:::: =====', files);
+  // console.log('file:::: =====', files);
 
   const productPhotoArr = files.map((file, index) => {
     const type = file.mimetype.match(/\/(.*)$/i)[1];
     const fileName = `${newName}(${index + 1}).${type}`;
-    Fs.rename(`${dir}/${file.originalname}`, `${dir}/${fileName}`);
-    console.log('productPhoto');
-    return `./images/srcFolder/${fileName}`;
+    Fs.rename(`${dir}/${file.originalname}`, `${dir}/${fileName}`)
+    .then((err, result) => {err ? console.log('ERROR: ', err) : console.log('RENAME: ',result);});
+    return `images/srcFolder/${fileName}`;
   });
-  // reqData.img = productPhotoArr;
-
-  // const data = await craeteLaptop(reqData);
+  console.log(productPhotoArr);
+  reqData.img = productPhotoArr;
+  const data = await craeteLaptop(reqData);
  
 });
 
