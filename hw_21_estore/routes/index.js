@@ -4,16 +4,20 @@ const { getAllLaptops, getOrderName, getOrderPrice, filterLaptop } = require('..
 const { getAllCategories } = require('../controllers/cont_category');
 const { getGroupsByCategory } = require('../controllers/cont_group');
 const { getBrandsByGroup } = require('../controllers/cont_brand');
+const { findUserById } = require('../controllers/cont_user');
 const client_filter = require('../filters/client_filter');
 const multer = require('multer');
 const upload = multer();
 
 /* GET home page. */
 router.get('/', async(req, res) => {
-  // console.log("SESSION:::::", req.session.connect.sid);
+  //auth
+  const userID = req.session.userId;
+  const user = await findUserById(userID);
+  const auth = userID ? {login: true, user}: {login: false};
   const laptops = await getAllLaptops(10);
   const categories = await getAllCategories();
-  res.render('index', { title: 'Express', products: laptops, categories });
+  res.render('index', { title: 'Express', products: laptops, categories, auth});
 });
 
 router.get('/category', async(req, res) => {

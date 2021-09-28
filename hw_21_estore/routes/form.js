@@ -13,16 +13,20 @@ router.get('/registration', async (req, res) => {
 });
 // POST
 router.post('/regData', registration, async (req, res) => {
+  console.log('PRE S: ', req.session);
   const reqData = req.body;
   const user = await checkUserByEmail(reqData);
-  if(user.length == 0) {
-    const newUser = createUser(reqData);
+  if(!user) {
+    const newUser = await createUser(reqData);
+    req.session.userId = newUser._id;
+    res.send({login: true})
   };
 });
 router.post('/logData', [upload.none(), login], async (req, res) => {
   const userData = req.body;
   console.log('[[[[[[[[', userData);
   const isLogin = await loginUser(userData);
+  req.session.smth = "wow";
   console.log('SESSION#######',req.session);
   res.send({login: isLogin});
 });

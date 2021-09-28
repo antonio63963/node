@@ -34,7 +34,6 @@ const registration = (req, res, next) => {
   console.log(valid);
   if (!valid) console.log(validate.errors);
   console.log('FIRST: ----',req.body);
-  res.json(req.body);
   next();
 };
 const login = (req, res, next) => {

@@ -32,11 +32,12 @@ const generalSchema = new Schema({
     default: false,
     index: true
   },
-  img: {
+  img: [{
     type: Schema.Types.String,
-  },
+  }],
   description: {
     type: Schema.Types.String,
+    unique: true,
   },
   properties: {
     brand: {

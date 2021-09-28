@@ -40,5 +40,5 @@ loginForm.addEventListener('submit', async (e) => {
     session
   };
   const { data } = await axios.post('/form/regData', formData);
-  console.log(data);
+  if(data.login)  window.location = 'http://localhost:3000';
 });

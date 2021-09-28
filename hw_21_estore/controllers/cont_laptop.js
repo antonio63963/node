@@ -27,7 +27,7 @@ const getAllLaptops = async(limit) => {
     .populate('properties.brand')
     .populate('group');
   laptops.forEach(laptop => laptop.showPrice = transformPrice(laptop.price));
-  console.log(Object.values(laptops[0])); 
+  // console.log(Object.values(laptops[0])); 
   return laptops;
 };
 const getOrderName = async(order = -1) => {

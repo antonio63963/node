@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 const { getAllCategories, insertCategory } = require('../controllers/cont_category');
 const { insertGroup, getGroupsByCategory, updateSearchName } = require('../controllers/cont_group');
 const { insertBrand, getAllBrands, getBrandsByGroup } = require('../controllers/cont_brand');
 const { craeteLaptop } = require('../controllers/cont_laptop');
-const { promises: Fs} = require('fs');
+const { promises: Fs, fs} = require('fs');
 //multer
 const { uploadArr } = require('../controllers/multer');
 
@@ -34,18 +35,22 @@ router.post('/selectCategory', async(req, res) => {
 router.post('/newLaptop', uploadArr, async(req, res) => {
   const reqData = req.body;
   const files = req.files;
-  const dir = './public/images/srcFolder';
+  const dir = path.resolve('public/images/srcFolder');
   const newName = reqData.model;
-  const productPhotoArr = [];
-  files.forEach((file, index) => {
+  console.log('reqData: =====',reqData);
+  console.log('file:::: =====', files);
+
+  const productPhotoArr = files.map((file, index) => {
     const type = file.mimetype.match(/\/(.*)$/i)[1];
     const fileName = `${newName}(${index + 1}).${type}`;
     Fs.rename(`${dir}/${file.originalname}`, `${dir}/${fileName}`);
-    productPhotoArr.push(`images/srcFolder/${fileName}`);
-  })
-  // const data = await craeteLaptop(reqData)
-  // console.log('reqData: =====',reqData);
-  // console.log('file:::: =====', files);
+    console.log('productPhoto');
+    return `./images/srcFolder/${fileName}`;
+  });
+  // reqData.img = productPhotoArr;
+
+  // const data = await craeteLaptop(reqData);
+ 
 });
 
 router.get('/brands/:id', async(req, res) => {

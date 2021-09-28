@@ -10,14 +10,18 @@ const createUser = async (userData) => {
   return doc;
 };
 const checkUserByEmail = async(data) => {
-  const user = await UserModel.find({email: data.email});
+  const user = await UserModel.findOne({email: data.email});
+  console.log("CHECK USER BY EMAIL", user);
   return user;
 }; 
+const findUserById = async(id) => {
+  const user = await UserModel.findOne({id});
+  return user;
+}
 
 const loginUser = async (data) => {
   console.log('MAIL : ', data.email, 'PaSSS: ', data.password);
   const user = await UserModel.findOne({email: data.email, password: data.password});
-  console.log(user);
   if(user) {return true}
   else {return false}
 };
@@ -28,4 +32,5 @@ module.exports = {
   createUser,
   loginUser,
   checkUserByEmail,
+  findUserById
 };
