@@ -36,11 +36,8 @@ router.post('/newLaptop', uploadArr, async(req, res) => {
   const reqData = req.body;
   const files = req.files;
   const dir = path.resolve('public/images/srcFolder');
-  const newName = reqData.model.trim().split('').map(item => {
-    if(item === ' ' || item === '/') return  '_';
-    else return item
-  }).join('');
-  // const newName = reqData.model.trim().replace(/\s+/g,"_");
+
+  const newName = reqData.model.trim().replace(/[\s/]+/g,"_");
   console.log('NEW: ######', newName);
   console.log('reqData: =====',reqData);
   // console.log('file:::: =====', files);
