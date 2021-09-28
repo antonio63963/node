@@ -20,7 +20,9 @@ const findUserById = async(id) => {
 }
 
 const loginUser = async (data) => {
-  const user = await UserModel.findOne({auth: {email: data.email}});
+  console.log('DATa: ', data);
+  const user = await UserModel.findOne({"auth.login": data.email});
+  console.log('USER====', user);
   if(!user) {
     return {login: false, message: 'unknown user'};
   }else {

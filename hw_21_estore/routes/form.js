@@ -25,7 +25,7 @@ router.post('/regData', registration, async (req, res) => {
 router.post('/logData', [upload.none(), login], async (req, res) => {
   const userData = req.body;
   const loginResult = await loginUser(userData);
-  if(loginResult.userID) session.userId = loginResult.userID;
+  if(loginResult.userID) req.session.userId = loginResult.userID;
   console.log('SESSION#######',req.session);
   res.send(loginResult);
 });
