@@ -5,6 +5,10 @@ loginForm.addEventListener('submit', async (e) => {
   const formData = new FormData(e.target);
   const {data} = await axios.post('/form/logData', formData);
  
-  if(data.login)  window.location = 'http://localhost:3000';
+  if(data.login) {
+    window.location = 'http://localhost:3000';
+  } else {
+    console.log(data.message);
+  };
   
 });

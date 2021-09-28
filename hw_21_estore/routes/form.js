@@ -24,11 +24,10 @@ router.post('/regData', registration, async (req, res) => {
 });
 router.post('/logData', [upload.none(), login], async (req, res) => {
   const userData = req.body;
-  console.log('[[[[[[[[', userData);
-  const isLogin = await loginUser(userData);
-  req.session.smth = "wow";
+  const loginResult = await loginUser(userData);
+  if(loginResult.userID) session.userId = loginResult.userID;
   console.log('SESSION#######',req.session);
-  res.send({login: isLogin});
+  res.send(loginResult);
 });
 
 module.exports = router;

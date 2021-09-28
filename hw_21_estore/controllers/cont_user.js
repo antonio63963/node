@@ -3,8 +3,8 @@ const UserModel = require('../models/user');
 const createUser = async (userData) => {
   const user = new UserModel;
   user.name = userData.name;
-  user.email = userData.email;
-  user.password = userData.password;
+  user.auth.login = userData.email;
+  user.auth.pwd = userData.password;
   const doc = await user.save();
   console.log(doc._id);
   return doc;
@@ -20,10 +20,17 @@ const findUserById = async(id) => {
 }
 
 const loginUser = async (data) => {
-  console.log('MAIL : ', data.email, 'PaSSS: ', data.password);
-  const user = await UserModel.findOne({email: data.email, password: data.password});
-  if(user) {return true}
-  else {return false}
+  const user = await UserModel.findOne({auth: {email: data.email}});
+  if(!user) {
+    return {login: false, message: 'unknown user'};
+  }else {
+    const check = user.checkPwd(data.password);
+    return {
+      login: check, 
+      message: 'login successful', 
+      userID: user._id
+    };
+  }
 };
 
 
