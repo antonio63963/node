@@ -140,15 +140,14 @@ function buildBrandList(brands) {
 contentContainer.addEventListener('click', (e) => {
   if(e.target.classList.contains('add-to-cart')) {
     const card = e.target.closest('.card');
-    
     const brand = card.querySelector('.product-brand').textContent;
     const name = card.querySelector('.product-name').textContent;
     const price = card.querySelector('.product-price').textContent;
     const {id} = e.target.dataset;
-    const toLocalSrorage = {
-      brand, name, price, id, amount: 
+    const toLocalStorage = {
+      brand, name, price, id  
     };
-    console.log(price);
+    addToStore(toLocalStorage);
   }
 })
 
