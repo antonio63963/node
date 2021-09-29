@@ -1,9 +1,11 @@
 // const socket = io();
 
-const container = document.querySelector('.container-side-content'),
+const contentContainer = document.querySelector('.content-container'),
+  container = document.querySelector('.container-side-content'),
   categoryList = document.querySelector('.category-list'),
   titleWrapper = document.querySelector('.title-wrapper'),
-  searchFilter = document.querySelector('.search');
+  searchFilter = document.querySelector('.search'),
+  addToCart = document.querySelector('.add-to-cart');
 let groupTitle = null
 // HANDLERS
 //  get group by category
@@ -132,6 +134,23 @@ function buildBrandList(brands) {
   }, '')
   return list += `<hr>`;
 };
+
+//add to cart
+
+contentContainer.addEventListener('click', (e) => {
+  if(e.target.classList.contains('add-to-cart')) {
+    const card = e.target.closest('.card');
+    
+    const brand = card.querySelector('.product-brand').textContent;
+    const name = card.querySelector('.product-name').textContent;
+    const price = card.querySelector('.product-price').textContent;
+    const {id} = e.target.dataset;
+    const toLocalSrorage = {
+      brand, name, price, id, amount: 
+    };
+    console.log(price);
+  }
+})
 
 
 

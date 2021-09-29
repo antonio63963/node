@@ -145,7 +145,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="container  col-lg-10">
+            <div class="content-container container col-lg-10">
 
                 <!-- CONTENT -->
                 <div
@@ -164,17 +164,19 @@
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <strong><%=product.properties.brand.name%></strong>
+                                    <strong class="product-brand"><%=product.properties.brand.name%></strong>
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder"><%= product.model%></h5>
+                                    <h5 class="fw-bolder product-name"><%= product.model%></h5>
                                     <!-- Product price-->
-                                    <%= product.showPrice%>
+                                    <span class="product-price">
+                                        <%= product.showPrice%>
+                                    </span>
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to
-                                        cart</a>
+                                <div class="text-center"><button data-product="<%= product._id %>" class="btn btn-outline-dark mt-auto add-to-cart">Add to
+                                        cart</button>
                                 </div>
                             </div>
                         </div>
@@ -203,6 +205,7 @@
     <!-- Core theme JS-->
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="javascripts/storage.js"></script>
     <script src="javascripts/index.js"></script>
 </body>
 
