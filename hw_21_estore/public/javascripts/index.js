@@ -1,12 +1,18 @@
 // const socket = io();
 
 const contentContainer = document.querySelector('.content-container'),
+  cartCount = document.querySelector('.cartCount'),
   container = document.querySelector('.container-side-content'),
   categoryList = document.querySelector('.category-list'),
   titleWrapper = document.querySelector('.title-wrapper'),
   searchFilter = document.querySelector('.search'),
   addToCart = document.querySelector('.add-to-cart');
 let groupTitle = null
+
+
+// get product's amount from localStorage
+cartCount.textContent = howManyProducts();
+
 // HANDLERS
 //  get group by category
 const categoryListHandler = async (e) => {
@@ -136,7 +142,6 @@ function buildBrandList(brands) {
 };
 
 //add to cart
-
 contentContainer.addEventListener('click', (e) => {
   if(e.target.classList.contains('add-to-cart')) {
     const card = e.target.closest('.card');
@@ -145,9 +150,11 @@ contentContainer.addEventListener('click', (e) => {
     const price = card.querySelector('.product-price').textContent;
     const {id} = e.target.dataset;
     const toLocalStorage = {
-      brand, name, price, id  
+      brand, name, price, id 
     };
     addToStore(toLocalStorage);
+    let count = +cartCount.textContent;
+    +cartCount.textContent++;
   }
 })
 

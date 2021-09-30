@@ -9,10 +9,18 @@ function getStore(store) {
   return data;
 };
 function addToStore(product) {
-  const store = getStore(product.id);
+  const store = getStore();
   const isExistProd = store.find(prod => prod.id === product.id);
   isExistProd ?
   isExistProd.amount += 1 :
-  store.push({...product, amount: 1});
+  store.push({...product, amount: 1})
   setStore(store);
+};
+function howManyProducts() {
+  const store = getStore();
+  const amount = store.reduce((acc, prod) => {
+    acc += +prod.amount;
+    return acc;
+  }, 0);
+  return amount;
 }

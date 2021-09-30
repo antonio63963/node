@@ -11289,3 +11289,7 @@ li>a.category {
 .pointer {
   cursor: pointer;
 }
+.storage {
+  z-index: 2;
+  
+}
