@@ -2,6 +2,11 @@
 
 const contentContainer = document.querySelector('.content-container'),
   cartCount = document.querySelector('.cartCount'),
+  goToStore = document.querySelector('.goToStore'),
+  storage = document.querySelector('.storage'),
+  storageContent = document.querySelector('.storage-content'),
+  storageBuy = document.querySelector('.storage-buy')
+  closeStorage = document.querySelector('.closeStorage'),
   container = document.querySelector('.container-side-content'),
   categoryList = document.querySelector('.category-list'),
   titleWrapper = document.querySelector('.title-wrapper'),
@@ -156,7 +161,52 @@ contentContainer.addEventListener('click', (e) => {
     let count = +cartCount.textContent;
     +cartCount.textContent++;
   }
+});
+
+// Storages 
+goToStore.addEventListener('click', (e) => {
+  console.log('Message');
+  storage.classList.remove('d-none')
+});
+closeStorage.addEventListener('click', (e) => {
+  storage.classList.add('d-none');
+});
+
+storage.addEventListener('click', (e) => {
+  const target = e.target;
+  if(target.classList.contains('storage-buy') || target.classList.contains('increase') || target.classList.contains('reduce')) return false;
+  const store = getStore();
+  store.forEach( prod => {
+    buildCartRow(prod, storageContent);
+  })
+  const { id } = target.dataset;
+  const productRow = e.target.closest(`${id}`)
+  console.log(productRow);
+  console.log('wwwww');
+
+
 })
+
+function buildCartRow(product, container) {
+  const { name, price, amount, id } = product;
+  const row = `
+    <tr class="${id}">
+      <th scope="row" class="text-center">1</th>
+      <td class="text-center">${ name }</td>
+      <td class="text-center">${ price }</td>
+      <td class="text-center">${ amount }</td>
+      <td class="text-center">${ price * amount }</td>
+      <td class="text-center">
+          <div class="btn-group me-2" role="group" aria-label="First group">
+              <button type="button" class="btn btn-outline-secondary increase" data-id="${id}">+</button>
+              <button type="button" class="btn btn-outline-secondary reduce">-</button>
+          </div>
+      </td>
+    </tr>
+  `;
+  container.innerHTML += row;
+}
+
 
 
 
