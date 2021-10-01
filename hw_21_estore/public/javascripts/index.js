@@ -166,7 +166,11 @@ contentContainer.addEventListener('click', (e) => {
 // Storages 
 goToStore.addEventListener('click', (e) => {
   console.log('Message');
-  storage.classList.remove('d-none')
+  storage.classList.remove('d-none');
+  const store = getStore();
+  store.forEach(( prod, ind ) => {
+    buildCartRow(prod, storageContent, ind);
+  })
 });
 closeStorage.addEventListener('click', (e) => {
   storage.classList.add('d-none');
@@ -175,10 +179,7 @@ closeStorage.addEventListener('click', (e) => {
 storage.addEventListener('click', (e) => {
   const target = e.target;
   if(target.classList.contains('storage-buy') || target.classList.contains('increase') || target.classList.contains('reduce')) return false;
-  const store = getStore();
-  store.forEach( prod => {
-    buildCartRow(prod, storageContent);
-  })
+
   const { id } = target.dataset;
   const productRow = e.target.closest(`${id}`)
   console.log(productRow);
@@ -187,11 +188,11 @@ storage.addEventListener('click', (e) => {
 
 })
 
-function buildCartRow(product, container) {
+function buildCartRow(product, container, ind) {
   const { name, price, amount, id } = product;
   const row = `
     <tr class="${id}">
-      <th scope="row" class="text-center">1</th>
+      <th scope="row" class="text-center">${ind + 1}</th>
       <td class="text-center">${ name }</td>
       <td class="text-center">${ price }</td>
       <td class="text-center">${ amount }</td>
