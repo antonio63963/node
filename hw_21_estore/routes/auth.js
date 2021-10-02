@@ -27,10 +27,8 @@ router.post('/logData', [upload.none(), login], async (req, res) => {
   const loginResult = await loginUser(email, password);
   if(loginResult.userID) {
     req.session.userId = loginResult.userID;
-  res.send(loginResult)
-  }else {
-    res.send(loginResult)
   };
+  res.send(loginResult);
 });
 
 module.exports = router;
