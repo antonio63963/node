@@ -19,18 +19,16 @@ const findUserById = async(id) => {
   return user;
 }
 
-const loginUser = async (data) => {
-  console.log('DATa: ', data);
-  const user = await UserModel.findOne({"auth.login": data.email});
-  console.log('USER====', user);
+const loginUser = async (email, password) => {
+  const user = await UserModel.findOne({"auth.login": email});
   if(!user) {
     return {login: false, message: 'unknown user'};
   }else {
-    const check = user.checkPwd(data.password);
+    const check = user.checkPwd(password);
     return {
       login: check, 
-      message: 'login successful', 
-      userID: user._id
+      message: check ? 'login successful' : 'login failed, unknown user or password', 
+      userID: user._id || null
     };
   }
 };
