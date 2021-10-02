@@ -21,14 +21,7 @@ router.get('/', async(req, res) => {
   res.render('index', { title: 'Express', products: laptops, categories, auth});
 });
 
-router.get('/exit', async(req, res) => {
-  req.session.userId = null;
-  console.log(req.session);
-  const laptops = await getAllLaptops(10);
-  console.log(laptops);
-  const categories = await getAllCategories();
-  res.render('index', { title: 'Express', products: laptops, categories, auth: {login: false}});
-})
+
 
 router.get('/category', async(req, res) => {
   const categories = await getAllCategories();

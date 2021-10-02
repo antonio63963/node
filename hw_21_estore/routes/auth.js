@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const upload = multer();
-const { registration, login } = require('../controllers/jsonSchema/cont_formUser');
+const { registration, checklogin } = require('../middlewares/jsonSchema/check_formUser');
 const { createUser, loginUser, checkUserByEmail } = require('../controllers/cont_user');
+const { getAllLaptops } = require('../controllers/cont_laptop');
 
 router.get('/login', async (req, res) => {
   res.render('login', {noSuchUser: false});
@@ -22,13 +23,20 @@ router.post('/regData', registration, async (req, res) => {
     res.send({login: true})
   };
 });
-router.post('/logData', [upload.none(), login], async (req, res) => {
+router.post('/logData', [upload.none(), checklogin], async (req, res) => {
   const {email, password} = req.body;
   const loginResult = await loginUser(email, password);
   if(loginResult.userID) {
     req.session.userId = loginResult.userID;
   };
   res.send(loginResult);
+});
+
+router.get('/logout', async(req, res) => {
+  req.session.userId = null;
+  const laptops = await getAllLaptops(10);
+  const categories = await getAllCategories();
+  res.render('index', { title: 'Express', products: laptops, categories, auth: {login: false}});
 });
 
 module.exports = router;

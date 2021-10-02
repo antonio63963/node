@@ -36,7 +36,8 @@ const registration = (req, res, next) => {
   console.log('FIRST: ----',req.body);
   next();
 };
-const login = (req, res, next) => {
+
+const checklogin = (req, res, next) => {
   const schema = {
     "type": "object",
     "properties": {
@@ -67,5 +68,5 @@ const login = (req, res, next) => {
 
 module.exports = {
   registration,
-  login
+  checklogin
 }

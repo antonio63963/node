@@ -7,7 +7,7 @@ const { insertBrand, getAllBrands, getBrandsByGroup } = require('../controllers/
 const { craeteLaptop } = require('../controllers/cont_laptop');
 const { promises: Fs, fs} = require('fs');
 //multer
-const { uploadArr } = require('../controllers/multer');
+const { uploadArr } = require('../middlewares/upload');
 
 /* GET home page. */
 router.get('/', async(req, res) => {
