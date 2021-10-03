@@ -147,19 +147,55 @@ function buildBrandList(brands) {
 };
 
 //add to cart
+
+function getCardData(e) {
+  const card = e.target.closest('.card');
+  const brand = card.querySelector('.product-brand').textContent;
+  const name = card.querySelector('.product-name').textContent;
+  const price = card.querySelector('.product-price').textContent;
+  const img = card.querySelector('.card-img-top').src;
+  const { id } = card.dataset; 
+  return {
+    brand, name, price, id, img
+  };
+}
+// show product details
+function showProductPage(product) {
+  const page = `
+    <div class="product-page" data-id="${product.id}">
+      <h1>${product.name}</h1>
+      <img class="card-img-top w-50" src="${product.img}">
+      <span>${product.price}</span>
+      <h3>Оставить отзыв</h3>
+      <textarea id="product-recall"></textarea>
+      <button class="btn btn-primary send-recall">Send recall</button>
+    </div>
+  `;
+  contentContainer.innerHTML = page;
+  const sendRecall = document.querySelector('.send-recall');
+  sendRecall.addEventListener('click', async() => {
+    const user = document.querySelector('.userRegistration') || null;
+    const recallText = document.querySelector('#product-recall').value;
+    const productPage = document.querySelector('.product-page');
+    const recallData = {
+      user: user.dataset.id,
+      text: recallText,
+      product_id: productPage.dataset.id
+    };
+    const { data } = await axios.post('/recall', recallData);
+    console.log('recall::::', data);
+  })
+  
+}
 contentContainer.addEventListener('click', (e) => {
   if(e.target.classList.contains('add-to-cart')) {
-    const card = e.target.closest('.card');
-    const brand = card.querySelector('.product-brand').textContent;
-    const name = card.querySelector('.product-name').textContent;
-    const price = card.querySelector('.product-price').textContent;
-    const {id} = e.target.dataset;
-    const toLocalStorage = {
-      brand, name, price, id 
-    };
+    const toLocalStorage = getCardData(e);
     addToStore(toLocalStorage);
-    let count = +cartCount.textContent;
     +cartCount.textContent++;
+  }
+  else {
+    const cardData = getCardData(e);
+    showProductPage(cardData);
   }
 });
 

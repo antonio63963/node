@@ -5,6 +5,7 @@ const { getAllCategories } = require('../controllers/cont_category');
 const { getGroupsByCategory } = require('../controllers/cont_group');
 const { getBrandsByGroup } = require('../controllers/cont_brand');
 const { findUserById } = require('../controllers/cont_user');
+const { addComment } = require('../controllers/cont_comment');
 const client_filter = require('../filters/client_filter');
 const multer = require('multer');
 const upload = multer();
@@ -69,6 +70,11 @@ router.post('/filterData', upload.none(), async(req, res) => {
  const laptops = await filterLaptop(filter);
  res.send(laptops);
 });
+
+router.post('/recall', async(req, res) => {
+  const reqData = req.body;
+  const comment = await addComment(reqData);
+})
 
 
 module.exports = router;

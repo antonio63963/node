@@ -51,7 +51,7 @@
                     <% if(!auth.login) {%>
                     <li class="nav-item enter"><a class="nav-link" href="/form/login">Войти</a></li>
                     <% }else {%>
-                        <li class="nav-item enter"><a class="nav-link" href="/form/login"><%= auth.user.name %></a></li>
+                        <li class="nav-item enter userRegistration" data-id="<%= auth.user._id %>"><a class="nav-link"><%= auth.user.name %></a></li>
                     <% } %>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
@@ -171,8 +171,8 @@
                 <div
                     class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-3 justify-content-start">
                     <% products.forEach( product => { %>
-                    <div class="col mt-5">
-                        <div class="card h-100">
+                    <div class="col mt-5 pointer product-card">
+                        <div class="card h-100" data-id="<%= product._id%>">
                             <!-- Sale badge-->
                             <% if(product.isSale) {%>
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
