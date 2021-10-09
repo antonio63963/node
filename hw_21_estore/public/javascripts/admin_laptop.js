@@ -6,13 +6,14 @@ const newLaptopURL = `/admin/newLaptop`;
 
 inputPhotoContainer.addEventListener('click', (e) => {
   const { num } = e.target.dataset;
-  if(!num) return false;
+  let count = +num;
+  if(!count) return false;
   
   inputPhotoContainer.innerHTML += `
-    <div class="inputPhoto-${+num + 1}">
+    <div class="inputPhoto-${count + 1}">
       <p>
       <span>Загрузить фото</span> #
-      <span class="PhotoAmaunt"> ${+num + 1}</span>
+      <span class="PhotoAmaunt"> ${count + 1}</span>
       </p>
       <div class="input-group d-flex flex-nowrap mb-3">
         <input type="file" class="form-control" id="inputGroupFile02" name="uploaded_file">
