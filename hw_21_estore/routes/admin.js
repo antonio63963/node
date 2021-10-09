@@ -34,26 +34,27 @@ router.post('/selectCategory', async(req, res) => {
   const groups = await getGroupsByCategory(reqData.id_category);
   res.send(groups);
 });
-router.post('/newLaptop', uploadArr, async(req, res) => {
+router.post('/newProduct', uploadArr, async(req, res) => {
   const reqData = req.body;
-  const files = req.files;
-  const dir = path.resolve('public/images/srcFolder');
+  console.log('newProduct request: ', reqData);
+  // const files = req.files;
+  // const dir = path.resolve('public/images/srcFolder');
 
-  const newName = reqData.model.trim().replace(/[\s/]+/g,"_");
-  console.log('NEW: ######', newName);
-  console.log('reqData: =====',reqData);
-  // console.log('file:::: =====', files);
+  // const newName = reqData.model.trim().replace(/[\s/]+/g,"_");
+  // console.log('NEW: ######', newName);
+  // console.log('reqData: =====',reqData);
+  // // console.log('file:::: =====', files);
 
-  const productPhotoArr = files.map((file, index) => {
-    const type = file.mimetype.match(/\/(.*)$/i)[1];
-    const fileName = `${newName}(${index + 1}).${type}`;
-    Fs.rename(`${dir}/${file.originalname}`, `${dir}/${fileName}`)
-    .then((err, result) => {err ? console.log('ERROR: ', err) : console.log('RENAME: ',result);});
-    return `images/srcFolder/${fileName}`;
-  });
-  console.log(productPhotoArr);
-  reqData.img = productPhotoArr;
-  const data = await craeteLaptop(reqData);
+  // const productPhotoArr = files.map((file, index) => {
+  //   const type = file.mimetype.match(/\/(.*)$/i)[1];
+  //   const fileName = `${newName}(${index + 1}).${type}`;
+  //   Fs.rename(`${dir}/${file.originalname}`, `${dir}/${fileName}`)
+  //   .then((err, result) => {err ? console.log('ERROR: ', err) : console.log('RENAME: ',result);});
+  //   return `images/srcFolder/${fileName}`;
+  // });
+  // console.log(productPhotoArr);
+  // reqData.img = productPhotoArr;
+  // const data = await craeteLaptop(reqData);
  
 });
 
@@ -61,7 +62,12 @@ router.post('/prod_temp', async(req, res) => {
   const { id, producttype: product } = req.body;
   console.log('PROD-TEMP', id);
   const brands = await getBrandsByGroup(id);
-  res.send({status: 'ok', payload: {brands, productTemplate: productTemplate[product].buildForm()}});
+  const brandList = brands.map(brand => {
+    return `
+    <option value="${brand._id}">${brand.name}</option>
+    `;
+  }).join('');
+  res.send({status: 'ok', payload: {brandList, productTemplate: productTemplate[product].buildForm()}});
 });
 
 router.post('/groupBrands', async(req, res) => {
