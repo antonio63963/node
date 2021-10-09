@@ -27,5 +27,5 @@ const upload = multer({storage});
 const uploadArr = upload.array('uploaded_file', 10);
 
 module.exports = {
-  uploadArr
+  uploadArr,
 }

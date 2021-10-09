@@ -9,8 +9,9 @@ const { promises: Fs} = require('fs');
 const productTemplate = require('../components/featuresProd');
 console.log(productTemplate.laptop);
 //multer
-const { uploadArr } = require('../middlewares/upload');
-
+const { uploadArr, none } = require('../middlewares/upload');
+const multer = require('multer');
+const upload = multer();
 /* GET home page. */
 router.get('/', async(req, res) => {
   const allCategories = await getAllCategories();
@@ -34,7 +35,7 @@ router.post('/selectCategory', async(req, res) => {
   const groups = await getGroupsByCategory(reqData.id_category);
   res.send(groups);
 });
-router.post('/newProduct', uploadArr, async(req, res) => {
+router.post('/newProduct', upload.none(), async(req, res) => { //uploadArr
   const reqData = req.body;
   console.log('newProduct request: ', reqData);
   // const files = req.files;

@@ -7,6 +7,7 @@ const selecCategory = document.querySelector('.selecCategory'),
   featuresForm = document.forms.features,
   generalForm = document.forms.general,
   inputPhotoContainer = document.querySelector('.inputPhotoContainer');
+  console.log('form elem: ', generalForm.elements);
 
 // PRODUCT
 selecCategory.addEventListener('change', async (e) => {
@@ -64,14 +65,31 @@ function initFormSubmit() {
   });
   featuresForm.addEventListener('submit', async(e) => {
     e.preventDefault();
-    console.log('form2');
     const event = new Event('submit');
     generalForm.dispatchEvent(event);
     const featureFormData = new FormData(e.target);
-    const { data } = await axios.post('/admin/newProduct', (generalFormData, featureFormData));
+    const featuresNames = getAllInputsName(featuresForm);
+    const featuresObj = featuresNames.reduce((acc, name) => {
+      acc[name] = featureFormData.getAll(name);
+      return acc;
+    }, {});
+    console.log('acc: ', featuresObj);
+    generalFormData.append('feature', featureFormData)
+    console.log(generalFormData.getAll('features'));
+    const { data } = await axios.post('/admin/newProduct', generalFormData);
     console.log(data);
   })
+};
+
+function getAllInputsName(form) {
+  const arrInputs = [...form.elements];
+  const arrNames = arrInputs.reduce((acc, item) => {
+    if(item.name) acc.push(item.name);
+    return acc;
+  }, [])
+  return arrNames;
 }
+
 
 
 
