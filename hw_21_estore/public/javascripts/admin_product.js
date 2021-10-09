@@ -50,7 +50,8 @@ selectGroup.addEventListener('click', async (e) => {
     const { brandList, productTemplate } = data.payload;
     document.querySelector('.selectBrand').innerHTML += brandList;
     document.querySelector('.groupInput').value = id;
-    featuresForm.insertAdjacentHTML('beforeend', productTemplate)
+    featuresForm.insertAdjacentHTML('afterbegin', productTemplate);
+    initFormSubmit();
   }
 });
 
@@ -58,8 +59,18 @@ function initFormSubmit() {
   let generalFormData = null;
   generalForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    console.log('form1');
     generalFormData = new FormData(e.target);
   });
+  featuresForm.addEventListener('submit', async(e) => {
+    e.preventDefault();
+    console.log('form2');
+    const event = new Event('submit');
+    generalForm.dispatchEvent(event);
+    const featureFormData = new FormData(e.target);
+    const { data } = await axios.post('/admin/newProduct', (generalFormData, featureFormData));
+    console.log(data);
+  })
 }
 
 
