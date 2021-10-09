@@ -5,7 +5,9 @@ const { getAllCategories, insertCategory } = require('../controllers/cont_catego
 const { insertGroup, getGroupsByCategory, updateSearchName } = require('../controllers/cont_group');
 const { insertBrand, getAllBrands, getBrandsByGroup } = require('../controllers/cont_brand');
 const { craeteLaptop } = require('../controllers/cont_laptop');
-const { promises: Fs, fs} = require('fs');
+const { promises: Fs} = require('fs');
+const productTemplate = require('../components/featuresProd');
+console.log(productTemplate.laptop);
 //multer
 const { uploadArr } = require('../middlewares/upload');
 
@@ -55,11 +57,11 @@ router.post('/newLaptop', uploadArr, async(req, res) => {
  
 });
 
-router.get('/brands/:id', async(req, res) => {
-  const { id } = req.params;
-  console.log(id);
-  const brands = await getAllBrands();
-  res.send(brands);
+router.post('/prod_temp', async(req, res) => {
+  const { id, producttype: product } = req.body;
+  console.log('PROD-TEMP', id);
+  const brands = await getBrandsByGroup(id);
+  res.send({status: 'ok', payload: {brands, productTemplate: productTemplate[product].buildForm()}});
 });
 
 router.post('/groupBrands', async(req, res) => {
