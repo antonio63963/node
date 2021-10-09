@@ -7,8 +7,8 @@ const selecCategory = document.querySelector('.selecCategory'),
 
   productForms = {
     laptop: `
-<h3>Laptop</h3>
-<form name="laptop">
+<h3>New product</h3>
+<form name="general">
 
   <h5>model:</h5>
   <div class="input-group flex-nowrap">
@@ -31,22 +31,6 @@ const selecCategory = document.querySelector('.selecCategory'),
     <option selected>select the brand</option>
     
   </select>
-  <select name="diagonal" class="form-select selecDiagonal mb-3" aria-label="Default select example">
-    <option selected>select the diagonal</option>
-    <option value="13\"">13</option>
-    <option value="14\"">14</option>
-    <option value="15\"">15</option>
-    <option value="17\"">17</option>
-  </select>
-
-  <input name="processor" type="text" class="form-control processorInput mb-3" placeholder="Enter processor name"
-  aria-label="search" aria-describedby="button-addon2">
-
-  <input name="img" type="text" class="form-control imgInput mb-3" placeholder="Enter img link"
-  aria-label="search" aria-describedby="button-addon2">
-
-  <input name="price" type="text" class="form-control priceInput mb-3" placeholder="Enter price in cents"
-  aria-label="search" aria-describedby="button-addon2">
 
   <input name="group" type="text" class="form-control groupInput mb-3" placeholder="Enter group id"
   aria-label="search" aria-describedby="button-addon2" value="6141f0649443fc4bb8506a57">
@@ -66,9 +50,31 @@ const selecCategory = document.querySelector('.selecCategory'),
       </div>
     </div>
   </div>
+  <input name="price" type="text" class="form-control priceInput mb-3" placeholder="Enter price in cents"
+  aria-label="search" aria-describedby="button-addon2">
+</form>
 
+<h2>Laptop</h2>
+<form name="features">
+  <select name="diagonal" class="form-select selecDiagonal mb-3" aria-label="Default select example">
+    <option selected>select the diagonal</option>
+    <option value="13"">13</option>
+    <option value="14"">14</option>
+    <option value="15"">15</option>
+    <option value="17"">17</option>
+  </select>
 
+  <select name="processor_series" class="form-select selecDiagonal mb-3" aria-label="Default select example">
+    <option selected>select the diagonal</option>
+    <option value="Intel i3">Intel i3</option>
+    <option value="Intel i5">Intel i5</option>
+    <option value="Intel i7">Intel i7</option>
+    <option value="Intel i9">Intel i9</option>
+  </select>
+  <input name="processor" type="text" class="form-control imgInput mb-3" placeholder="model processor"
+  aria-label="search" aria-describedby="button-addon2">
   <button type="submit" class="btn btn-primary submitNewLaptop"> submit </button>
+</form>
 `
   };
 

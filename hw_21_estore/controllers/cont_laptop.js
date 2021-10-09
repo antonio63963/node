@@ -1,19 +1,19 @@
-const LaptopModel = require('../models/laptop');
+const LaptopModel = require('../models/product');
 
 const craeteLaptop = async (userData) => {
-  const laptop = new LaptopModel;
-  laptop.model = userData.model;
-  laptop.group = userData.group;
-  laptop.isActive = userData.isActive;
-  laptop.isSale = userData.isSale;
-  laptop.img = userData.img;
-  laptop.properties = {
+  const product = new LaptopModel;
+  product.model = userData.model;
+  product.group = userData.group;
+  product.isActive = userData.isActive;
+  product.isSale = userData.isSale;
+  product.img = userData.img;
+  product.properties = {
     brand: userData.brand,
     diagonal: userData.diagonal,
     processor: userData.processor
   };
-  laptop.price = userData.price;
-  const doc = await laptop.save();
+  product.price = userData.price;
+  const doc = await product.save();
   console.log(doc._id);
   return doc;
 };

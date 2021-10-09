@@ -187,15 +187,15 @@ function showProductPage(product) {
   })
   
 }
-contentContainer.addEventListener('click', (e) => {
+contentContainer.addEventListener('click', async (e) => {
   if(e.target.classList.contains('add-to-cart')) {
     const toLocalStorage = getCardData(e);
     addToStore(toLocalStorage);
     +cartCount.textContent++;
   }
-  else {
-    const cardData = getCardData(e);
-    showProductPage(cardData);
+  if(e.target.classList.contains('card')) {
+    const { id } = e.target.dataset;
+    const { data } = await axios.get(`/product/${ id }`);
   }
 });
 

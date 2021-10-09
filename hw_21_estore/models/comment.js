@@ -5,10 +5,12 @@ const { Schema } = mongoose;
 
 const generalSchema = new Schema({
   user: {
-    type: Schema.Types.ObjectId
+    type: Schema.Types.ObjectId,
+    ref: 'user',
   },
   group_product_id: {
-    type: Schema.Types.ObjectId
+    type: Schema.Types.ObjectId,
+    ref: 'group'
   },
   product_id: {
     type: Schema.Types.ObjectId

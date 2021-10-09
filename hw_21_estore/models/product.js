@@ -39,24 +39,12 @@ const generalSchema = new Schema({
     type: Schema.Types.String,
     unique: true,
   },
+  brand: {
+    type: Schema.Types.ObjectId,
+    ref: 'brand',
+  },
   properties: {
-    brand: {
-      type: Schema.Types.ObjectId,
-      ref: 'brand',
-    },
-    diagonal: {
-      type: Schema.Types.String,
-      maxLength: 2,
-      required: true,
-    },
-    processor: {
-      type: Schema.Types.String,
-      required: true,
-    },
-    processor_series: {
-      type: Schema.Types.String,
-      maxLength: 32
-    }
+    
   }
 
 }, {
@@ -66,3 +54,4 @@ const generalSchema = new Schema({
 const modelName = path.basename(__filename, '.js');
 const model = mongoose.model(modelName, generalSchema);
 module.exports = model;
+
