@@ -7,7 +7,8 @@ const { insertBrand, getAllBrands, getBrandsByGroup } = require('../controllers/
 const { craeteLaptop } = require('../controllers/cont_laptop');
 const { promises: Fs} = require('fs');
 const productTemplate = require('../components/featuresProd');
-console.log(productTemplate.laptop);
+const featureValid = require('../middlewares/jsonSchema/check_features')
+
 //multer
 const { uploadArr, none } = require('../middlewares/upload');
 const multer = require('multer');
@@ -35,7 +36,7 @@ router.post('/selectCategory', async(req, res) => {
   const groups = await getGroupsByCategory(reqData.id_category);
   res.send(groups);
 });
-router.post('/newProduct', uploadArr, async(req, res) => { //uploadArr
+router.post('/newProduct', uploadArr, featureValid, async(req, res) => { //uploadArr
   const reqData = req.body;
   console.log('newProduct request: ', reqData);
   console.log('newProduct request: ', reqData.features);

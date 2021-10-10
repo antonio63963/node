@@ -163,6 +163,11 @@
             <!-- General -->
             <form name="general">
               <h3>New product</h3>
+    
+              <div class="input-group flex-nowrap">
+                <input hidden type="text" name="type" class="form-control modelInput" placeholder="type" aria-label="model"
+                  aria-describedby="addon-wrapping">
+              </div>
               <h5>model:</h5>
               <div class="input-group flex-nowrap">
                 <input type="text" name="model" class="form-control modelInput" placeholder="model" aria-label="model"
@@ -185,7 +190,7 @@
                 
               </select>
             
-              <input name="group" type="text" class="form-control groupInput mb-3" placeholder="Enter group id"
+              <input hidden name="group" type="text" class="form-control groupInput mb-3" placeholder="Enter group id"
               aria-label="search" aria-describedby="button-addon2" value="6141f0649443fc4bb8506a57">
             
               <h5>Description</h5>

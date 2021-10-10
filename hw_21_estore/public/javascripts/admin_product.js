@@ -51,6 +51,7 @@ selectGroup.addEventListener('click', async (e) => {
     const { brandList, productTemplate } = data.payload;
     document.querySelector('.selectBrand').innerHTML += brandList;
     document.querySelector('.groupInput').value = id;
+    generalForm.elements.type.value = producttype;
     featuresForm.insertAdjacentHTML('afterbegin', productTemplate);
     initFormSubmit();
   }
