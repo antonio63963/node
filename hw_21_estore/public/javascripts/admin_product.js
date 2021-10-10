@@ -70,13 +70,13 @@ function initFormSubmit() {
     const featureFormData = new FormData(e.target);
     const featuresNames = getAllInputsName(featuresForm);
     const featuresObj = featuresNames.reduce((acc, name) => {
-      acc[name] = featureFormData.getAll(name);
+      acc[name] = featureFormData.getAll(name).join();
       return acc;
     }, {});
     console.log('acc: ', featuresObj);
-    generalFormData.append('feature', featureFormData)
+    generalFormData.append('features', JSON.stringify(featuresObj));
     console.log(generalFormData.getAll('features'));
-    const { data } = await axios.post('/admin/newProduct', generalFormData);
+    const { data } = await axios.post('/admin/newProduct', generalFormData, featuresObj);
     console.log(data);
   })
 };
@@ -87,7 +87,7 @@ function getAllInputsName(form) {
     if(item.name) acc.push(item.name);
     return acc;
   }, [])
-  return arrNames;
+  return [... new Set(arrNames)];
 }
 
 

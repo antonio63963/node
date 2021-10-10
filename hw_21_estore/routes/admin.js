@@ -35,9 +35,10 @@ router.post('/selectCategory', async(req, res) => {
   const groups = await getGroupsByCategory(reqData.id_category);
   res.send(groups);
 });
-router.post('/newProduct', upload.none(), async(req, res) => { //uploadArr
+router.post('/newProduct', uploadArr, async(req, res) => { //uploadArr
   const reqData = req.body;
   console.log('newProduct request: ', reqData);
+  console.log('newProduct request: ', reqData.features);
   // const files = req.files;
   // const dir = path.resolve('public/images/srcFolder');
 
