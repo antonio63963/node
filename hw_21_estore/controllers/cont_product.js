@@ -47,7 +47,7 @@ const getOrderPrice = async(order = -1) => {
     laptops.forEach(laptop => laptop.showPrice = transformPrice(laptop.price));
   return laptops;
 };
-const filterLaptop = async (params) => {
+const filterProduct = async (params) => {
   console.log(params);
   const query = {};
   Object.keys(params).forEach(key => {
@@ -67,9 +67,9 @@ console.log("query", query);
 
 
 module.exports = {
-  craeteLaptop,
-  getAllLaptops,
+  craeteProduct,
+  getAllProducts,
   getOrderName,
   getOrderPrice,
-  filterLaptop
+  filterProduct
 }

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { getAllLaptops, getOrderName, getOrderPrice, filterLaptop } = require('../controllers/cont_product');
+const { getAllProducts, getOrderName, getOrderPrice, filterProduct } = require('../controllers/cont_product');
 const { getAllCategories } = require('../controllers/cont_category');
 const { getGroupsByCategory } = require('../controllers/cont_group');
 const { getBrandsByGroup } = require('../controllers/cont_brand');
@@ -16,7 +16,7 @@ router.get('/', async(req, res) => {
   const userID = req.session.userId;
   const user = await findUserById(userID);
   const auth = userID ? {login: true, user}: {login: false};
-  const laptops = await getAllLaptops(10);
+  const laptops = await getAllProducts(10);
   console.log(laptops);
   const categories = await getAllCategories();
   res.render('index', { title: 'Express', products: laptops, categories, auth});
@@ -67,7 +67,7 @@ router.post('/getFilter', async(req, res) => {
 });
 router.post('/filterData', upload.none(), async(req, res) => {
  const filter = req.body;
- const laptops = await filterLaptop(filter);
+ const laptops = await filterProduct(filter);
  res.send(laptops);
 });
 
