@@ -4,10 +4,10 @@ const path = require('path');
 const { getAllCategories, insertCategory } = require('../controllers/cont_category');
 const { insertGroup, getGroupsByCategory, updateSearchName } = require('../controllers/cont_group');
 const { insertBrand, getAllBrands, getBrandsByGroup } = require('../controllers/cont_brand');
-const { craeteLaptop } = require('../controllers/cont_laptop');
+const { craeteLaptop } = require('../controllers/cont_product');
 const { promises: Fs} = require('fs');
 const productTemplate = require('../components/featuresProd');
-const featureValid = require('../middlewares/jsonSchema/check_features')
+const featureValid = require('../middlewares/jsonSchema/validate_features')
 
 //multer
 const { uploadArr, none } = require('../middlewares/upload');

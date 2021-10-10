@@ -43,8 +43,8 @@ const generalSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'brand',
   },
-  properties: {
-    
+  features: {
+    type: Schema.Types.String, // validation in middleweare validate_features
   }
 
 }, {

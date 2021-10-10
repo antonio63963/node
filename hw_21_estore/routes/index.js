@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { getAllLaptops, getOrderName, getOrderPrice, filterLaptop } = require('../controllers/cont_laptop');
+const { getAllLaptops, getOrderName, getOrderPrice, filterLaptop } = require('../controllers/cont_product');
 const { getAllCategories } = require('../controllers/cont_category');
 const { getGroupsByCategory } = require('../controllers/cont_group');
 const { getBrandsByGroup } = require('../controllers/cont_brand');

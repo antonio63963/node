@@ -1,18 +1,16 @@
-const LaptopModel = require('../models/product');
+const ProductModel = require('../models/product');
 
-const craeteLaptop = async (userData) => {
-  const product = new LaptopModel;
+const craeteProduct = async (userData) => {
+  const product = new ProductModel;
+  product.type = userData.type;
   product.model = userData.model;
   product.group = userData.group;
   product.isActive = userData.isActive;
   product.isSale = userData.isSale;
   product.img = userData.img;
-  product.properties = {
-    brand: userData.brand,
-    diagonal: userData.diagonal,
-    processor: userData.processor
-  };
+  product.brand = userData.brand;
   product.price = userData.price;
+  product.features = userData.features;
   const doc = await product.save();
   console.log(doc._id);
   return doc;
@@ -21,8 +19,8 @@ const transformPrice = (price) => {
   const modifyedPrice = price / 100;
   return modifyedPrice + '.00грн';
 }
-const getAllLaptops = async(limit) => {
-  const laptops = await LaptopModel.find({})
+const getAllProducts = async(limit) => {
+  const laptops = await ProductModel.find({})
     .limit(limit)
     .populate('properties.brand')
     .populate('group');
@@ -31,7 +29,7 @@ const getAllLaptops = async(limit) => {
   return laptops;
 };
 const getOrderName = async(order = -1) => {
-  const laptops = await LaptopModel.find({})
+  const laptops = await ProductModel.find({})
   .populate('properties.brand')
     .sort({"properties.brand": order})
     .limit(10)
@@ -41,7 +39,7 @@ const getOrderName = async(order = -1) => {
   return laptops;
 };
 const getOrderPrice = async(order = -1) => {
-  const laptops = await LaptopModel.find({})
+  const laptops = await ProductModel.find({})
     .sort({price: order})
     .limit(10)
     .populate('properties.brand')
@@ -60,7 +58,7 @@ const filterLaptop = async (params) => {
     }
   });
 console.log("query", query);
-  const laptops = await LaptopModel.find(query)
+  const laptops = await ProductModel.find(query)
     .populate('properties.brand');
     console.log('LAPTOPS: ====',laptops);
   return laptops;
