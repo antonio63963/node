@@ -24,20 +24,23 @@ selecCategory.addEventListener('change', async (e) => {
 // img input
 function increaseImgAmount() {
   let countImgInput = 1;
-  return function() {
-    inputPhotoContainer.innerHTML += `
-      <div class="inputPhoto-${countImgInput + 1}">
-        <p>
-        <span>Загрузить фото</span> #
-        <span class="PhotoAmaunt"> ${countImgInput + 1}</span>
-        </p>
-        <div class="input-group d-flex flex-nowrap mb-3">
-          <input type="file" class="form-control" id="inputGroupFile02" name="uploaded_file">
-          <button class="btn btn-outline-secondary addOneElse" type="button" id="inputGroupFileAddon04">+ one else</button>
-        </div>
-      </div>
-    `;
-    countImgInput++;
+  return function(e) {
+    console.log(e.target);
+      if(e.target.classList.contains('addOneElse')) {
+        inputPhotoContainer.innerHTML += `
+          <div class="inputPhoto-${countImgInput + 1}">
+            <p>
+            <span>Загрузить фото</span> #
+            <span class="PhotoAmaunt"> ${countImgInput + 1}</span>
+            </p>
+            <div class="input-group d-flex flex-nowrap mb-3">
+              <input type="file" class="form-control" id="inputGroupFile02" name="uploaded_file">
+              <button class="btn btn-outline-secondary addOneElse" type="button" id="inputGroupFileAddon04">+ one else</button>
+            </div>
+          </div>
+        `;
+        countImgInput++;
+      }
   }
 };
 const onButtonImg = increaseImgAmount();

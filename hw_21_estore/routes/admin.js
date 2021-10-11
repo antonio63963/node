@@ -4,7 +4,7 @@ const path = require('path');
 const { getAllCategories, insertCategory } = require('../controllers/cont_category');
 const { insertGroup, getGroupsByCategory, updateSearchName } = require('../controllers/cont_group');
 const { insertBrand, getAllBrands, getBrandsByGroup } = require('../controllers/cont_brand');
-const { craeteLaptop } = require('../controllers/cont_product');
+const { craeteProduct } = require('../controllers/cont_product');
 const { promises: Fs} = require('fs');
 const productTemplate = require('../components/featuresProd');
 const featureValid = require('../middlewares/jsonSchema/validate_features')
@@ -40,24 +40,24 @@ router.post('/newProduct', uploadArr, featureValid, async(req, res) => { //uploa
   const reqData = req.body;
   console.log('newProduct request: ', reqData);
   console.log('newProduct request: ', reqData.features);
-  // const files = req.files;
-  // const dir = path.resolve('public/images/srcFolder');
+  const files = req.files;
+  const dir = path.resolve('public/images/srcFolder');
 
-  // const newName = reqData.model.trim().replace(/[\s/]+/g,"_");
-  // console.log('NEW: ######', newName);
-  // console.log('reqData: =====',reqData);
-  // // console.log('file:::: =====', files);
+  const newName = reqData.model.trim().replace(/[\s/]+/g,"_");
+  console.log('NEW: ######', newName);
+  console.log('reqData: =====',reqData);
+  // console.log('file:::: =====', files);
 
-  // const productPhotoArr = files.map((file, index) => {
-  //   const type = file.mimetype.match(/\/(.*)$/i)[1];
-  //   const fileName = `${newName}(${index + 1}).${type}`;
-  //   Fs.rename(`${dir}/${file.originalname}`, `${dir}/${fileName}`)
-  //   .then((err, result) => {err ? console.log('ERROR: ', err) : console.log('RENAME: ',result);});
-  //   return `images/srcFolder/${fileName}`;
-  // });
-  // console.log(productPhotoArr);
-  // reqData.img = productPhotoArr;
-  // const data = await craeteLaptop(reqData);
+  const productPhotoArr = files.map((file, index) => {
+    const type = file.mimetype.match(/\/(.*)$/i)[1];
+    const fileName = `${newName}(${index + 1}).${type}`;
+    Fs.rename(`${dir}/${file.originalname}`, `${dir}/${fileName}`)
+    .then((err, result) => {err ? console.log('ERROR: ', err) : console.log('RENAME: ',result);});
+    return `images/srcFolder/${fileName}`;
+  });
+  console.log(productPhotoArr);
+  reqData.img = productPhotoArr;
+  const data = await craeteProduct(reqData);
  
 });
 

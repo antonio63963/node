@@ -11,7 +11,8 @@ const contentContainer = document.querySelector('.content-container'),
   categoryList = document.querySelector('.category-list'),
   titleWrapper = document.querySelector('.title-wrapper'),
   searchFilter = document.querySelector('.search'),
-  addToCart = document.querySelector('.add-to-cart');
+  addToCart = document.querySelector('.add-to-cart'),
+  searchInput = document.forms.searchInput;
 let groupTitle = null
 
 
@@ -242,7 +243,15 @@ function buildCartRow(product, container, ind) {
     </tr>
   `;
   container.innerHTML += row;
-}
+};
+
+searchInput.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const searchData = new FormData(e.target);
+  console.log(searchData.getAll('search'));
+  const { data } = await axios.post('/search', searchData);
+  console.log(data);
+})
 
 
 

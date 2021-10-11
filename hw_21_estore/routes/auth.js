@@ -4,7 +4,7 @@ const multer = require('multer');
 const upload = multer();
 const { registration, checklogin } = require('../middlewares/jsonSchema/check_formUser');
 const { createUser, loginUser, checkUserByEmail } = require('../controllers/cont_user');
-const { getAllLaptops } = require('../controllers/cont_laptop');
+const { getAllLaptops } = require('../controllers/cont_product');
 
 router.get('/login', async (req, res) => {
   res.render('login', {noSuchUser: false});

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { getAllProducts, getOrderName, getOrderPrice, filterProduct } = require('../controllers/cont_product');
+const { getAllProducts, getOrderName, getOrderPrice, filterProduct, createSearchIndex } = require('../controllers/cont_product');
 const { getAllCategories } = require('../controllers/cont_category');
 const { getGroupsByCategory } = require('../controllers/cont_group');
 const { getBrandsByGroup } = require('../controllers/cont_brand');
@@ -12,6 +12,7 @@ const upload = multer();
 
 /* GET home page. */
 router.get('/', async(req, res) => {
+  // createSearchIndex()
   //auth
   const userID = req.session.userId;
   const user = await findUserById(userID);
@@ -74,6 +75,10 @@ router.post('/filterData', upload.none(), async(req, res) => {
 router.post('/recall', async(req, res) => {
   const reqData = req.body;
   const comment = await addComment(reqData);
+})
+ 
+router.post('/search', upload.none(), async(req, res) => {
+  const searchData = req.body;
 })
 
 

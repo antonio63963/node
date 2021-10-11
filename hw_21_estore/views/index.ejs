@@ -24,18 +24,18 @@
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
-                <th scope="col" class="text-center">#</th>
-                <th scope="col" class="text-center">Product</th>
-                <th scope="col" class="text-center">Price</th>
-                <th scope="col" class="text-center">Amount</th>
-                <th scope="col" class="text-center">Sum</th>
-                <th  class="text-center"><button class="btn btn-primary closeStorage">x</button></th>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col" class="text-center">Product</th>
+                    <th scope="col" class="text-center">Price</th>
+                    <th scope="col" class="text-center">Amount</th>
+                    <th scope="col" class="text-center">Sum</th>
+                    <th class="text-center"><button class="btn btn-primary closeStorage">x</button></th>
                 </tr>
             </thead>
             <tbody class="storage-content">
             </tbody>
         </table>
-        
+
         <button class="btn btn-primary storage-buy">Byu</button>
     </div>
     <!-- Navigation-->
@@ -51,7 +51,8 @@
                     <% if(!auth.login) {%>
                     <li class="nav-item enter"><a class="nav-link" href="/form/login">Войти</a></li>
                     <% }else {%>
-                        <li class="nav-item enter userRegistration" data-id="<%= auth.user._id %>"><a class="nav-link"><%= auth.user.name %></a></li>
+                    <li class="nav-item enter userRegistration" data-id="<%= auth.user._id %>"><a
+                            class="nav-link"><%= auth.user.name %></a></li>
                     <% } %>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
@@ -67,7 +68,7 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
                     <% if(auth.login) {%>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/exit">Выход</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/exit">Выход</a></li>
                     <% } %>
                 </ul>
                 <form class="d-flex">
@@ -119,27 +120,34 @@
         <div class="row">
             <!-- sidebar -->
             <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark col-lg-2 ">
-              
-
-                    <div class="title-wrapper">
-                        <span class="fs-5 titleList category pointer">Категории</span>
+                <form name="searchInput" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                    <div class="input-group mb-3">
+                        <input name="search" placeholder="Search..."type="search" class="form-control form-control-dark" placeholder="Search..."
+                            aria-label="Search">
+                        <button type="submit" class="btn btn-warning">Search</button>
                     </div>
-               
+                </form>
+                <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+
+                <div class="title-wrapper">
+                    <span class="fs-5 titleList category pointer">Категории</span>
+                </div>
+
                 <hr>
-              <div class="container-side-content mb-auto">
+                <div class="container-side-content mb-auto">
                     <ul class="nav nav-pills flex-column mb-auto category-list" data-listTitle="Category">
                         <% categories.forEach( category => { %>
                         <li class="nav-item p-2 pointer category-list_item" data-id="<%=category._id%>">
                             <%= category.name %>
                         </li>
                         <% }) %>
-                  
+
                     </ul>
 
                     <form name="search">
-                       
+
                     </form>
-              </div>
+                </div>
                 <hr>
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
@@ -184,7 +192,7 @@
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <strong class="product-brand"><%=product.properties.brand.name%></strong>
+                                    <strong class="product-brand"><%=product.brand.name%></strong>
                                     <!-- Product name-->
                                     <h5 class="fw-bolder product-name"><%= product.model%></h5>
                                     <!-- Product price-->
@@ -195,7 +203,8 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><button data-id="<%= product._id %>" class="btn btn-outline-dark mt-auto add-to-cart">Add to
+                                <div class="text-center"><button data-id="<%= product._id %>"
+                                        class="btn btn-outline-dark mt-auto add-to-cart">Add to
                                         cart</button>
                                 </div>
                             </div>

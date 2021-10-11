@@ -1,5 +1,11 @@
 const ProductModel = require('../models/product');
 
+
+const createSearchIndex = () => {
+  ProductModel.createIndex( { model: "text", description: "text" , features: "text", brand: "text" } );
+}
+
+
 const craeteProduct = async (userData) => {
   const product = new ProductModel;
   product.type = userData.type;
@@ -22,7 +28,7 @@ const transformPrice = (price) => {
 const getAllProducts = async(limit) => {
   const laptops = await ProductModel.find({})
     .limit(limit)
-    .populate('properties.brand')
+    .populate('brand')
     .populate('group');
   laptops.forEach(laptop => laptop.showPrice = transformPrice(laptop.price));
   // console.log(Object.values(laptops[0])); 
@@ -71,5 +77,6 @@ module.exports = {
   getAllProducts,
   getOrderName,
   getOrderPrice,
-  filterProduct
+  filterProduct,
+  createSearchIndex
 }
