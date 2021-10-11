@@ -51,6 +51,8 @@ const generalSchema = new Schema({
   timestamps: true
 });
 
+generalSchema.index( { model: "text", description: "text" , features: "text", brand: "text" } )
+
 const modelName = path.basename(__filename, '.js');
 const model = mongoose.model(modelName, generalSchema);
 module.exports = model;

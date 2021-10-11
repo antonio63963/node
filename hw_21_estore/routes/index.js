@@ -12,7 +12,6 @@ const upload = multer();
 
 /* GET home page. */
 router.get('/', async(req, res) => {
-  // createSearchIndex()
   //auth
   const userID = req.session.userId;
   const user = await findUserById(userID);
