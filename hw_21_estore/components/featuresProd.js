@@ -27,6 +27,41 @@ const featuresCollection = {
         aria-label="search" aria-describedby="button-addon2">
       `;
     }
+  },
+  wash_machine: {
+    classWashing: ['A', 'B', 'C', 'D', 'E', 'F'],
+    spinning: ['A', 'B', 'C', 'D', 'E',],
+    loading: ['up', 'front', 'other'],
+    energySelf: ['A', 'A+', 'A++', 'A+++', 'B'],
+    getSelectElem(name, arr) {
+      const items = [...arr];
+      const options = items.map(item => {
+        return `<option value="${item}">${item}</option>`;
+      }).join('');
+      const selectElem = `
+      <select name="${name}" class="form-select selecDiagonal mb-3" aria-label="Default select example">
+      <option selected>select the ${name}</option>
+        ${options}
+      </select>
+      `;
+      return selectElem;
+    },
+    buildForm: function() {
+      const classWashings = this.getSelectElem('classWashings', this.classWashing);
+      const spinning = this.getSelectElem('spinning', this.spinning);
+      const loading = this.getSelectElem('loading', this.loading); 
+      const energySelf = this.getSelectElem('energySelf', this.energySelf); 
+
+      return `
+        <h2>Wash machine</h2>
+        ${classWashings}  
+        ${spinning}  
+        ${loading}   
+        ${energySelf}    
+        <input name="weight" type="number" class="form-control imgInput mb-3" placeholder="weight"
+        aria-label="search" aria-describedby="button-addon2">
+      `;
+    }
   }
 
 };

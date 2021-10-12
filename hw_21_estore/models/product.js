@@ -37,7 +37,6 @@ const generalSchema = new Schema({
   }],
   description: {
     type: Schema.Types.String,
-    unique: true,
   },
   brand: {
     type: Schema.Types.ObjectId,

@@ -7,7 +7,6 @@ const selecCategory = document.querySelector('.selecCategory'),
   featuresForm = document.forms.features,
   generalForm = document.forms.general,
   inputPhotoContainer = document.querySelector('.inputPhotoContainer');
-  console.log('form elem: ', generalForm.elements);
 
 // PRODUCT
 selecCategory.addEventListener('change', async (e) => {
@@ -18,7 +17,7 @@ selecCategory.addEventListener('change', async (e) => {
   data.forEach(group => {
     listGroups += `<li class="list-group-item pointer" data-productType="${group.type}" data-id="${group._id}">${group.name}</li>`
   });
-  selectGroup.innerHTML += listGroups;
+  selectGroup.innerHTML = listGroups;
 });
 
 // img input
@@ -52,12 +51,16 @@ selectGroup.addEventListener('click', async (e) => {
   const { data } = await axios.post(`/admin/prod_temp/`, {producttype, id});
   if(data.status === 'ok') {
     const { brandList, productTemplate } = data.payload;
-    document.querySelector('.selectBrand').innerHTML += brandList;
+    document.querySelector('.selectBrand').innerHTML = brandList;
     document.querySelector('.groupInput').value = id;
     generalForm.elements.type.value = producttype;
+    featuresForm.innerHTML = ` <button type="submit" class="btn btn-primary"> submit </button>`;
     featuresForm.insertAdjacentHTML('afterbegin', productTemplate);
     initFormSubmit();
+  } else {
+    console.log(data.status);
   }
+
 });
 
 function initFormSubmit() {

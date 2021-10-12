@@ -70,7 +70,10 @@ router.post('/prod_temp', async(req, res) => {
     <option value="${brand._id}">${brand.name}</option>
     `;
   }).join('');
-  res.send({status: 'ok', payload: {brandList, productTemplate: productTemplate[product].buildForm()}});
+  const response = productTemplate[product] ? 
+    {status: 'ok', payload: {brandList, productTemplate: productTemplate[product].buildForm()}} :
+    {status: 'error, template is not found!!!', payload: null};
+  res.send(response);
 });
 
 router.post('/groupBrands', async(req, res) => {
