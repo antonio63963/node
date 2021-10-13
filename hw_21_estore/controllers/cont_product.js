@@ -1,11 +1,6 @@
 const ProductModel = require('../models/product');
 
 
-const createSearchIndex = () => {
-  ProductModel.createIndex( { model: "text", description: "text" , features: "text", brand: "text" } );
-}
-
-
 const craeteProduct = async (userData) => {
   const product = new ProductModel;
   product.type = userData.type;
@@ -68,6 +63,11 @@ console.log("query", query);
     .populate('properties.brand');
     console.log('LAPTOPS: ====',laptops);
   return laptops;
+};
+const searchByText = async (searchText) => {
+  console.log("STRING: ", searchText);
+  const result = await ProductModel.find( { $text: { $search: {$regex: /`Стир`/i }} } );
+  return result || null;
 }
 
 
@@ -78,5 +78,5 @@ module.exports = {
   getOrderName,
   getOrderPrice,
   filterProduct,
-  createSearchIndex
+  searchByText
 }

@@ -39,7 +39,7 @@ brandForm.addEventListener('submit', async(e) => {
   e.preventDefault();
   const formData = {
     name: brandInput.value,
-    group: selectedGroupId.value.split(',').slice(0, -1),
+    group: [...new Set(selectedGroupId.value.split(',').slice(0, -1))],
   };
   console.log(formData);
   const { data } = await axios.post(newBrandURL, formData);

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { getAllProducts, getOrderName, getOrderPrice, filterProduct, createSearchIndex } = require('../controllers/cont_product');
+const { getAllProducts, getOrderName, getOrderPrice, filterProduct, searchByText } = require('../controllers/cont_product');
 const { getAllCategories } = require('../controllers/cont_category');
 const { getGroupsByCategory } = require('../controllers/cont_group');
 const { getBrandsByGroup } = require('../controllers/cont_brand');
@@ -16,10 +16,10 @@ router.get('/', async(req, res) => {
   const userID = req.session.userId;
   const user = await findUserById(userID);
   const auth = userID ? {login: true, user}: {login: false};
-  const laptops = await getAllProducts(10);
+  const products = await getAllProducts(10);
   console.log(laptops);
   const categories = await getAllCategories();
-  res.render('index', { title: 'Express', products: laptops, categories, auth});
+  res.render('index', { title: 'Express', products, categories, auth});
 });
 
 
@@ -77,7 +77,10 @@ router.post('/recall', async(req, res) => {
 })
  
 router.post('/search', upload.none(), async(req, res) => {
-  const searchData = req.body;
+  const searchData = req.body.search;
+  const searchResult = await searchByText(searchData);
+  console.log(searchResult);
+  // searchResult ? res.render('index',)
 })
 
 

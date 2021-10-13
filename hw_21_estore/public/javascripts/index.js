@@ -12,7 +12,7 @@ const contentContainer = document.querySelector('.content-container'),
   titleWrapper = document.querySelector('.title-wrapper'),
   searchFilter = document.querySelector('.search'),
   addToCart = document.querySelector('.add-to-cart'),
-  searchInput = document.forms.searchInput;
+  searchForm = document.forms.searchForm;
 let groupTitle = null
 
 
@@ -245,7 +245,7 @@ function buildCartRow(product, container, ind) {
   container.innerHTML += row;
 };
 
-searchInput.addEventListener('submit', async (e) => {
+searchForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const searchData = new FormData(e.target);
   console.log(searchData.getAll('search'));

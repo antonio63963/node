@@ -50,7 +50,7 @@ const generalSchema = new Schema({
   timestamps: true
 });
 
-generalSchema.index( { model: "text", description: "text" , features: "text", brand: "text" } )
+generalSchema.index( { "$**": "text" } )
 
 const modelName = path.basename(__filename, '.js');
 const model = mongoose.model(modelName, generalSchema);
