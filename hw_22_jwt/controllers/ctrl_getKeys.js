@@ -6,8 +6,8 @@ const getPrivKey = async () => {
   if(!privKey) {
     const keyPath = path.resolve('keys/priv.key');
     privKey =  await FS.readFile(keyPath, 'utf8');
-    return privKey;
   }
+  return privKey;
 };
 
 let pubKey = null;
@@ -15,8 +15,8 @@ const getPublicKey = async () => {
   if(!pubKey) {
     const keyPath = path.resolve('keys/pub.key');
     pubKey =  await FS.readFile(keyPath, 'utf8');
-    return pubKey;
   }
+  return pubKey;
 };
 
 module.exports = {
