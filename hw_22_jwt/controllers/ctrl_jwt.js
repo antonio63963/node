@@ -1,5 +1,5 @@
 const jws = require('jws');
-const { getPrivKey } = require('./ctrl_getKeys');
+const { getPrivKey, getPublicKey } = require('./ctrl_getKeys');
 
 const createAccessToken = async (payload) => {
   const privKey = await getPrivKey();
@@ -11,6 +11,22 @@ const createAccessToken = async (payload) => {
   return token;
 };
 
+const verifyAccessToken = async (token) => {
+  const pubKey = await getPublicKey();
+  test(token, pubKey)
+  const hz = jws.verify(token, 'RS256', pubKey);
+  console.log('HZ###', hz);
+}
+
+function test(token, secret) {
+  if(typeof token !== 'string') throw new Error;
+  if(typeof secret !== 'string') {
+    console.log('secret type is: ', typeof secret);
+    throw new Error;
+  }
+}
+
 module.exports = {
   createAccessToken,
+  verifyAccessToken
 }
