@@ -16,6 +16,10 @@ const verifyAccessToken = async (token) => {
   test(token, pubKey)
   const hz = jws.verify(token, 'RS256', pubKey);
   console.log('HZ###', hz);
+};
+const decodeAccessToken = async (token) => {
+  const decodeToken = jws.decode(token, 'RS256');
+  return decodeToken;
 }
 
 function test(token, secret) {
@@ -28,5 +32,6 @@ function test(token, secret) {
 
 module.exports = {
   createAccessToken,
-  verifyAccessToken
+  verifyAccessToken,
+  decodeAccessToken,
 }
