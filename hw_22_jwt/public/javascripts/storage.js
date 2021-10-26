@@ -1,11 +1,18 @@
-const setToken = (token) => {
+const setToken = (tokenName, token) => {
   const json = JSON.stringify(token);
-  localStorage.setItem('accessToken', json);
+  localStorage.setItem(tokenName, json);
 };
-const getToken = () => {
-  return JSON.parse(localStorage.getItem('accessToken')) || null;
+
+const getToken = (tokenName) => {
+  console.log(tokenName);
+  const token = localStorage.getItem(tokenName);
+  console.log(token);
+  return  token ? 
+    JSON.parse(token) :
+    null;
 }
-const addToken = (token) => {
-  console.log('token was catching!!');
-  getToken() ? false : setToken(token); 
+
+const addToken = (tokenName, token) => {
+  if(!getToken(tokenName)) setToken(tokenName, token)
+  console.log('token was added!!');
 }

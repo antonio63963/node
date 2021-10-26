@@ -14,9 +14,11 @@ regForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const { data } = await axios.post('/regData', formData);
-  console.log(data);
+  console.log("REG RESP: ", data);
   if(data.status == 'ok') {
-    const res = addToken(data.payload.token);
+    const { accessToken, refreshToken } = data.payload;
+    addToken('accessToken', accessToken);
+    addToken('refreshToken', refreshToken);
     console.log('RES ', res);
   }
 });
