@@ -1,14 +1,36 @@
 const jws = require('jws');
 const { getPrivKey, getPublicKey } = require('./ctrl_getKeys');
+const moment = require('moment');
+const uniqid = require('uniqid');
+const TokenModel = require('../models/token');
+
+const createTokenDoc = async(uid, refreshToken) => {
+  const tokenModel = new TokenModel;
+  tokenModel.uid = uid;
+  tokenModel.refreshToken = refreshToken;
+  const doc_id = await tokenModel.save();
+  return doc_id;
+}
 
 const createAccessToken = async (payload) => {
   const privKey = await getPrivKey();
+  if(moment(payload.exp) < moment()) {
+    delete(payload.exp);
+  };
+  if(!payload.exp) {
+    payload.exp = moment().add(5, 'm');
+  }
   const token = jws.sign({
     header: {alg: 'RS256'},
     payload,
     secret: privKey,
   })
   return token;
+};
+
+const createRefreshToken = () => {
+  const uniq = uniqid();
+  return uniq;
 };
 
 const verifyAccessToken = async (token) => {
@@ -34,4 +56,6 @@ module.exports = {
   createAccessToken,
   verifyAccessToken,
   decodeAccessToken,
+  createRefreshToken,
+  createTokenDoc
 }

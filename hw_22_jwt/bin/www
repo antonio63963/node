@@ -7,6 +7,8 @@
 var app = require('../app');
 var debug = require('debug')('hw-22-jwt:server');
 var http = require('http');
+const db_run = require('./db_runner');
+db_run();
 
 /**
  * Get port from environment and store in Express.
