@@ -1,9 +1,9 @@
 const setToken = (token) => {
   const json = JSON.stringify(token);
-  localStorage.setItem('sessionToken', json);
+  localStorage.setItem('accessToken', json);
 };
 const getToken = () => {
-  return JSON.parse(localStorage.getItem('sessionToken')) || null;
+  return JSON.parse(localStorage.getItem('accessToken')) || null;
 }
 const addToken = (token) => {
   console.log('token was catching!!');

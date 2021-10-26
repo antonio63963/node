@@ -12,29 +12,20 @@ router.all('/*', async (req, res, next) => {
     const decodeToken = decodeAccessToken(token);
     console.log("DECODE TOKEN: ", decodeToken);
     req.body.auth = decodeToken;
-    // res.send({ status: 'ok', payload: {auth: true}})
   }else{
     req.body.auth = null;
-    // res.send({ status: 'error', payload: {auth: false}})
   }
   next();
 })
 router.get('/', async (req, res, next) => {
   console.log('Start page: ' ,req.body);
-  res.render('index', { title: 'Express' });
+  res.render('login', { title: 'Express' });
 });
 router.post('/auth', async (req, res) => {
   const auth = req.body.auth
-  console.log('ROUTE AUTH: ', auth);
-  // const { token } = req.body;
-  // const isValid = verifyAccessToken(token)
-  // console.log(req.body);
-  // if(isValid) {
-  //   const decodeToken = decodeAccessToken(token);
-  //   console.log("DECODE TOKEN: ", decodeToken);
-  //   res.send({ status: 'ok', payload: {auth: true}})
-  // }else{res.send({ status: 'error', payload: {auth: false}})}
-  console.log("AUTH: ");
+  // console.log('ROUTE AUTH: ', auth);
+  // console.log("AUTH: ");
+  auth ? res.send('index') : res.send('login')
 })
 router.post('/login', upload.none(), async (req, res) => {
   console.log(req.body);

@@ -1,9 +1,11 @@
 const formTest = document.forms.test;
-const token = getToken();
 const authCheck = async () => {
+  const token = getToken();
+  console.log(token);
     if(token) {
     const { data } = await axios.post('/auth', { token });
     console.log(data);
+    document.querySelector('body').innerHTML = data;
   }
 };
 authCheck();
