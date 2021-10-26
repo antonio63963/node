@@ -6,8 +6,7 @@ const createUser = async (userData) => {
   user.auth.login = userData.email;
   user.auth.pwd = userData.password;
   const doc = await user.save();
-  console.log(doc._id);
-  return doc;
+  return doc._id;
 };
 const checkUserByEmail = async(data) => {
   const user = await UserModel.findOne({email: data.email});

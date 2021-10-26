@@ -16,10 +16,11 @@ regForm.addEventListener('submit', async (e) => {
   const { data } = await axios.post('/regData', formData);
   console.log("REG RESP: ", data);
   if(data.status == 'ok') {
-    const { accessToken, refreshToken } = data.payload;
-    addToken('accessToken', accessToken);
-    addToken('refreshToken', refreshToken);
-    console.log('RES ', res);
+    setTokensToLocal(data.payload);
+    const stopInterval = setInterval(() => {
+      getFreshToken();
+      console.log("refresh has done!");
+    }, 5000)
   }
 });
 

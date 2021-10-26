@@ -4,9 +4,7 @@ const setToken = (tokenName, token) => {
 };
 
 const getToken = (tokenName) => {
-  console.log(tokenName);
   const token = localStorage.getItem(tokenName);
-  console.log(token);
   return  token ? 
     JSON.parse(token) :
     null;

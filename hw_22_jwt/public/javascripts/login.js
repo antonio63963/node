@@ -1,14 +1,14 @@
 const loginForm = document.forms.login;
-const authCheck = async () => {
-  const token = getToken();
-  console.log(token);
-    if(token) {
-    const { data } = await axios.post('/auth', { token });
-    console.log(data);
-    document.querySelector('body').innerHTML = data;
-  }
-};
-authCheck();
+// const authCheck = async () => {
+//   const token = getToken();
+//   console.log(token);
+//     if(token) {
+//     const { data } = await axios.post('/auth', { token });
+//     console.log(data);
+//     document.querySelector('body').innerHTML = data;
+//   }
+// };
+// authCheck();
 
 loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();

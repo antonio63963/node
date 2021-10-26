@@ -37,11 +37,15 @@ const verifyAccessToken = async (token) => {
   const pubKey = await getPublicKey();
   test(token, pubKey)
   const hz = jws.verify(token, 'RS256', pubKey);
-  console.log('HZ###', hz);
+  console.log('isVALID: ', hz);
 };
 const decodeAccessToken = async (token) => {
   const decodeToken = jws.decode(token, 'RS256');
   return decodeToken;
+}
+
+const updateToken = async (accessToken, refreshToken) => {
+  
 }
 
 function test(token, secret) {

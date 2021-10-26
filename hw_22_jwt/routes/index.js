@@ -9,10 +9,10 @@ const {  createUser, loginUser, } = require('../controllers/cont_user');
 
 /* GET home page. */
 router.all('/*', async (req, res, next) => {
-  const { token } = req.body;
-  const isValid = token ? verifyAccessToken(token) : null;
+  const { accessToken } = req.body;
+  const isValid = accessToken ? verifyAccessToken(accessToken) : null;
   if(isValid) {
-    const decodeToken = decodeAccessToken(token);
+    const decodeToken = decodeAccessToken(accessToken);
     console.log("DECODE TOKEN: ", decodeToken);
     req.body.auth = decodeToken;
   }else{
@@ -35,13 +35,15 @@ router.post('/auth', async (req, res) => {
   // console.log('ROUTE AUTH: ', auth);
   // console.log("AUTH: ");
   auth ? res.send('index') : res.send('login')
-})
+});
 router.post('/loginData', upload.none(), async (req, res) => {
   console.log('LOG DATA: ', req.body);
-  const uid = '25';
-  const token = await createAccessToken({id: uid});
-  console.log('TOKEN: ', token);
-  res.send({status: 'ok', payload: {token}})
+  const { email, password } = req.body;// contr
+  const resultReg = await loginUser(email, password)
+  console.log("LOG RES:", resultReg);
+  // const token = await createAccessToken({id: uid});
+  // console.log('TOKEN: ', token);
+  // res.send({status: 'ok', payload: {token}})
 })
 router.post('/regData', upload.none(), async (req, res) => {
   console.log('REG DATA: ', req.body);
@@ -54,6 +56,12 @@ router.post('/regData', upload.none(), async (req, res) => {
   (accessToken && refreshToken) ?
     res.send({status: 'ok', payload: {accessToken, refreshToken}}) :
     res.send({status: false});
+});
+router.post('/updateToken', async (req, res) => {
+  // console.log("AUTH BODY: ", req.body.auth) 
+  const { refreshToken } = req.body;
+  let num = 0;
+  console.log("server", num++);
 })
 // const token = `eyJhbGciOiJSUzI1NiJ9.eyJpZCI6IjI1In0.iYK-pHRQRVtttVW400Z55XIEpm4s0rmiPEqSgxbcpohfoall3ZFznazFJck-fHIhozkbP7IwLivb6aiy7yD-7nrvVfIDNE89HTgobrGK7HA_Zolu-5mRJA0DUVexKp-FdsAUDAY-k51XEHwDuGZ-8QiNclcPnP-9mSGaf_T5LKk`;
 // const token = `eyJhbGciOiJSUzI1NiJ9.eyJpZCI6IjI1In0.iYK-pHRQRVgKVVW400Z55XIEpm4s0rmiPEqSgxbcpohfoall3ZFznazFJck-fHIhozkbP7IwLivb6aiy7yD-7nrvVfIDNE89HTgobrGK7HA_Zolu-5mRJA0DUVexKp-FdsAUDAY-k51XEHwDuGZ-8QiNclcPnP-9mSGaf_T5LKk`;
