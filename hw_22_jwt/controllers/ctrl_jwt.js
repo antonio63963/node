@@ -11,6 +11,9 @@ const createTokenDoc = async(uid, refreshToken) => {
   const doc_id = await tokenModel.save();
   return doc_id;
 };
+const removeTokenDok = async(refreshToken) => {
+  TokenModel.findOne({refreshToken: refreshToken}).remove().exec(console.log('doc refreshToken has removed'));
+}
 
 const createAccessToken = async (payload) => {
   const privKey = await getPrivKey();
@@ -83,5 +86,6 @@ module.exports = {
   decodeAccessToken,
   createRefreshToken,
   createTokenDoc,
-  updateToken
+  updateToken,
+  removeTokenDok
 }

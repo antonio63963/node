@@ -3,7 +3,7 @@ var router = express.Router();
 const multer = require('multer');
 const upload = multer();
 const { successReg: successRegComponent} = require('../components')
-const { createAccessToken, verifyAccessToken, decodeAccessToken, createRefreshToken, createTokenDoc, updateToken } = require('../controllers/ctrl_jwt');
+const { createAccessToken, verifyAccessToken, decodeAccessToken, createRefreshToken, createTokenDoc, updateToken, removeTokenDok } = require('../controllers/ctrl_jwt');
 const {  createUser, loginUser, } = require('../controllers/cont_user');
 
 
@@ -24,16 +24,27 @@ router.get('/', async (req, res, next) => {
   console.log('Start page: ' ,req.body);
   res.render('index', { title: 'Express' });
 });
+router.post('/', async (req, res, next) => {
+  console.log("POST /");
+  if(req.body.auth) {res.render('registred')}
+  res.render('index', { title: 'Express' });
+});
 router.get('/login', async (req, res, next) => {
   res.render('login', {title: 'Login'});
 });
 router.get('/reg', async (req, res, next) => {
   res.render('reg', {title: 'Registration'});
 });
+router.post('/logout', async (req, res, next) => {
+  console.log("LOGOUT: ", req.params);
+  // removeTokenDok(req.body.payload.refreshToken)
+  // res.render('index', {title: 'Express'});
+});
+
 router.post('/auth', async (req, res) => {
   const auth = req.body.auth
   console.log('/AUTH');
-  auth ? res.send('reg') : res.send('login')
+  auth ? res.send({component: successRegComponent}) : res.send('index')
 });
 router.post('/loginData', upload.none(), async (req, res) => {
   console.log('LOG DATA: ', req.body);

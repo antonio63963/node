@@ -17,9 +17,8 @@ regForm.addEventListener('submit', async (e) => {
   console.log("REG RESP: ", data);
   if(data.status == 'ok') {
     setTokensToLocal(data.payload.tokens);
-    const response = await axios.post('/auth', data.payload);
-    console.log("component data: ", response);
-    // document.querySelector('body').innerHTML = component;
+    console.log("comp: ", data.component);
+    document.querySelector('body').innerHTML = data.payload.component;
   }
 });
 
