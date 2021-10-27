@@ -20,7 +20,8 @@ const createAccessToken = async (payload) => {
   // if(!payload.exp) {
   //   payload.exp = moment().add(5, 'm');
   // }
-  const now = new Date();
+  const now = new Date().valueOf();
+  console.log("NOw; ", now);
   if(now > payload.exp) {
     delete payload.exp;
   };
@@ -51,9 +52,13 @@ const decodeAccessToken = async (token) => {
   return decodeToken;
 }
 
-const updateToken = async (accessTokenPayload, refreshToken) => {
+const updateToken = async (accessToken, refreshToken) => {
+  if(!accessToken && !refreshToken) {
+    console.log('Update tokens is impossible!!! udateToken() ');
+    return false;
+  }
   console.log('OLD REFRESH: ', refreshToken);
-  const oldPayload = JSON.parse(accessTokenPayload.payload);
+  const oldPayload = JSON.parse(accessToken.payload);
   console.log('OlD__PayLOAD: ', oldPayload);
   const uid = oldPayload.uid;
   const newAccessToken = await createAccessToken({ uid });

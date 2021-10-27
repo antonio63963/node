@@ -6,24 +6,22 @@ const setTokensToLocal = (payload) => {
     console.log('set token to lockal was interrupted');
     return false;
   }
-  addToken('accessToken', accessToken);
-  addToken('refreshToken', refreshToken);
+  updateTokens('accessToken', payload);
+
 };
 
 const getFreshToken = async () => {
-  const accessToken = getToken('accessToken');
-  const refreshToken = getToken('refreshToken');
-  const { data } = await axios.post('/updateToken', { accessToken, refreshToken });
+  const tokens = getTokens();
+  const { data } = await axios.post('/updateToken', tokens);
   console.log("REFRESH: ", data);
   if(data.status === 'ok') {
     setTokensToLocal(data.payload)
   }
 };
 
-const accessToken = getToken('accessToken');
-const refreshToken = getToken('refreshToken');
+const existTokens = getTokens();
 let interval;
-if(accessToken && refreshToken) {
+if(existTokens && existTokens.accessToken && existTokens.refreshToken) {
   interval = setInterval(() => {
     getFreshToken();
   }, 10000);

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const multer = require('multer');
 const upload = multer();
-const userModel = require('../models/user');
+const { successReg: successRegComponent} = require('../components')
 const { createAccessToken, verifyAccessToken, decodeAccessToken, createRefreshToken, createTokenDoc, updateToken } = require('../controllers/ctrl_jwt');
 const {  createUser, loginUser, } = require('../controllers/cont_user');
 
@@ -32,9 +32,8 @@ router.get('/reg', async (req, res, next) => {
 });
 router.post('/auth', async (req, res) => {
   const auth = req.body.auth
-  // console.log('ROUTE AUTH: ', auth);
-  // console.log("AUTH: ");
-  auth ? res.send('index') : res.send('login')
+  console.log('/AUTH');
+  auth ? res.send('reg') : res.send('login')
 });
 router.post('/loginData', upload.none(), async (req, res) => {
   console.log('LOG DATA: ', req.body);
@@ -46,27 +45,20 @@ router.post('/loginData', upload.none(), async (req, res) => {
   // res.send({status: 'ok', payload: {token}})
 })
 router.post('/regData', upload.none(), async (req, res) => {
-  console.log('REG DATA: ', req.body);
   const uid = await createUser(req.body);
-  console.log("UID: ", uid);
   const accessToken = await createAccessToken({uid});
   const refreshToken = createRefreshToken();
   const token_id = await createTokenDoc(uid, refreshToken);
-  console.log('new ref token: ', token_id);
   (accessToken && refreshToken) ?
-    res.send({status: 'ok', payload: {accessToken, refreshToken}}) :
+    res.send({status: 'ok', payload: {uid, component: successRegComponent, tokens: {accessToken, refreshToken}}}) :
     res.send({status: false});
 });
 router.post('/updateToken', async (req, res) => {
-  console.log("AUTH BODY: ", req.body.auth) 
   const { refreshToken } = req.body;
   const accessToken = await req.body.auth;
-    const payload = await updateToken(accessToken, refreshToken);
-    console.log('PAYLOAD NEW: ', payload);
-    res.send({status: 'ok', payload});
- 
-  // let num = 0;
-  // console.log("server", num++);
+  console.log("UpdateToken: ", accessToken);
+  const payload = await updateToken(accessToken, refreshToken);
+  res.send({status: 'ok', payload});
 });
 // const token = `eyJhbGciOiJSUzI1NiJ9.eyJpZCI6IjI1In0.iYK-pHRQRVtttVW400Z55XIEpm4s0rmiPEqSgxbcpohfoall3ZFznazFJck-fHIhozkbP7IwLivb6aiy7yD-7nrvVfIDNE89HTgobrGK7HA_Zolu-5mRJA0DUVexKp-FdsAUDAY-k51XEHwDuGZ-8QiNclcPnP-9mSGaf_T5LKk`;
 // const token = `eyJhbGciOiJSUzI1NiJ9.eyJpZCI6IjI1In0.iYK-pHRQRVgKVVW400Z55XIEpm4s0rmiPEqSgxbcpohfoall3ZFznazFJck-fHIhozkbP7IwLivb6aiy7yD-7nrvVfIDNE89HTgobrGK7HA_Zolu-5mRJA0DUVexKp-FdsAUDAY-k51XEHwDuGZ-8QiNclcPnP-9mSGaf_T5LKk`;
