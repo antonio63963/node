@@ -3,7 +3,7 @@ var router = express.Router();
 const multer = require('multer');
 const upload = multer();
 const userModel = require('../models/user');
-const { createAccessToken, verifyAccessToken, decodeAccessToken, createRefreshToken, createTokenDoc } = require('../controllers/ctrl_jwt');
+const { createAccessToken, verifyAccessToken, decodeAccessToken, createRefreshToken, createTokenDoc, updateToken } = require('../controllers/ctrl_jwt');
 const {  createUser, loginUser, } = require('../controllers/cont_user');
 
 
@@ -58,11 +58,16 @@ router.post('/regData', upload.none(), async (req, res) => {
     res.send({status: false});
 });
 router.post('/updateToken', async (req, res) => {
-  // console.log("AUTH BODY: ", req.body.auth) 
+  console.log("AUTH BODY: ", req.body.auth) 
   const { refreshToken } = req.body;
-  let num = 0;
-  console.log("server", num++);
-})
+  const accessToken = await req.body.auth;
+    const payload = await updateToken(accessToken, refreshToken);
+    console.log('PAYLOAD NEW: ', payload);
+    res.send({status: 'ok', payload});
+ 
+  // let num = 0;
+  // console.log("server", num++);
+});
 // const token = `eyJhbGciOiJSUzI1NiJ9.eyJpZCI6IjI1In0.iYK-pHRQRVtttVW400Z55XIEpm4s0rmiPEqSgxbcpohfoall3ZFznazFJck-fHIhozkbP7IwLivb6aiy7yD-7nrvVfIDNE89HTgobrGK7HA_Zolu-5mRJA0DUVexKp-FdsAUDAY-k51XEHwDuGZ-8QiNclcPnP-9mSGaf_T5LKk`;
 // const token = `eyJhbGciOiJSUzI1NiJ9.eyJpZCI6IjI1In0.iYK-pHRQRVgKVVW400Z55XIEpm4s0rmiPEqSgxbcpohfoall3ZFznazFJck-fHIhozkbP7IwLivb6aiy7yD-7nrvVfIDNE89HTgobrGK7HA_Zolu-5mRJA0DUVexKp-FdsAUDAY-k51XEHwDuGZ-8QiNclcPnP-9mSGaf_T5LKk`;
 

@@ -10,15 +10,22 @@ const createTokenDoc = async(uid, refreshToken) => {
   tokenModel.refreshToken = refreshToken;
   const doc_id = await tokenModel.save();
   return doc_id;
-}
+};
 
 const createAccessToken = async (payload) => {
   const privKey = await getPrivKey();
-  if(moment(payload.exp) < moment()) {
-    delete(payload.exp);
+  // if(moment(payload.exp) < moment()) {
+  //   delete(payload.exp);
+  // };
+  // if(!payload.exp) {
+  //   payload.exp = moment().add(5, 'm');
+  // }
+  const now = new Date();
+  if(now > payload.exp) {
+    delete payload.exp;
   };
   if(!payload.exp) {
-    payload.exp = moment().add(5, 'm');
+    payload.exp = now + 5000
   }
   const token = jws.sign({
     header: {alg: 'RS256'},
@@ -44,8 +51,17 @@ const decodeAccessToken = async (token) => {
   return decodeToken;
 }
 
-const updateToken = async (accessToken, refreshToken) => {
-  
+const updateToken = async (accessTokenPayload, refreshToken) => {
+  console.log('OLD REFRESH: ', refreshToken);
+  const oldPayload = JSON.parse(accessTokenPayload.payload);
+  console.log('OlD__PayLOAD: ', oldPayload);
+  const uid = oldPayload.uid;
+  const newAccessToken = await createAccessToken({ uid });
+  const newRefreshToken = createRefreshToken();
+  const doc = TokenModel.updateOne({refreshToken: refreshToken}, {refreshToken: newRefreshToken});
+  return {
+    uid, accessToken: newAccessToken, refreshToken: newRefreshToken
+  }
 }
 
 function test(token, secret) {
@@ -61,5 +77,6 @@ module.exports = {
   verifyAccessToken,
   decodeAccessToken,
   createRefreshToken,
-  createTokenDoc
+  createTokenDoc,
+  updateToken
 }
