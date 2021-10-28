@@ -8,9 +8,9 @@ const generalSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'user'
   },
-  refreshToken: {
+  refreshToken: [{
     type: Schema.Types.String
-  },
+  }],
 
 }, 
 {

@@ -10,7 +10,7 @@ const getTokens = () => {
     null;
 }
 
-const updateTokens = (tokenName, tokens) => {
+const updateTokens = (tokens) => {
   if(getTokens()) {
     localStorage.removeItem('tokens');
   }

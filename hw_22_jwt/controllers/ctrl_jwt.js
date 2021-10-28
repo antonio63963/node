@@ -7,13 +7,23 @@ const TokenModel = require('../models/token');
 const createTokenDoc = async(uid, refreshToken) => {
   const tokenModel = new TokenModel;
   tokenModel.uid = uid;
-  tokenModel.refreshToken = refreshToken;
+  tokenModel.refreshToken = [refreshToken];
   const doc_id = await tokenModel.save();
   return doc_id;
 };
+const findTokenDocByUid = async(uid) => {
+  const doc = TokenModel.findOne({ uid });
+  return doc;
+};
+const pushRefreshTokenToDoc = async(uid, refreshToken) => {
+  const doc = TokenModel.updateOne({ uid }, {$push: {"refreshToken": refreshToken}});
+  return doc;
+}
+
 const removeTokenDok = async(refreshToken) => {
   TokenModel.findOne({refreshToken: refreshToken}).remove().exec(console.log('doc refreshToken has removed'));
-}
+};
+
 
 const createAccessToken = async (payload) => {
   const privKey = await getPrivKey();
@@ -43,14 +53,17 @@ const createRefreshToken = () => {
   const uniq = uniqid();
   return uniq;
 };
-
+const checkRefreshToken = async (refreshToken) => {
+  const check = await TokenModel.findOne({refreshToken: refreshToken});
+  return check;
+}
 const verifyAccessToken = async (token) => {
   const pubKey = await getPublicKey();
   test(token, pubKey)
-  const hz = jws.verify(token, 'RS256', pubKey);
-  console.log('isVALID: ', hz);
+  const isValid = jws.verify(token, 'RS256', pubKey);
+  return isValid;
 };
-const decodeAccessToken = async (token) => {
+const decodeAccessToken = (token) => {
   const decodeToken = jws.decode(token, 'RS256');
   return decodeToken;
 }
@@ -66,9 +79,13 @@ const updateToken = async (accessToken, refreshToken) => {
   const uid = oldPayload.uid;
   const newAccessToken = await createAccessToken({ uid });
   const newRefreshToken = createRefreshToken();
+
   const doc = TokenModel.updateOne({refreshToken: refreshToken}, {refreshToken: newRefreshToken});
-  return {
-    uid, accessToken: newAccessToken, refreshToken: newRefreshToken
+  if(doc) {
+    return {
+      uid, accessToken: newAccessToken, refreshToken: doc.refreshToken
+    }
+
   }
 }
 
@@ -87,5 +104,6 @@ module.exports = {
   createRefreshToken,
   createTokenDoc,
   updateToken,
-  removeTokenDok
+  removeTokenDok,
+  checkRefreshToken
 }

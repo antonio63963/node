@@ -15,9 +15,11 @@ loginForm.addEventListener('submit', async (e) => {
   const formData = new FormData(e.target);
   const { data } = await axios.post('/loginData', formData);
   console.log(data);
+  console.log("log: ", data);
   if(data.status == 'ok') {
-    const res = addToken(data.payload.token);
-    console.log('RES ', res);
+    const { tokens, component } = data.payload
+    updateTokens(tokens);
+    document.querySelector('body').innerHTML = component;
   }
 });
 
