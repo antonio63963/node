@@ -1,28 +1,57 @@
 const setTokensToLocal = (payload) => {
-  console.log('PAYLOAD: ', payload);
+  // console.log('PAYLOAD: ', payload);
   const { accessToken, refreshToken } = payload;
-  console.log('SET TOKEN: payload: ', payload);
+  // console.log('SET TOKEN: payload: ', payload);
   if(!accessToken && !refreshToken) {
     console.log('set token to lockal was interrupted');
     return false;
   }
-  updateTokens('accessToken', payload);
+  updateTokens(payload);
 
 };
 
 const getFreshToken = async () => {
   const tokens = getTokens();
-  const { data } = await axios.post('/updateToken', tokens);
-  console.log("REFRESH: ", data);
-  if(data.status === 'ok') {
-    setTokensToLocal(data.payload)
-  }
+  const { accessToken, refreshToken } = tokens;
+  console.log('getFresh: ', tokens);
+  if(!accessToken && !refreshToken) {
+    return false;
+  } else {
+    const { data } = await axios.post('/updateToken', tokens);
+    console.log("REFRESH: ", data);
+    if(data.status === 'ok') {
+      setTokensToLocal(data.payload)
+    }
+    return true;
+  };
 };
 
-const existTokens = getTokens();
-let interval;
-if(existTokens && existTokens.accessToken && existTokens.refreshToken) {
-  interval = setInterval(() => {
-    getFreshToken();
-  }, 10000);
+let timerId;
+function initRefreshToken() {
+  const existTokens = getTokens();
+  if(existTokens && existTokens.accessToken && existTokens.refreshToken) {
+    timerId = setInterval(async() => {
+      const status = await getFreshToken();
+      console.log("status fresh: ", status);
+      if(!status) {
+        clearInterval(timerId);
+        console.log('CLEAR');
+      }
+    }, 5000);
+    console.log('Timer id: ', timerId);
+  };
+};
+
+const createComponents = (component) => {
+  const { html, scripts } = component;
+  const body = document.querySelector('body');
+  const container = document.querySelector('.container');
+  const oldScripts = document.querySelectorAll('script');
+  oldScripts.forEach(script => script.remove());
+  container.innerHTML = html;
+  scripts.forEach(script => {
+    const elem = document.createElement('script');
+    elem.src = script;
+    body.appendChild(elem)
+  });   
 }

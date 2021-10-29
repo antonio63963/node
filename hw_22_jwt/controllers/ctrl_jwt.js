@@ -80,10 +80,13 @@ const updateToken = async (accessToken, refreshToken) => {
   const newAccessToken = await createAccessToken({ uid });
   const newRefreshToken = createRefreshToken();
 
-  const doc = TokenModel.updateOne({refreshToken: refreshToken}, {refreshToken: newRefreshToken});
+  const doc = await TokenModel.updateOne({refreshToken: refreshToken}, {refreshToken: newRefreshToken});
   if(doc) {
     return {
-      uid, accessToken: newAccessToken, refreshToken: doc.refreshToken
+      uid, tokens:{
+        accessToken: newAccessToken, 
+        refreshToken: refreshToken
+      }
     }
 
   }

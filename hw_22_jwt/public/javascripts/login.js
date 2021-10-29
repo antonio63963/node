@@ -19,7 +19,8 @@ loginForm.addEventListener('submit', async (e) => {
   if(data.status == 'ok') {
     const { tokens, component } = data.payload
     updateTokens(tokens);
-    document.querySelector('body').innerHTML = component;
+    createComponents(component);
+    initRefreshToken();
   }
 });
 

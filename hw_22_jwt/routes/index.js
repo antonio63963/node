@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const multer = require('multer');
 const upload = multer();
-const { successReg: successRegComponent} = require('../components')
+const { successReg: successRegComponent, login: loginComponent } = require('../components')
 const { createAccessToken, verifyAccessToken, decodeAccessToken, createRefreshToken, createTokenDoc, updateToken, removeTokenDok, checkRefreshToken } = require('../controllers/ctrl_jwt');
 const {  createUser, loginUser, } = require('../controllers/cont_user');
 
@@ -26,6 +26,7 @@ router.all('/*', async (req, res, next) => {
         req.body.auth = null;
     }
     console.log("DECODE TOKEN: ", decodeToken);
+    decodeToken.payload = parsePayload;
     req.body.auth = decodeToken;
   }else{
     req.body.auth = null;
@@ -42,7 +43,10 @@ router.post('/', async (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
 router.get('/login', async (req, res, next) => {
-  res.render('login', {title: 'Login'});
+  const { auth } = req.body;
+  console.log('Login route: ', auth);
+  if(auth) res.render('registred')
+  res.send({status: 'ok', payload: {component: loginComponent}});
 });
 router.get('/reg', async (req, res, next) => {
   res.render('reg', {title: 'Registration'});
@@ -51,8 +55,7 @@ router.post('/logout', async (req, res, next) => {
   console.log("LOGOUT: ", req.body);
   const { refreshToken } = req.body;
   removeTokenDok(refreshToken);
-  // removeTokenDok(req.body.payload.refreshToken)
-  // res.render('index', {title: 'Express'});
+  res.send({status: 'not authorized'})
 });
 
 router.post('/auth', async (req, res) => {
@@ -62,17 +65,21 @@ router.post('/auth', async (req, res) => {
 });
 router.post('/loginData', upload.none(), async (req, res) => {
   console.log('LOG DATA: ', req.body);
-  const { email, password } = req.body;// contr
-  const resultReg = await loginUser(email, password);
-  const uid = resultReg.userID;
-  console.log("LOG RES:", resultReg);
-  const accessToken = await createAccessToken({uid});
-  const refreshToken = createRefreshToken();
-  const token_id = await createTokenDoc(uid, refreshToken);
-  (accessToken && refreshToken) ?
-    res.send({status: 'ok', payload: {uid, component: successRegComponent, tokens: {accessToken, refreshToken}}}) :
-    res.send({status: false});
-
+  const { email, password, auth } = req.body;
+  if(!auth) {
+    const resultReg = await loginUser(email, password);
+    const uid = resultReg.userID;
+    console.log("LOG RES:", resultReg);
+    const accessToken = await createAccessToken({uid});
+    const refreshToken = createRefreshToken();
+  
+    const token_id = await createTokenDoc(uid, refreshToken);
+    (accessToken && refreshToken) ?
+      res.send({status: 'ok', payload: {uid, component: successRegComponent, tokens: {accessToken, refreshToken}}}) :
+      res.send({status: false});
+  } else {
+    res.send({status: 'ok', payload: {uid: auth.payload.uid, component: successRegComponent}})
+  }
 })
 router.post('/regData', upload.none(), async (req, res) => {
   const uid = await createUser(req.body);

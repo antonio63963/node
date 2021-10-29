@@ -18,7 +18,7 @@ regForm.addEventListener('submit', async (e) => {
   if(data.status == 'ok') {
     setTokensToLocal(data.payload.tokens);
     console.log("comp: ", data.component);
-    document.querySelector('body').innerHTML = data.payload.component;
+    createComponents(data.payload.component);
   }
 });
 
