@@ -1,17 +1,10 @@
-const regForm = document.forms.reg;
-// const authCheck = async () => {
-//   const token = getToken();
-//   console.log(token);
-//     if(token) {
-//     const { data } = await axios.post('/auth', { token });
-//     console.log(data);
-//     document.querySelector('body').innerHTML = data;
-//   }
-// };
-// authCheck();
+const regForm = document.forms.reg,
+  btnLog = document.querySelector('.btn-login');
+
 
 regForm.addEventListener('submit', async (e) => {
   e.preventDefault();
+  if(!e.target.classList.contains('submit')) return false;
   const formData = new FormData(e.target);
   const { data } = await axios.post('/regData', formData);
   console.log("REG RESP: ", data);
@@ -21,4 +14,11 @@ regForm.addEventListener('submit', async (e) => {
     createComponents(data.payload.component);
   }
 });
+
+btnLog.addEventListener('click', async (e) => {
+  e.stopImmediatePropagation();
+  const { data } = await axios.get('/login');
+  console.log("btnLogin: ", data);
+  createComponents(data.payload.component)
+})
 

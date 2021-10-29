@@ -15,6 +15,7 @@ const getFreshToken = async () => {
   const { accessToken, refreshToken } = tokens;
   console.log('getFresh: ', tokens);
   if(!accessToken && !refreshToken) {
+    console.log('not enough tokens');
     return false;
   } else {
     const { data } = await axios.post('/updateToken', tokens);
@@ -54,4 +55,10 @@ const createComponents = (component) => {
     elem.src = script;
     body.appendChild(elem)
   });   
+};
+
+async function getLink(link) {
+  const { data } = await axios.get(`/${link}`);
+  console.log(`${link}: `, data);
+  createComponents(data.payload.component)
 }

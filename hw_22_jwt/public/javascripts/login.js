@@ -1,17 +1,9 @@
 const loginForm = document.forms.login;
-// const authCheck = async () => {
-//   const token = getToken();
-//   console.log(token);
-//     if(token) {
-//     const { data } = await axios.post('/auth', { token });
-//     console.log(data);
-//     document.querySelector('body').innerHTML = data;
-//   }
-// };
-// authCheck();
+const btnReg = document.querySelector('.btn-registr');
 
 loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
+  if(!e.target.classList.contains('submit')) return false;
   const formData = new FormData(e.target);
   const { data } = await axios.post('/loginData', formData);
   console.log(data);
@@ -22,5 +14,13 @@ loginForm.addEventListener('submit', async (e) => {
     createComponents(component);
     initRefreshToken();
   }
+});
+
+btnReg.addEventListener('click', async (e) => {
+  e.stopImmediatePropagation();
+  console.log(e.target);
+  const { data } = await axios.get('/reg');
+  console.log("btnGoReg: ", data);
+  createComponents(data.payload.component);
 });
 

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const multer = require('multer');
 const upload = multer();
-const { successReg: successRegComponent, login: loginComponent } = require('../components')
+const { successReg: successRegComponent, loginForm: loginComponent, regForm: regComponent } = require('../components')
 const { createAccessToken, verifyAccessToken, decodeAccessToken, createRefreshToken, createTokenDoc, updateToken, removeTokenDok, checkRefreshToken } = require('../controllers/ctrl_jwt');
 const {  createUser, loginUser, } = require('../controllers/cont_user');
 
@@ -45,11 +45,12 @@ router.post('/', async (req, res, next) => {
 router.get('/login', async (req, res, next) => {
   const { auth } = req.body;
   console.log('Login route: ', auth);
-  if(auth) res.render('registred')
+  if(auth) res.send({status: 'ok', payload: {component: successRegComponent}})
   res.send({status: 'ok', payload: {component: loginComponent}});
 });
 router.get('/reg', async (req, res, next) => {
-  res.render('reg', {title: 'Registration'});
+  console.log('This is the reg router!!!');
+  res.send({status: 'ok', payload: {component: regComponent}});
 });
 router.post('/logout', async (req, res, next) => {
   console.log("LOGOUT: ", req.body);

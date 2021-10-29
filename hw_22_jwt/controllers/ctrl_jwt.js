@@ -7,7 +7,7 @@ const TokenModel = require('../models/token');
 const createTokenDoc = async(uid, refreshToken) => {
   const tokenModel = new TokenModel;
   tokenModel.uid = uid;
-  tokenModel.refreshToken = [refreshToken];
+  tokenModel.refreshToken = refreshToken;
   const doc_id = await tokenModel.save();
   return doc_id;
 };
