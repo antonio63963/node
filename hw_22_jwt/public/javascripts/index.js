@@ -47,13 +47,15 @@ const createComponents = (component) => {
   const { html, scripts } = component;
   const body = document.querySelector('body');
   const container = document.querySelector('.container');
-  const oldScripts = document.querySelectorAll('script');
-  oldScripts.forEach(script => script.remove());
+  const oldScripts = [...document.querySelectorAll('script')];
+  // oldScripts.forEach(script => script.remove());
   container.innerHTML = html;
   scripts.forEach(script => {
-    const elem = document.createElement('script');
-    elem.src = script;
-    body.appendChild(elem)
+    if(!oldScripts.includes(script)){
+      const elem = document.createElement('script');
+      elem.src = script;
+      body.appendChild(elem)
+    }
   });   
 };
 

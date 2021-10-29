@@ -18,12 +18,14 @@ const generalSchema = new Schema({
   auth: {
     login: {
       type: Schema.Types.String,
+      minLength: 5,
       required: true,
       unique: true
     },
     pwdHash: {
       type: Schema.Types.String,
-      required: true
+      required: true,
+      minLength: 3
     }
   }
 }, 
