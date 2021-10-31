@@ -14,12 +14,7 @@ router.get('/login', (req, res) => {
 router.get('/signUp', (req, res) => {
   res.render('signUp');
 });
-router.post('/signUpData', upload.none(), async (req, res) => {
-  console.log('signUp: ' , req.body);
-});
-router.post('/loginData', upload.none(), async (req, res) => {
-  console.log('login: ' , req.body);
-});
+
 
 
 

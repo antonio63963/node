@@ -1,5 +1,5 @@
 module.exports = {
-  url: `mongodb://localhost:27017/estoreTest`,
+  url: `mongodb://localhost:27017/photoWall`,
   options: {
     useNewUrlParser: true,
     useUnifiedTopology: true

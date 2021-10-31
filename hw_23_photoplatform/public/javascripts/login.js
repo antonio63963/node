@@ -11,7 +11,7 @@ loginForm.addEventListener('submit', async (e) => {
   if(isFull) {
     const formData = new FormData(e.target);
     console.log(formData);
-    const { data } = await axios.post('/loginData', formData);
+    const { data } = await axios.post('auth/loginData', formData);
     console.log(data);
   }
   

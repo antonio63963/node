@@ -11,7 +11,7 @@ signUpForm.addEventListener('submit', async (e) => {
   const isPwd = pwd1 === pwd2;
   if(isFull && isPwd) {
     const formData = new FormData(e.target);
-    const { data } = await axios.post('/signUpData', formData);
+    const { data } = await axios.post('auth/signUpData', formData);
     console.log(data);
   }
   
