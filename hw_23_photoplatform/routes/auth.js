@@ -6,8 +6,9 @@ const { registration, checklogin } = require('../middlewares/jsonSchema/check_fo
 const { createUser, loginUser, checkUserByEmail } = require('../controllers/cont_user');
 
 // POST
-router.post('/signUpData', registration, async (req, res) => {
+router.post('/signUpData', upload.none(), registration, async (req, res) => {
   const reqData = req.body;
+  console.log('REqData: ', reqData);
   const user = await checkUserByEmail(reqData);
   if(!user) {
     const newUser = await createUser(reqData);

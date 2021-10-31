@@ -31,7 +31,8 @@ const registration = (req, res, next) => {
 
   const validate = ajv.compile(schema);
   const valid = validate(req.body);
-  console.log(valid);
+  console.log('===REGISTRATION VALID===', valid);
+  
   if (!valid) console.log(validate.errors);
   console.log('FIRST: ----',req.body);
   next();
