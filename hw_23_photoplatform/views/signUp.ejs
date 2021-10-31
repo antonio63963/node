@@ -28,34 +28,34 @@
   </style>
 </head>
 
-<body class="text-center">
+<body class="text-center text-white bg-dark">
 
-  <main class="form-signUp">
-    <form>
-      <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+  <main class="form-signin">
+    <form name="signUp">
+      <img class="mb-4" src="/images/assets/photoWall.svg" alt="" width="72" height="57">
       <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
 
-      <div class="form-floating">
-        <input type="name" class="form-control" id="floatingInput" placeholder="John Doe">
+      <div class="form-floating text-dark">
+        <input type="name" name="name" class="form-control" id="floatingInput" placeholder="John Doe">
+        <label for="floatingInput">Name</label>
+      </div>
+      <div class="form-floating text-dark">
+        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
         <label for="floatingInput">Email address</label>
       </div>
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
-      </div>
-     
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+
+      <div class="form-floating text-dark">
+        <input type="password" name="password" class="form-control pwd1" id="floatingPassword" placeholder="Password">
         <label for="floatingPassword">Password</label>
       </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingInput" placeholder="repeate password">
-        <label for="floatingInput">repeate password</label>
+      <div class="form-floating text-dark">
+        <input type="password" class="form-control pwd2" id="floatingInput" placeholder="repeate password">
+        <label for="floatingInput">Repeate password</label>
       </div>
 
       <div class="checkbox mb-3">
         <label>
-          <input type="checkbox" value="remember-me"> Remember me
+          <input type="checkbox" value="remember-me" name="rememberMe" id="rememberMe"> Remember me
         </label>
       </div>
       <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
@@ -64,8 +64,8 @@
     </form>
   </main>
 
-
-
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="/javascripts/signUp.js"></script>
 </body>
 
 </html>

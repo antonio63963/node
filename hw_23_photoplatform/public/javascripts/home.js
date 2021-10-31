@@ -5,4 +5,7 @@ const btnLogin = document.querySelector('.login'),
 btnLogin.addEventListener('click', ()=> {
   window.location = '/login';
 });
-console.log("home is working!!");
+btnSignUp.addEventListener('click', ()=> {
+  window.location = '/signUp';
+});
+// console.log("home is working!!");

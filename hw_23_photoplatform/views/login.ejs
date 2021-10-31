@@ -29,25 +29,25 @@
   </style>
 </head>
 
-<body class="text-center">
+<body class="text-center  text-white bg-dark">
 
   <main class="form-signin">
-    <form>
-      <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <form name="login">
+      <img class="mb-4" src="/images/assets/photoWall.svg" alt="" width="72" height="57">
       <h1 class="h3 mb-3 fw-normal">Please log in</h1>
 
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <div class="form-floating text-dark">
+        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
         <label for="floatingInput">Email address</label>
       </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <div class="form-floating text-dark">
+        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
         <label for="floatingPassword">Password</label>
       </div>
 
       <div class="checkbox mb-3">
         <label>
-          <input type="checkbox" value="remember-me"> Remember me
+          <input type="checkbox" value="remember-me" name="rememberMe"> Remember me
         </label>
       </div>
       <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
@@ -56,7 +56,8 @@
     </form>
   </main>
 
-
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="/javascripts/login.js"></script>
 
 </body>
 
