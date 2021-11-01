@@ -14,6 +14,9 @@ signUpForm.addEventListener('submit', async (e) => {
     const formData = new FormData(e.target);
     const { data } = await axios.post('auth/signUpData', formData);
     console.log(data);
+    if(data.status === 'ok') {
+      renderPage(data.payload);
+    }
   }
   
 })
@@ -24,3 +27,13 @@ signUpForm.addEventListener('submit', async (e) => {
 btnLogin.addEventListener('click', ()=> {
   window.location = '/login';
 });
+
+
+function renderPage(payload) {
+  const { html, head } = payload.component;
+  const headPage = document.querySelector('head');
+  const body = document.querySelector('body');
+  headPage.innerHTML = head;
+  body.innerHTML = html;
+}
+

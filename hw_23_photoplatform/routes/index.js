@@ -6,6 +6,8 @@ const { uploadArr } = require('../middlewares/upload')
 
 /* GET home page. */
 router.get('/', (req, res) => {
+  // console.log('HEADER: ', JSON.stringify(req.headers));
+  console.log('HEADER: ', req.cookies);
   res.render('index');
 });
 router.get('/login', (req, res) => {
