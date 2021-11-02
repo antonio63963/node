@@ -15,25 +15,25 @@
  <div class="container d-flex">
     <div class="col-3 d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; height: 100vh;">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <img src="../public/images/assets/photoWall.png" alt="" style="max-width: 70px">
+        <img src="../public/images/assets/photoWall.svg" alt="" style="max-width: 70px">
         <span class="fs-4">Sidebar</span>
-      </a>
+      </a>  
       <hr>
-      <ul class="nav nav-pills flex-column mb-auto">
+      <ul class="nav nav-pills flex-column mb-auto sidebarPanel" data-id="<%= uid %>">
         <li class="nav-item">
-          <a href="#" class="nav-link active" aria-current="page">
+          <a href="/albumList" class="nav-link active" aria-current="page">
             <i class="fas fa-cabinet-filing mx-3"></i>
             Album list
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white">
+          <a href="/albumForm" class="nav-link text-white">
             <i class="far fa-video-plus mx-3"></i>
             Create a new album
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white">
+          <a href="/orders" class="nav-link text-white">
             <i class="fas fa-bookmark mx-3"></i>
             Orders
           </a>

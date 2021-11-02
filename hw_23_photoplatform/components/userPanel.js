@@ -48,7 +48,6 @@ const userPanel = {
       </div>
     </div>
 
-    <script src="/javascripts/service.js"></script>
   `,
   head: `
     <meta charset="UTF-8">

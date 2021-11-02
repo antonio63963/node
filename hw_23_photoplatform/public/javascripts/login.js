@@ -13,7 +13,7 @@ loginForm.addEventListener('submit', async (e) => {
     console.log(formData);
     const { data } = await axios.post('auth/loginData', formData);
 console.log('login: ', data);
-    if(data.status === 'ok') renderPage(data.payload);
+    if(data.status === 'ok') window.location = '/userPanel';
     if(data.status === 'error') popupFromMessage(data.message);
   }
 });

@@ -14,9 +14,8 @@ function renderPage(payload) {
   const body = document.querySelector('body');
   headPage.innerHTML = head;
   deleteAllScripts();
-  scripts.forEach(script => createScript(script))
-
   body.innerHTML = html;
+  scripts.forEach(script => createScript(script))
 };
 
 const deleteAllScripts = () => {
