@@ -28,7 +28,7 @@ const loginUser = async (email, password) => {
     return {
       login: check, 
       message: check ? 'login successful' : 'login failed, unknown user or password', 
-      userID: user._id || null
+      uid: user.id || null
     };
   }
 };

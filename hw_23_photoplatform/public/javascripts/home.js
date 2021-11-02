@@ -9,3 +9,4 @@ btnSignUp.addEventListener('click', ()=> {
   window.location = '/signUp';
 });
 // console.log("home is working!!");
+

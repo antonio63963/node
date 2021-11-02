@@ -3,7 +3,7 @@ const userPanel = {
     <div class="container d-flex">
       <div class="col-3 d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; height: 100vh;">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <img src="/images/assets/photoWall.png" alt="" style="max-width: 70px">
+          <img src="/images/assets/photoWall.svg" alt="" style="max-width: 70px">
           <span class="fs-4">Sidebar</span>
         </a>
         <hr>
@@ -47,6 +47,8 @@ const userPanel = {
         <div>HEHEHEHEHE</div>
       </div>
     </div>
+
+    <script src="/javascripts/service.js"></script>
   `,
   head: `
     <meta charset="UTF-8">
@@ -57,7 +59,12 @@ const userPanel = {
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-  `
+  `,
+  scripts: [
+    "/javascripts/service.js",
+    '/javascripts/userSideBar.js',
+    '/javascripts/panelContent.js'
+  ]
 }
 
 module.exports = userPanel;

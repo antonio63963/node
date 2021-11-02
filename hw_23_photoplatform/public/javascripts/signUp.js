@@ -29,11 +29,5 @@ btnLogin.addEventListener('click', ()=> {
 });
 
 
-function renderPage(payload) {
-  const { html, head } = payload.component;
-  const headPage = document.querySelector('head');
-  const body = document.querySelector('body');
-  headPage.innerHTML = head;
-  body.innerHTML = html;
-}
+
 

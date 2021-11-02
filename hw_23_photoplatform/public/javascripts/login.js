@@ -12,10 +12,12 @@ loginForm.addEventListener('submit', async (e) => {
     const formData = new FormData(e.target);
     console.log(formData);
     const { data } = await axios.post('auth/loginData', formData);
-    console.log(data);
+console.log('login: ', data);
+    if(data.status === 'ok') renderPage(data.payload);
+    if(data.status === 'error') popupFromMessage(data.message);
   }
-  
-})
+});
+
 btnSignUp.addEventListener('click', ()=> {
   window.location = '/signUp';
 });
