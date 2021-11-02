@@ -17,10 +17,10 @@ const validateAccessToken = async (req, res, next) => {
       checkedToken ? 
         req.body.auth = decodeToken : 
         req.body.auth = null;
-     }
-    console.log("DECODE TOKEN: ", decodeToken);
-    req.body.auth = decodeToken;
-    req.body.auth.payload = parsePayload;
+        console.log("DECODE TOKEN: ", decodeToken);
+        req.body.auth = decodeToken;
+        req.body.auth.payload = parsePayload;
+    }
   };
   next();
 };

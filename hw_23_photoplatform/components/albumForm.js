@@ -24,4 +24,6 @@ const albumForm = {
   scripts: [
     "/javascripts/album.js",
   ]
-}
+};
+
+module.exports = albumForm;

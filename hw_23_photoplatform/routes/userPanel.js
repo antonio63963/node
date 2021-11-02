@@ -12,6 +12,9 @@ router.get('/', validateAccessToken, (req, res) => {
     res.render('userPanel', {uid, name})
   }
   res.render('index', {auth: false});
+});
+router.get('/albumForm', validateAccessToken, (req, res) => {
+  res.render('createAlbum')
 })
 
 module.exports = router;
