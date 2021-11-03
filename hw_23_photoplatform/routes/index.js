@@ -12,9 +12,9 @@ router.get('/', validateAccessToken, (req, res) => {
   // const decodeToken = decodeAccessToken(accessToken);
   // const parsePayload = JSON.parse(decodeToken.payload);
   // res.render('index', { auth: { name: parsePayload.name, uid: parsePayload.uid }})
-  if(req.params) {
+  if(req.params.auth) {
     console.log("START PAGE AUTH: ", req.params);
-    const { name, uid } = req.params;
+    const { name, uid } = req.params.auth;
     return res.render('index', { auth: { name, uid }})
   } else {
     return res.render('index', {auth: false});

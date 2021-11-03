@@ -12,33 +12,31 @@ const userPanel = require('../components/userPanel');
 router.all('/*', validateAccessToken);
 
 router.post('/signUpData', upload.none(), registration, async (req, res) => {
-  const { auth } = req.body;
+  const { auth } = req.params;
   if(auth) {
-    // res.send({status: 'ok', payload:{ uid: auth.payload.uid, component: userPanel }});
-    console.log('auth###', auth);
-    return res.json({status: 'ok'})
-    // res.send({status: 'ok'});
-   
-  };
-  const reqData = req.body;
-  console.log('REqData: ', reqData);
-  const user = await checkUserByEmail(reqData);
-  if(!user) {
-    const newUser = await createUser(reqData);
-    console.log("new user: ", newUser);
-    const { _id: uid , name } = newUser;
-    console.log("EBUCHIY UID: ", uid.toString());
-    const accessToken = await createAccessToken({uid, name});
-    const refreshToken = createRefreshToken();
-    const token_id = await createTokenDoc(uid, refreshToken);
-    if(accessToken && refreshToken) {
-      res.cookie('accessToken', accessToken, { httpOnly: true });
-      res.cookie('refreshToken', refreshToken, { httpOnly: true });
-      return res.send({status: 'ok', payload:{ uid, name, component: userPanel }});
-    }
+    const { name, uid } = auth;
+    res.send({status: 'ok', payload:{ uid, name,  component: userPanel }});
   } else {
-    return res.send({status: 'error', message: 'This user exist yet'})
-  };
+    const reqData = req.body;
+    console.log('REqData: ', reqData);
+    const user = await checkUserByEmail(reqData);
+    if(!user) {
+      const newUser = await createUser(reqData);
+      console.log("new user: ", newUser);
+      const { _id: uid , name } = newUser;
+      console.log("EBUCHIY UID: ", uid.toString());
+      const accessToken = await createAccessToken({uid, name});
+      const refreshToken = createRefreshToken();
+      const token_id = await createTokenDoc(uid, refreshToken);
+      if(accessToken && refreshToken) {
+        res.cookie('accessToken', accessToken, { httpOnly: true });
+        res.cookie('refreshToken', refreshToken, { httpOnly: true });
+        res.send({status: 'ok', payload:{ uid, name, component: userPanel }});
+      }
+    } else {
+      res.send({status: 'error', message: 'This user already exists'})
+    };
+  }
 });
 
 router.post('/loginData', [upload.none(), checklogin], async (req, res) => {

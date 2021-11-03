@@ -14,8 +14,8 @@ const validateAccessToken = async (req, res, next) => {
       const checkedToken = await checkRefreshToken(refreshToken);
       console.log("TokenDOC: ", checkedToken);
       checkedToken ? 
-        req.params = parsePayload : 
-        req.params = null;
+        req.params = { auth: parsePayload } : 
+        req.params = { auth: null };
     };
     // console.log("DECODE TOKEN: ", decodeToken);
     // req.params = decodeToken;

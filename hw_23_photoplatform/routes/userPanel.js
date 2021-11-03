@@ -7,11 +7,11 @@ const albumFormComponent = require('../components/albumForm');
 
 /* User panel control. */
 router.get('/', validateAccessToken, (req, res) => {
-  if(req.body.auth) {
-    const { payload } = req.body.auth;
-    console.log('PANEL DATA: ', payload);
-    const { name, uid } = payload;
-    return res.render('index', {auth: {uid, name}})
+  const { auth } = req.params;
+  console.log('JOE auth: ', auth);
+  if(auth) {
+    const { name, uid } = auth;
+    return res.render('userPanel', { auth: { uid, name } })
   } else {
     return res.render('index', {auth: false});
   };
