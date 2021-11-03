@@ -9,40 +9,55 @@ const validateAccessToken = require('../middlewares/validateAccess');
 const userPanel = require('../components/userPanel');
 
 // POST
-router.all('/*', validateAccessToken)
+router.all('/*', validateAccessToken);
+
 router.post('/signUpData', upload.none(), registration, async (req, res) => {
   const { auth } = req.body;
-  if(auth) res.send({status: 'ok', payload:{ uid: auth.payload.uid, component: userPanel }});
+  if(auth) {
+    // res.send({status: 'ok', payload:{ uid: auth.payload.uid, component: userPanel }});
+    console.log('auth###', auth);
+    return res.json({status: 'ok'})
+    // res.send({status: 'ok'});
+   
+  };
   const reqData = req.body;
   console.log('REqData: ', reqData);
   const user = await checkUserByEmail(reqData);
   if(!user) {
     const newUser = await createUser(reqData);
     console.log("new user: ", newUser);
-    const { uid, name } = newUser;
+    const { _id: uid , name } = newUser;
+    console.log("EBUCHIY UID: ", uid.toString());
     const accessToken = await createAccessToken({uid, name});
     const refreshToken = createRefreshToken();
     const token_id = await createTokenDoc(uid, refreshToken);
     if(accessToken && refreshToken) {
       res.cookie('accessToken', accessToken, { httpOnly: true });
       res.cookie('refreshToken', refreshToken, { httpOnly: true });
-      res.send({status: 'ok', payload:{ uid: uid._id, component: userPanel }})
+      return res.send({status: 'ok', payload:{ uid, name, component: userPanel }});
     }
   } else {
-    res.send({status: 'error', message: 'This user exist yet'})
+    return res.send({status: 'error', message: 'This user exist yet'})
   };
 });
+
 router.post('/loginData', [upload.none(), checklogin], async (req, res) => {
   const { email, password, auth } = req.body;
-  if(auth) res.send({status: 'ok'});
+  if(auth) {
+    console.log('RES: ', res);
+    res.send({status: 'ok'});
+    return;
+  }
   const loginResult = await loginUser(email, password);
   console.log('login: ', loginResult);
   if(loginResult) {
     const { uid, name } = loginResult;
-    console.log('USER ID: ', loginResult.userID);
+    console.log('USER ID: ', loginResult.uid);
     const accessToken = await createAccessToken({uid, name});
     const refreshToken = createRefreshToken();
+    // const token_id = await createTokenDoc(uid, refreshToken);
     if(accessToken && refreshToken) {
+      console.log(`i'm inside the loginData!!!`);
       res.clearCookie();
       res.cookie('accessToken', accessToken, { httpOnly: true });
       res.cookie('refreshToken', refreshToken, { httpOnly: true });
