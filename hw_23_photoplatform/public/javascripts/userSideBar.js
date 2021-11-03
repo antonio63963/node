@@ -5,6 +5,7 @@ const sidebarUserLinks = document.querySelectorAll('.sidebarPanel-list .nav-link
 const applyTag = document.querySelector('#apply-tag');
 const tagInput = document.querySelector('.tagInput');
 const tagList = document.querySelector('.tagList');
+
 const colorClasses = [
   'bg-primary',
   'bg-secondary',
@@ -15,6 +16,7 @@ const colorClasses = [
   'bg-light text-dark',
   'bg-dark'
 ];
+const tagArr = [];
 
 // Create new album
 sidebarUser.addEventListener('click', async (e) => {
@@ -32,7 +34,13 @@ albumForm.addEventListener('submit', async (e) => {
 
 applyTag.addEventListener('click', () => {
   const index = Math.floor(Math.random()*colorClasses.length + 1);
-  const pill = `<div><span class="badge rounded-pill ${colorClasses[index]}">${tagInput.value}<span class="mx-2">x</span></span></div>`;
+  const pill = `<span class="badge m-3 rounded-pill ${colorClasses[index]}">${tagInput.value}<span class="p-2 pointer x">x</span></span>`;
   tagList.innerHTML += pill;
 
+});
+tagList.addEventListener('click', (e) => {
+  console.log('xxxxx');
+  if(!e.target.classList.contains('x')) return false;
+  const delElem = e.target.closest('.badge');
+  delElem.remove();
 })
