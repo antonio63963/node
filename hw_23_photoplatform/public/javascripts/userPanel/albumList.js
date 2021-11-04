@@ -13,5 +13,5 @@ newAlbumBtn.addEventListener('click', (e) => {
   contentBlocks.forEach(block => block.classList.add('hidden'));
   contentBlocks.find(block => block.classList.contains('createAlbum')).classList.remove('hidden');
   sidebarUserLinks.forEach((link) => link.classList.remove('active'));
-  [...sidebarUserLinks].find(link => link.dataset.block =='createAlbum').classList.add('active');
+  [...sidebarUserLinks].find(link => link.dataset.block == 'createAlbum').classList.add('active');
 })

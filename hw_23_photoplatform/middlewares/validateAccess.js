@@ -20,6 +20,7 @@ const validateAccessToken = async (req, res, next) => {
     // console.log("DECODE TOKEN: ", decodeToken);
     // req.params = decodeToken;
   };
+  console.log('validate token');
   next();
 };
 

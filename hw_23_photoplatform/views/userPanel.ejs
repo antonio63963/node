@@ -18,7 +18,7 @@
   <div class="container">
     <div class="row">
       <!-- Sidebar -->
-      <div class="col-3">
+      <div class="col-3 p-0">
         <div class="d-flex flex-column p-3 text-white bg-dark" style="max-width: 280px; height: 100vh;">
           <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <img src="../public/images/assets/photoWall.svg" alt="" style="max-width: 70px">
@@ -33,7 +33,7 @@
               </a>
             </li>
             <li>
-              <a class="nav-link text-white pointer" data-block="createAlbum">
+              <a class="nav-link text-white pointer" data-block="albumForm">
                 <i class="far fa-video-plus mx-3"></i>
                 Create a new album
               </a>
@@ -67,11 +67,12 @@
       </div>
       
       <!-- Content  -->
-      <div class="col-6 offset-md-3 content">
+      <div class="col  content bg-light">
+        <% if(content === 'albumList') { %>
         <div class="albumList content-block">
           <h1>Album list</h1>
           <ul class="list-group album-list">
-            <% albumList.forEach( (album, index) => { %>
+            <% payload.forEach( (album, index) => { %>
               <% if(index % 2 == 0) { %>
                 <li class="list-group-item list-group-item-success pointer hide-details" data-id="<%= album._id %>">
                   <div class="d-flex justify-content-between align-items-center">
@@ -116,34 +117,11 @@
           </ul>
           <button type="button" class="newAlbumBtn btn btn-light text-dark">Add new album <i class="ms-3 fas fa-folder-plus"></i></button>
         </div>
+        <% } %>
         <!-- Create new albom form -->
-        <form name="album" class="hidden content-block createAlbum" id="album" px-5">
-          <h1 class="my-5 text-center">Create new album</h1>
-          <div class="mb-3">
-            <label for="uid" class="form-label"><%= auth.name %></label>
-            <input name="uid" type="text" class="form-control"value="<%= auth.uid %>">
-          </div>
-          <div class="mb-3">
-            <label for="name" class="form-label">Album name:</label>
-            <input name="name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
-          </div>
-          <div class="tagList">
-
-          </div>
-          <div class="input-group mb-3 d-flex">
-            <input type="text" class="form-control tagInput" placeholder="Tag" aria-label="Tag" aria-describedby="apply-tag">
-            <button class="btn btn-info" type="button" id="apply-tag">Button</button>
-          </div>
-    
-          <div class="form-floating mb-3">
-            <textarea name="description" class="form-control" placeholder="Leave a comment here"
-              id="floatingTextarea"></textarea>
-            <label for="floatingTextarea">Description</label>
-          </div>
-    
-          <button type="submit" class="btn btn-primary">Submit</button>
-          
-        </form>
+        <% if(content == 'albumForm') { %>
+          <%-include('./inc/albumForm') %>
+        <% } %>
 
         <!-- Orders -->
         <div class="order hidden content-block">
@@ -162,9 +140,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="/javascripts/userPanel/userSideBar.js"></script>
+  <% if(content === 'albumList') { %>
   <script src="/javascripts/userPanel/albumList.js"></script>
+  <% } %>
+  <% if(content == 'albumForm') { %>
   <script src="/javascripts/userPanel/album.js"></script>
-
+  <% } %>
 
 </body>
 

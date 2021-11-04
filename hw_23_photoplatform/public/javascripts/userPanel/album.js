@@ -1,7 +1,7 @@
 const applyTag = document.querySelector('#apply-tag');
 const tagInput = document.querySelector('.tagInput');
 const tagList = document.querySelector('.tagList');
-
+const albumForm = document.forms.album;
 const colorClasses = [
   'bg-primary',
   'bg-secondary',
