@@ -113,3 +113,12 @@ li h4 {
 .rotate180 {
   transform: rotate(180deg)
 }
+i.fa-caret-down {
+  transform-origin: center,center;
+}
+.fa-portal-enter {
+  font-size: 15px;
+}
+input.form-control.tagInput {
+  width: auto;
+}

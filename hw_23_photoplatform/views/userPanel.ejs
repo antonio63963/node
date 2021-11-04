@@ -73,8 +73,8 @@
           <ul class="list-group album-list">
             <% albumList.forEach( (album, index) => { %>
               <% if(index % 2 == 0) { %>
-                <li class="list-group-item list-group-item-success pointer hide-details" data-id="<%= auth._id %>">
-                  <div class="d-flex justify-content-between">
+                <li class="list-group-item list-group-item-success pointer hide-details" data-id="<%= album._id %>">
+                  <div class="d-flex justify-content-between align-items-center">
                     <h4 class="my-0"><%= album.name %></h4>
                     <i class="fas fa-caret-down"></i>
                   </div>
@@ -89,22 +89,32 @@
                 </div>
                   <h5>Description</h5>
                   <p><%= album.description %></p>
+                  <button type="button" class="btn btn-success">Open<i class="ms-3 fas fa-sign-in-alt"></i></button>
                 </li>
-              <% } else { %>
-                <li class="list-group-item list-group-item-light pointer hide-details"  data-id="<%= auth._id %>"><%= album.name %>
-                  <hr>
-                  <h5>Creared at:</h5>
-                  <%= new Date(album.createdAt) %>
-                  <% album.tags.forEach(tag => { %>
-                    <span class="badge m-3 rounded-pill bg-success"><%= tag %></span>
-                  <% }) %>
-                  <h5>Description</h5>
-                  <p><%= album.description %></p>
-                </li>
-                
+                <!-- even -->
+                <% } else { %>
+                  <li class="list-group-item list-group-item-light pointer hide-details" data-id="<%= album._id %>">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <h4 class="my-0"><%= album.name %></h4>
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <hr>
+                    <h5>Creared at:</h5>
+                    <%= new Date(album.createdAt) %>
+                    <div>
+                    <h5>Tags: </h5>
+                    <% album.tags.forEach(tag => { %>
+                      <span class="badge m-3 rounded-pill bg-info"><%= tag %></span>
+                    <% }) %>
+                  </div>
+                    <h5>Description</h5>
+                    <p><%= album.description %></p>
+                    <button type="button" class="btn btn-info">Open<i class="ms-3 fas fa-sign-in-alt"></i></button>
+                  </li>
               <% } %>
             <% }) %>
           </ul>
+          <button type="button" class="newAlbumBtn btn btn-light text-dark">Add new album <i class="ms-3 fas fa-folder-plus"></i></button>
         </div>
         <!-- Create new albom form -->
         <form name="album" class="hidden content-block createAlbum" id="album" px-5">
@@ -120,7 +130,7 @@
           <div class="tagList">
 
           </div>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 d-flex">
             <input type="text" class="form-control tagInput" placeholder="Tag" aria-label="Tag" aria-describedby="apply-tag">
             <button class="btn btn-info" type="button" id="apply-tag">Button</button>
           </div>

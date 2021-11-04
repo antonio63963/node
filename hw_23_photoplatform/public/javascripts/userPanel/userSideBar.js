@@ -15,3 +15,4 @@ sidebarUser.addEventListener('click', async (e) => {
   const classBlock = e.target.dataset.block; 
   contentBlocks.find(block => block.classList.contains(classBlock)).classList.remove('hidden');
 });
+
