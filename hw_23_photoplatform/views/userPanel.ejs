@@ -67,6 +67,18 @@
       
       <!-- Content  -->
       <div class="col-6 offset-md-3 content">
+        <div class="albumList">
+          <h1>Album list</h1>
+          <ul class="list-group">
+            <% albumList.forEach( (album, index) => { %>
+              <% if(index % 2 == 0) { %>
+                <li class="list-group-item list-group-item-success" data-id="<%= auth._id %>"> <%= album.name %></li>
+              <% } else { %>
+                <li class="list-group-item list-group-item-light"  data-id="<%= auth._id %>"><%= album.name %></li>
+              <% } %>
+            <% }) %>
+          </ul>
+        </div>
         <!-- Create new albom form -->
           <form name="album" class="hidden" id="album" px-5">
             <h1 class="my-5 text-center">Create new album</h1>
@@ -107,8 +119,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="/javascripts/userSideBar.js"></script>
-  <script src="/javascripts/panelContent.js"></script>
+  <script src="/javascripts/userPanel/userSideBar.js"></script>
+  <script src="/javascripts/userPanel/album.js"></script>
 
 
 </body>

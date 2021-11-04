@@ -14,9 +14,15 @@ const createAlbum = async (userData) => {
 const findAlbumById = async(id) => {
   const album = await AlbumModel.findOne({id});
   return album;
+};
+
+const findAllUserAlbums = async(uid) => {
+  const albums = await AlbumModel.find({uid});
+  return albums;
 }
 
 module.exports = {
   createAlbum,
   findAlbumById,
+  findAllUserAlbums
 };

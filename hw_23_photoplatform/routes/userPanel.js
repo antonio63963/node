@@ -6,15 +6,16 @@ const multer = require('multer');
 const upload = multer();
 
 const albumFormComponent = require('../components/albumForm');
-const { createAlbum, findAlbumById } = require('../controllers/cont_album');
+const { createAlbum, findAlbumById, findAllUserAlbums } = require('../controllers/cont_album');
 
 /* User panel control. */
-router.get('/', validateAccessToken, (req, res) => {
+router.get('/', validateAccessToken, async (req, res) => {
   const { auth } = req.params;
   console.log('JOE auth: ', auth);
   if(auth) {
     const { name, uid } = auth;
-    return res.render('userPanel', { auth: { uid, name } })
+    const albumList = await findAllUserAlbums(uid);
+    return res.render('userPanel', { auth: { uid, name }, albumList })
   } else {
     return res.render('index', {auth: false});
   };
