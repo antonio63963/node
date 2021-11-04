@@ -16,17 +16,13 @@ const generalSchema = new Schema({
     ref: 'user',
     required: true,
   },
-
-  images: [{
-    type: Schema.Types.ObjectId,
-  }],
   
   description: {
     type: Schema.Types.String,
   },
   tags: [{
     type: Schema.Types.String,
-    minLength: 2, 
+    minLength: 1, 
     maxLength: 255
   }]
   

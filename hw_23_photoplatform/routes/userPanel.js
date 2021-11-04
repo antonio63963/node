@@ -6,6 +6,7 @@ const multer = require('multer');
 const upload = multer();
 
 const albumFormComponent = require('../components/albumForm');
+const { createAlbum, findAlbumById } = require('../controllers/cont_album');
 
 /* User panel control. */
 router.get('/', validateAccessToken, (req, res) => {
@@ -23,7 +24,9 @@ router.get('/albumForm', validateAccessToken, (req, res) => {
   res.send({status: 'ok', payload: {component: albumFormComponent}})
 });
 router.post('/newAlbum', upload.none(),  async (req, res) => {
-  console.log(req.body);
+  console.log("new album: ", req.body);
+  const doc = createAlbum(req.body);
+  res.send({status: 'ok', payload: doc});
 })
 
 module.exports = router;
