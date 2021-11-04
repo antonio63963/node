@@ -15,6 +15,7 @@ router.get('/', validateAccessToken, async (req, res) => {
   if(auth) {
     const { name, uid } = auth;
     const albumList = await findAllUserAlbums(uid);
+    console.log("albumList: ", albumList);
     return res.render('userPanel', { auth: { uid, name }, albumList })
   } else {
     return res.render('index', {auth: false});

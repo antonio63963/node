@@ -98,3 +98,18 @@ body {
 /* header .header_content {
   background-image: url('../images/banner_3.jpg');
 } */
+.hide-details {
+  height: 42px;
+}
+.album-list {
+  overflow: hidden;
+}
+li h5 {
+  font-size: 20px;
+}
+li h4 {
+  font-size: 22px;
+}
+.rotate180 {
+  transform: rotate(180deg)
+}
