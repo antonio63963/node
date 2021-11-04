@@ -18,7 +18,7 @@
     <div class="row">
       <!-- Sidebar -->
       <div class="col-3">
-        <div class="d-flex flex-column p-3 text-white bg-dark" style="max-width: 280px; min-width:205px; height: 100vh;">
+        <div class="d-flex flex-column p-3 text-white bg-dark" style="max-width: 280px; height: 100vh;">
           <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <img src="../public/images/assets/photoWall.svg" alt="" style="max-width: 70px">
             <span class="fs-4">Sidebar</span>
@@ -66,13 +66,13 @@
       </div>
       
       <!-- Content  -->
-      <div class="col content">
+      <div class="col-6 offset-md-3 content">
         <!-- Create new albom form -->
           <form name="album" class="hidden" id="album" px-5">
             <h1 class="my-3 text-center">Create new album</h1>
             <div class="mb-3">
               <label for="name" class="form-label">Album name:</label>
-              <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+              <input name="name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
             </div>
             <div class="tagList">
 
