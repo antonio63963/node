@@ -25,7 +25,7 @@ router.get('/albumForm', validateAccessToken, (req, res) => {
 });
 router.post('/newAlbum', upload.none(),  async (req, res) => {
   console.log("new album: ", req.body);
-  const doc = createAlbum(req.body);
+  const doc = await createAlbum(req.body);
   res.send({status: 'ok', payload: doc});
 })
 

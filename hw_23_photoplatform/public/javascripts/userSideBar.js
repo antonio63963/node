@@ -27,14 +27,31 @@ sidebarUser.addEventListener('click', async (e) => {
 albumForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const tagArr = [...tagList.children].map(el => el.textContent.slice(0, el.textContent.length - 1));
-  console.log(tagArr);
   const formData = new FormData(e.target);
   formData.append('tags', tagArr);
   const { data } = await axios.post('userPanel/newAlbum', formData);
   console.log( data );
+  if(data.status === 'ok') {
+    const { name, _id: id, uid, description, tags } = data.payload;
+    responseDB_album('New album has created!', name, tags, description, uid, id);
+  };
 });
 
-
+function responseDB_album(title, name, tags, description, uid, id) {
+const temp = `
+  <div class="modal-body pointer rounded bg-success text-white" onclick="this.remove()">
+    <div class="d-flex justify-content-between><h5>${title}</h5><span class"text-dark">x</span></div>
+    <hr>
+    <p>Name: ${name}</p>
+    <p>ID: ${id}</p>
+    <p>Creator: ${uid}</p>
+    <p>${description}</p>
+    <hr>
+    <p>${tags}</p>
+  </div>
+`;
+albumForm.innerHTML += temp;
+};
 
 applyTag.addEventListener('click', () => {
   const index = Math.floor(Math.random()*colorClasses.length + 1);
