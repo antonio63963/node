@@ -14,13 +14,12 @@ const validateAccessToken = async (req, res, next) => {
       const checkedToken = await checkRefreshToken(refreshToken);
       console.log("TokenDOC: ", checkedToken);
       checkedToken ? 
-        req.params = { auth: parsePayload } : 
-        req.params = { auth: null };
+        req.params.auth =  parsePayload  : 
+        req.params.auth = null ;
     };
     // console.log("DECODE TOKEN: ", decodeToken);
     // req.params = decodeToken;
   };
-  console.log('validate token');
   next();
 };
 

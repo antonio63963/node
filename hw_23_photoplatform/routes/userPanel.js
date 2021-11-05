@@ -16,7 +16,6 @@ router.get('/', validateAccessToken, async (req, res) => {
   if(auth) {
     const { name, uid } = auth;
     const albumList = await findAllUserAlbums(uid);
-    console.log("albumList: ", albumList);
     return res.render('userPanel', { auth: { uid, name }, content: 'albumList', payload: albumList })
   } else {
     return res.render('index', {auth: false});
@@ -30,7 +29,6 @@ router.get('/albumForm', validateAccessToken, (req, res) => {
   }
 });
 router.post('/newAlbum', upload.none(), validateAccessToken,  async (req, res) => {
-  console.log("new album: ", req.body);
   const doc = await createAlbum(req.body);
   res.send({status: 'ok', payload: doc});
 });
@@ -40,6 +38,24 @@ router.get('/albumList', validateAccessToken, async (req, res) => {
     const { name, uid } = auth;
     const albumList = await findAllUserAlbums(uid);
     return res.render('userPanel', { auth: { uid, name }, content: 'albumList', payload: albumList });
+  }
+});
+router.get('/album/:id', validateAccessToken, async (req, res) => {
+  console.log('ALBUM ID', req.params.id);
+  const { auth } = req.params;
+  if(auth) {
+    const { name, uid } = auth;
+    const albumID = req.params.id;
+    res.render('album', { auth: { albumID, name, uid } });
+  }
+});
+
+router.get('/userProfile', validateAccessToken, async (req, res) => {
+  const { auth } = req.params;
+  console.log('USERPROFFFF', auth);
+  if(auth) {
+    const { name, uid } = auth;
+    res.render('userPanel', { auth: { name, uid }, content: 'userProfile' });
   }
 })
 

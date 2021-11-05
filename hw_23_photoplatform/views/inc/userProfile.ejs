@@ -1,0 +1,31 @@
+<form name="userProfile" class="rounded formAlbum bg-white content-block createAlbum " px-5">
+  <h1 class="my-5 text-center">Profile</h1>
+  <div class="mb-3">
+    <label for="name" class="form-label">Name: </label>
+    <input name="name" type="text" class="form-control"value="<%= payload.name %>">
+  </div>
+  <div class="mb-3">
+    <label for="uid" class="form-label">Uid: </label>
+    <input name="uid" type="text" class="form-control"value="<%= payload.uid %>">
+  </div>
+
+  <div class="mb-3">
+    <label for="avatar" class="form-label">Avatar: </label>
+    <input name="avatar" type="file" class="form-control" >
+  </div>
+  
+  <div class="mb-3">
+    <label for="phone" class="form-label">Phone: </label>
+    <input name="phone" type="number" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label for="city" class="form-label">City: </label>
+    <input name="city" type="text" class="form-control">
+  </div>
+
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+  
+</form>
