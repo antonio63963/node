@@ -16,12 +16,17 @@
     <input type="text" name="uid" value="<%= payload.uid %>">
     <input type="text" name="albumID" value="<%= payload.albumID %>">
        <div style="color: #868e96; height: 300px; width: 300px">
-         <label onClick="console.log('wowo')" for="photosInput" class="addPhoto d-flex">
+         <label for="photosInput" class="addPhoto d-flex">
            <div class="pointer d-flex flex-column align-items-center justify-content-center" style="color: #868e96; height: 300px; width: 300px">
              <h3><i class="far fa-plus"></i></h3>
               <h1>Add photo</h1>
            </div>
-           <input type="file" multiple id="photosInput" name="photosInput" accept=".jpg, .jpeg, .png" hidden>
+           <input 
+            type="file" multiple 
+            id="photosInput" 
+            name="uploaded_file" 
+            accept=".jpg, .jpeg, .png, .webp" 
+            hidden>
          </label>
        </div>
        <button type="submit" class="btn btn-dark my-5 sendFotos">Send to moderate</button>

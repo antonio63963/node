@@ -5,6 +5,7 @@ const validateAccessToken = require('../middlewares/validateAccess');
 const multer = require('multer');
 const upload = multer();
 
+
 const albumFormComponent = require('../components/albumForm');
 const { createAlbum, findAlbumById, findAllUserAlbums } = require('../controllers/cont_album');
 
@@ -59,7 +60,10 @@ router.get('/userProfile', validateAccessToken, async (req, res) => {
   }
 });
 
-router.post('/sendPhotos', )
+router.post('/sendPhotos', uploadArr, async (req, res) => {
+  const files = req.files;
+  console.log("sendPhotos: ", files, req.body);
+})
 
 
 module.exports = router;
