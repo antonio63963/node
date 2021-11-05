@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const path = require('path');
+const { promises: FS } = require('fs');
 const { uploadArr } = require('../middlewares/upload');
 const validateAccessToken = require('../middlewares/validateAccess');
 const multer = require('multer');
@@ -7,7 +9,7 @@ const upload = multer();
 
 
 const albumFormComponent = require('../components/albumForm');
-const { createAlbum, findAlbumById, findAllUserAlbums } = require('../controllers/cont_album');
+const { createAlbum, findAlbumById, findAllUserAlbums, getAlbumNameById } = require('../controllers/cont_album');
 
 /* User panel control. */
 
@@ -42,12 +44,13 @@ router.get('/albumList', validateAccessToken, async (req, res) => {
   }
 });
 router.get('/album/:id', validateAccessToken, async (req, res) => {
-  console.log('ALBUM ID', req.params.id);
   const { auth } = req.params;
   if(auth) {
     const { name, uid } = auth;
     const albumID = req.params.id;
-    res.render('userPanel', { auth: { albumID, name, uid }, content: 'album' });
+    const albumName = await getAlbumNameById(albumID);
+    console.log('album Name: ', albumName);
+    res.render('userPanel', { auth: { albumName, albumID, name, uid }, content: 'album' });
   }
 });
 
@@ -63,7 +66,8 @@ router.get('/userProfile', validateAccessToken, async (req, res) => {
 router.post('/sendPhotos', uploadArr, async (req, res) => {
   const files = req.files;
   console.log("sendPhotos: ", files, req.body);
-})
+  console.log("FIlES_NAME: ", req.params.photoNames);
+});
 
 
 module.exports = router;

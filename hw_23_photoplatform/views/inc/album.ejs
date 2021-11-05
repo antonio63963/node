@@ -1,4 +1,4 @@
-<h1>Album name</h1>
+<h1><%= payload.albumName %></h1>
 <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-3 justify-content-start px-5">
 
   <!-- <figure class="figure">
@@ -14,6 +14,7 @@
 
   <form name="sendPhoto">
     <input type="text" name="uid" value="<%= payload.uid %>">
+    <input type="text" name="albumName" value="<%= payload.albumName %>">
     <input type="text" name="albumID" value="<%= payload.albumID %>">
        <div style="color: #868e96; height: 300px; width: 300px">
          <label for="photosInput" class="addPhoto d-flex">
