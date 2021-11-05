@@ -101,7 +101,8 @@
       </div>
 
       <!-- Content  -->
-      <div class="col  content bg-light">
+      <div class="col  content bg-light" px-5>
+        <!-- Profile -->
         <% if(content === 'userProfile') { %>
           <%-include('./inc/userProfile', {payload: auth}) %>
         <% } %>
@@ -113,7 +114,10 @@
         <% if(content == 'albumForm') { %>
           <%-include('./inc/albumForm') %>
         <% } %>
-
+        
+        <% if(content == 'album') { %>
+          <%-include('./inc/album', { payload: auth }) %>
+        <% } %>
       
         <!-- Orders -->
         <div class="order hidden content-block">

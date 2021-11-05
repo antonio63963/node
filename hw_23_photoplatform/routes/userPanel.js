@@ -46,7 +46,7 @@ router.get('/album/:id', validateAccessToken, async (req, res) => {
   if(auth) {
     const { name, uid } = auth;
     const albumID = req.params.id;
-    res.render('album', { auth: { albumID, name, uid } });
+    res.render('userPanel', { auth: { albumID, name, uid }, content: 'album' });
   }
 });
 
@@ -57,7 +57,9 @@ router.get('/userProfile', validateAccessToken, async (req, res) => {
     const { name, uid } = auth;
     res.render('userPanel', { auth: { name, uid }, content: 'userProfile' });
   }
-})
+});
+
+router.post('/sendPhotos', )
 
 
 module.exports = router;

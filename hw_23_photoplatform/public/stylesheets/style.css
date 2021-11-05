@@ -126,3 +126,6 @@ input.form-control.tagInput {
   padding: 30px;
   margin-top: 30px;
 }
+.addPhoto {
+  border: 1px solid #868e96;
+}
