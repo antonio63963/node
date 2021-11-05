@@ -10,9 +10,9 @@ const storage = multer.diskStorage({
   },
   filename(req, file, cb) {
     const type = file.mimetype.match(/\/(.*)$/i)[1];
-    const fileName = `${req.body.albumID}${Date.now()}`;
-    req.params.photoNames += `${fileName},`;
-    cb(null, `${fileName}.${type}`);
+    const fileName = `${req.body.albumID}${Date.now()}.${type}`;
+    cb(null, `${fileName}`);
+    req.params.photoNames += `,${fileName}`;
   },
 });
 const fileFilter = (req, file, cb) => {
