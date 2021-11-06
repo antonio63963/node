@@ -6,10 +6,16 @@ const createAlbum = async (userData) => {
   album.uid = userData.uid;
   album.tags = userData.tags.split(',');
   album.description = userData.description;
+  album.photos = [];
+  album.isApprove = true;
   const doc = await album.save();
   console.log(doc._id);
   return doc;
 };
+
+const addPhotoToAlbum = async (albumID, photoArr) => {
+  const doc = await AlbumModel.updateOne({ id: albumID }, { $push: { photos: { "$each": photoArr } } });
+}
 
 const findAlbumById = async(id) => {
   const album = await AlbumModel.findOne({ id });
@@ -29,5 +35,6 @@ module.exports = {
   createAlbum,
   findAlbumById,
   findAllUserAlbums,
-  getAlbumNameById
+  getAlbumNameById,
+  addPhotoToAlbum
 };

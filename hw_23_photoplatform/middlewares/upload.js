@@ -1,5 +1,4 @@
 const multer = require('multer');
-const fs = require('fs');
 const path = require('path');
 
 const folderUploads = path.resolve('public/images/photo');
@@ -10,9 +9,9 @@ const storage = multer.diskStorage({
   },
   filename(req, file, cb) {
     const type = file.mimetype.match(/\/(.*)$/i)[1];
-    const fileName = `${req.body.albumID}${Date.now()}.${type}`;
-    cb(null, `${fileName}`);
-    req.params.photoNames += `,${fileName}`;
+    const filePath = `${req.body.albumID}_${Date.now()}.${type}`;
+    cb(null, `${filePath}`);
+    req.params.photoPath += `,${filePath}`;
   },
 });
 const fileFilter = (req, file, cb) => {

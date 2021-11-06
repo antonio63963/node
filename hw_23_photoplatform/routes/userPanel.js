@@ -9,7 +9,7 @@ const upload = multer();
 
 
 const albumFormComponent = require('../components/albumForm');
-const { createAlbum, findAlbumById, findAllUserAlbums, getAlbumNameById } = require('../controllers/cont_album');
+const { createAlbum, findAlbumById, findAllUserAlbums, getAlbumNameById, addPhotoToAlbum } = require('../controllers/cont_album');
 
 /* User panel control. */
 
@@ -32,6 +32,7 @@ router.get('/albumForm', validateAccessToken, (req, res) => {
   }
 });
 router.post('/newAlbum', upload.none(), validateAccessToken,  async (req, res) => {
+  console.log("new album: ", req.body);
   const doc = await createAlbum(req.body);
   res.send({status: 'ok', payload: doc});
 });
@@ -64,10 +65,18 @@ router.get('/userProfile', validateAccessToken, async (req, res) => {
 });
 
 router.post('/sendPhotos', uploadArr, async (req, res) => {
-  const files = req.files;
-  console.log("sendPhotos: ", files, req.body);
-  console.log("FIlES_NAME: ", req.params.photoNames);
-});
+  const { photoPath } = req.params;
+  
+  const photoLinks = photoPath.split(',').slice(1);
+  const folder = '/images/photo/';
+  const photoArr = photoLinks.reduce((acc, link) =>  {
+    acc.push({ link: folder+link });
+    return acc;
+  }, []);
+  console.log('PHOTOS: ', photoArr);
+  const { albumID }= req.body;
+  addPhotoToAlbum(albumID, photoArr);
 
+});
 
 module.exports = router;

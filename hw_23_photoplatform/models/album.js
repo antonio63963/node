@@ -25,20 +25,23 @@ const generalSchema = new Schema({
     minLength: 1, 
     maxLength: 255
   }],
-  
+
   photos: [{
-    id: {
-      type: Schema.Types.ObjectId
-    },
     link: {
+    type: Schema.Types.String,
+    required: true,
+    minLength: 22
+    },
+    id: {
       type: Schema.Types.String,
+      minLength: 10,
       required: true,
-      minLength: 22
     }
   }],
 
-   isApprove: {
+  isApprove: {
     type: Schema.Types.Boolean,
+    default: false,
     required: true,
   },
 }, 

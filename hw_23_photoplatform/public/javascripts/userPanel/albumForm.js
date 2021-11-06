@@ -21,7 +21,7 @@ albumForm.addEventListener('submit', async (e) => {
   const tagArr = [...tagList.children].map(el => el.textContent.slice(0, el.textContent.length - 1));
   const formData = new FormData(e.target);
   formData.append('tags', tagArr);
-  const { data } = await axios.post('userPanel/newAlbum', formData);
+  const { data } = await axios.post('/userPanel/newAlbum', formData);
   console.log( data );
   if(data.status === 'ok') {
     const { name, _id: id, uid, description, tags } = data.payload;
