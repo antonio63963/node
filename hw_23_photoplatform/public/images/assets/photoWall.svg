@@ -4,15 +4,17 @@
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 132.4 65.9"
 	 style="enable-background:new 0 0 132.4 65.9;" xml:space="preserve">
 <style type="text/css">
-	.st0{stroke:#000000;stroke-miterlimit:10;}
-	.st1{fill:#FFFFFF;}
+	.st0{fill:#F4F4F4;}
+	.st1{fill:#1A1A22;}
 	.st2{font-family:'Corbel';}
 	.st3{font-size:26px;}
-	.st4{fill:#ECF270;}
+	.st4{fill:#E8E5BA;}
 </style>
 <rect x="59.8" y="15.2" class="st0" width="25.2" height="20.3"/>
-<rect x="109.9" y="17.5" width="22.5" height="27.9"/>
-<text transform="matrix(1 0 0 1 65.5047 31.4163)" class="st1 st2 st3">o</text>
+<rect x="109.9" y="17.5" class="st0" width="22.5" height="27.9"/>
+<g>
+	<text transform="matrix(1 0 0 1 65.5047 31.4163)" class="st1 st2 st3">o</text>
+</g>
 <g>
 	<text transform="matrix(1 0 0 1 114.2196 37.4768)" class="st1 st2 st3">o</text>
 </g>
@@ -31,11 +33,13 @@
 	<path class="st4" d="M90.6,65.9V38.2h4.5v27.7H90.6L90.6,65.9z"/>
 	<path class="st4" d="M100.4,65.9V38.2h4.5v27.7H100.4L100.4,65.9z"/>
 </g>
-<rect y="11.6" width="28.7" height="39.1"/>
+<rect y="11.6" class="st0" width="28.7" height="39.1"/>
 <rect x="31.1" y="0.9" class="st0" width="26.1" height="34.7"/>
-<rect x="87.7" y="6" width="20.4" height="26.1"/>
+<rect x="87.7" y="6" class="st0" width="20.4" height="26.1"/>
 <g>
-	<text transform="matrix(1 0 0 1 92.6436 27.8421)" class="st1 st2 st3">t</text>
+	<g>
+		<text transform="matrix(1 0 0 1 92.6436 27.8421)" class="st1 st2 st3">t</text>
+	</g>
 </g>
 <g>
 	<text transform="matrix(1 0 0 1 7.4189 41.0605)" class="st1 st2 st3">P</text>

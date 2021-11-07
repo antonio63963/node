@@ -1,34 +1,62 @@
 <% layout('../layouts/userPanel') -%>
 <% script("/javascripts/userPanel/profile.js") -%>
-
-  <form name="userProfile" class="rounded formAlbum content-block createAlbum purpleBG p-5">
-    <h1 class=" text-center">Profile</h1>
-    <div class="mb-3">
-      <label for="name" class="form-label">Name: </label>
-      <input name="name" type="text" class="form-control"value="<%= auth.name %>">
-    </div>
-    <div class="mb-3 hidden">
-      <label for="uid" class="form-label">Uid: </label>
-      <input name="uid" type="text" class="form-control"value="<%= auth.uid %>">
-    </div>
+<div style="width: 100%;"">
+  <header class="header-content lightDark d-flex justify-content-center">
+    <h1 class="title-content">Profile</h1>
+  </header>
+  <div class="userProfile d-flex justify-content-around">
+    <section class="userData rounded d-flex flex-column ">
+      <div class="d-flex align-items-center justify-content-between" style="margin: 20px">
+        <h3 class="userName m-0">User name</h3>
+        <div class="avatarCircle purpleBG"></div>
+      </div>
+      <div class="d-flex flex-column" style="margin: 0 20px 10px 20px; ">
+        <span>Photographer <i class="ml-3 fal fa-camera"></i></span>
+        <span>City: Odessa <i class="fas fa-map-marker-alt"></i></span>
+        <p>Phone: +38097-555-55-55</p>
+      </div>
+     <div class="details-profile">
+        <a href="#">portfolio link</a>
+        <div class="socials">
+          <i class="fab fa-twitter-square"></i>
+          <i class="fab fa-facebook-square"></i>
+          <i class="fab fa-telegram"></i>
+          <i class="fab fa-instagram"></i>
+        </div>
+     </div>
+    </section>
   
-    <div class="mb-3">
-      <label for="avatar" class="form-label">Avatar: </label>
-      <input name="avatar" type="file" class="form-control" >
-    </div>
+  
+    <form name="userProfile" class="rounded formAlbum content-block createAlbum purpleBG p-5">
+      <h3 class=" text-center">Change profile</h3>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name: </label>
+        <input name="name" type="text" class="form-control"value="<%= auth.name %>">
+      </div>
+      <div class="mb-3 hidden">
+        <label for="uid" class="form-label">Uid: </label>
+        <input name="uid" type="text" class="form-control"value="<%= auth.uid %>">
+      </div>
     
-    <div class="mb-3">
-      <label for="phone" class="form-label">Phone: </label>
-      <input name="phone" type="text" class="form-control">
-    </div>
-  
-    <div class="mb-3">
-      <label for="city" class="form-label">City: </label>
-      <input name="city" type="text" class="form-control">
-    </div>
-  
-  
-  
-    <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="mb-3">
+        <label for="avatar" class="form-label">Avatar: </label>
+        <input name="avatar" type="file" class="form-control" >
+      </div>
+      
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone: </label>
+        <input name="phone" type="text" class="form-control">
+      </div>
     
-  </form>
+      <div class="mb-3">
+        <label for="city" class="form-label">City: </label>
+        <input name="city" type="text" class="form-control">
+      </div>
+    
+    
+    
+      <button type="submit" class="btn btn-primary">Submit</button>
+      
+    </form>
+  </div>
+</div>
