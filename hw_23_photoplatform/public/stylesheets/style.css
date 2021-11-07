@@ -132,15 +132,9 @@ input.form-control.tagInput {
   background-color: #1a1a22;
   color: #fff;
 }
+/* COLORS */
 .purpleBG {
   background-color: #2b2b3a;
-}
-.content figure {
-  cursor: pointer;
-}
-.title-content {
-  margin-bottom: 20px;
-  text-align: center;
 }
 .myDarkColor {
   background-color: #1a1a22;
@@ -148,10 +142,17 @@ input.form-control.tagInput {
 .lightDark {
   background-color: #24242e;
 }
-.formAlbum input {
+.formAlbum input, .formAlbum textarea {
   background-color: #45455c;
   border: none;
   color: rgb(255, 252, 228);
+}
+.content figure {
+  cursor: pointer;
+}
+.title-content {
+  margin-bottom: 20px;
+  text-align: center;
 }
 .formAlbum {
   min-width: 320px;
@@ -192,7 +193,7 @@ input.form-control.tagInput {
   border-radius: 50%;
 }
 .userProfile {
-  margin-top: 30px;
+  margin: 30px 0;
   width: 100%
 }
 .details-profile {

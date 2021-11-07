@@ -30,7 +30,7 @@ router.get('/albumForm', validateAccessToken, (req, res) => {
   const { auth } = req.params;
   if(auth) {
     const { name, uid } = auth;
-    res.render('userPanel', { auth: { uid, name }, content: 'albumForm' })
+    res.render('pages/albumForm', { auth: { uid, name }, content: 'albumForm' })
   }
 });
 router.post('/newAlbum', upload.none(), validateAccessToken,  async (req, res) => {
