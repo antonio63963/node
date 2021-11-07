@@ -127,7 +127,7 @@ input.form-control.tagInput {
   margin-top: 30px;
 }
 .addPhoto {
-  border: 1px solid #868e96;
+  border: 1px solid #585d63;
 }
 .content {
   background-color: #1a1a22;
@@ -146,6 +146,9 @@ input.form-control.tagInput {
 .myDarkColor {
   background-color: #1a1a22;
 }
+.lightDark {
+  background-color: #24242e;
+}
 .formAlbum input {
   background-color: #45455c;
   border: none;
@@ -153,4 +156,8 @@ input.form-control.tagInput {
 }
 .formAlbum {
   min-width: 320px;
+}
+.growUp {
+  flex: 1 1 400px;
+  overflow: hidden;
 }

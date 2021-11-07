@@ -2,14 +2,14 @@
 <% script("/javascripts/userPanel/album.js") -%>
 
 <div class="wrapper-album d-flex flex-column" style="width: 100%; ">
-  <header class="header-content purpleBG">
+  <header class="header-content lightDark">
     <h1 class="title-content"><%= auth.albumName %></h1>
   </header>
-  <div class="d-flex justify-content-start" style="flex-wrap: wrap; padding: 20px;">
+  <div class="d-flex justify-content-start" style="flex-wrap: wrap; height: 100%; padding: 20px;">
     <% if(photos){%>
     <%photos.forEach(photo => { %>
-      <figure class="figure"style="margin: 10px">
-        <img src="<%= photo.link %>" style="max-width: 400px; height: 300px" alt="">
+      <figure class="figure growUp " style="width: 400px; height: 300px; margin: 5px">
+        <img src="<%= photo.link %>" class="figure-img img-fluid rounded"  alt="">
         <!-- <figcaption class="figure-caption">A caption for the above image.</figcaption> -->
       </figure>
   
@@ -21,7 +21,7 @@
       <input type="text" name="albumName" value="<%= auth.albumName %>" hidden>
       <input type="text" name="albumID" value="<%= auth.albumID %>" hidden>
       <div style="color: #868e96; height: 300px; width: 300px">
-        <label for="photosInput" class="rounded addPhoto d-flex">
+        <label for="photosInput" class="rounded addPhoto bg-darkd-flex">
           <div class="rounded pointer d-flex flex-column align-items-center justify-content-center"
             style="color: #868e96; height: 300px; width: 300px">
             <h3><i class="far fa-plus"></i></h3>

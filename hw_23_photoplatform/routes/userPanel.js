@@ -93,7 +93,7 @@ router.post('/sendPhotos', uploadArr, async (req, res) => {
   console.log('PHOTOS: ', photoArr);
   const { albumID, albumName, uid, name }= req.body;
   const albumRefresh = await addPhotoToAlbum(albumID, photoArr);
-  res.render('userPanel', { auth: { albumName, albumID, name, uid }, content: 'album', photos: albumRefresh.photos });
+  res.render('pages/album', { auth: { albumName: album.name, albumID, name, uid }, content: 'album', photos: album.photos});
 
 });
 
