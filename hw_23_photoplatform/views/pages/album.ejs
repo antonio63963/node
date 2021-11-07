@@ -1,0 +1,37 @@
+<% layout('../layouts/userPanel') -%>
+<% script("/javascripts/userPanel/album.js") -%>
+
+<div class="wrapper-album d-flex flex-column" style="width: 100%; ">
+  <header class="header-content purpleBG">
+    <h1 class="title-content"><%= auth.albumName %></h1>
+  </header>
+  <div class="d-flex justify-content-start" style="flex-wrap: wrap; padding: 20px;">
+    <% if(photos){%>
+    <%photos.forEach(photo => { %>
+      <figure class="figure"style="margin: 10px">
+        <img src="<%= photo.link %>" style="max-width: 400px; height: 300px" alt="">
+        <!-- <figcaption class="figure-caption">A caption for the above image.</figcaption> -->
+      </figure>
+  
+    <% }) %>
+    <% } %>
+  
+    <form name="sendPhoto">
+      <input type="text" name="uid" value="<%= auth.uid %>" hidden>
+      <input type="text" name="albumName" value="<%= auth.albumName %>" hidden>
+      <input type="text" name="albumID" value="<%= auth.albumID %>" hidden>
+      <div style="color: #868e96; height: 300px; width: 300px">
+        <label for="photosInput" class="rounded addPhoto d-flex">
+          <div class="rounded pointer d-flex flex-column align-items-center justify-content-center"
+            style="color: #868e96; height: 300px; width: 300px">
+            <h3><i class="far fa-plus"></i></h3>
+            <h1>Add photo</h1>
+          </div>
+          <input type="file" multiple id="photosInput" name="uploaded_file" accept=".jpg, .jpeg, .png, .webp" hidden>
+        </label>
+      </div>
+  
+      <button type="submit" class="btn btn-dark my-5 sendFotos">Send to moderate</button>
+    </form>
+  </div>
+</div>

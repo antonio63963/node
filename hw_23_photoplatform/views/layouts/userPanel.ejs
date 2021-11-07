@@ -15,10 +15,10 @@
 
 <body>
   <div class="container">
-    <div class="row g-0">
+    <div class="row g-0 bg-dark">
       <!-- Sidebar -->
-      <div class="col-3 p-0 g-0">
-        <div class="d-flex flex-column p-3 text-white bg-dark" style="max-width: 280px; height: 100%;">
+      <div class="col-3 p-0">
+        <div class="d-flex flex-column p-3 text-white bg-dark" style="max-width: 280px; height: 100vh;">
           <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <img src="../public/images/assets/photoWall.svg" alt="" style="max-width: 70px">
             <span class="fs-4">Sidebar</span>
@@ -101,44 +101,17 @@
       </div>
 
       <!-- Content  -->
-      <div class="col  content" px-5>
-        <!-- Profile -->
-        <% if(content === 'userProfile') { %>
-          <%-include('./inc/userProfile', {payload: auth}) %>
-        <% } %>
-        <!-- album list -->
-        <% if(content === 'albumList') { %>
-          <%-include('./inc/albumList', {payload: payload}) %>
-        <% } %>
-        <!-- Create new albom form -->
-        <% if(content == 'albumForm') { %>
-          <%-include('./inc/albumForm') %>
-        <% } %>
-        
-        <% if(content == 'album') { %>
-          <%-include('./inc/album', { auth }) %>
-        <% } %>
-      
-        <!-- Orders -->
-        <div class="order hidden content-block">
-          <h1>Orders</h1>
+      <section class="col  content" px-5>
+        <div class="wrap-content d-flex  justify-content-center" style="height: 100%;">
+          <%- body -%>
         </div>
-
-      </div>
+      </section>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <% if(content === 'albumList') { %>
-  <script src="/javascripts/userPanel/albumList.js"></script>
-  <% } %>
-  <% if(content == 'albumForm') { %>
-  <script src="/javascripts/userPanel/albumForm.js"></script>
-  <% } %>
-  <% if(content == 'album') { %>
-  <script src="/javascripts/userPanel/album.js"></script>
-  <% } %>
+ <%- scripts %>
 
 </body>
 

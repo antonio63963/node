@@ -129,3 +129,28 @@ input.form-control.tagInput {
 .addPhoto {
   border: 1px solid #868e96;
 }
+.content {
+  background-color: #1a1a22;
+  color: #fff;
+}
+.purpleBG {
+  background-color: #2b2b3a;
+}
+.content figure {
+  cursor: pointer;
+}
+.title-content {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.myDarkColor {
+  background-color: #1a1a22;
+}
+.formAlbum input {
+  background-color: #45455c;
+  border: none;
+  color: rgb(255, 252, 228);
+}
+.formAlbum {
+  min-width: 320px;
+}
