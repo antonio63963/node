@@ -5,7 +5,9 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
 }
-
+* {
+  box-sizing: border-box;
+}
 /* Toggle Styles */
 
 #viewport {
@@ -164,10 +166,10 @@ input.form-control.tagInput {
 .clientPic {
   position: relative;
 }
-.clientPic i {
+.replaceIcon, .delIcon {
   opacity: .5;
 }
-.clientPic i:hover {
+.delIcon:hover, .replaceIcon:hover {
   opacity: 1;
 }
 .iconImgGroup {
@@ -187,6 +189,7 @@ input.form-control.tagInput {
   max-width: 100%;
   background-color: #45455c;
   flex-grow: 1;
+  margin: 30px
 }
 .avatarCircle {
   width: 50px;
@@ -201,10 +204,43 @@ input.form-control.tagInput {
   border-radius: 10px 10px 0 0;
   background-color: #2b2b3a;
   height: 100%;
-  padding: 20px;
+  padding: 30px;
 }
-/* .header-content {
-  height: 79px;
-} */
-
-/* #45455c */
+.sidebar {
+  overflow: hidden;
+}
+.steer {
+  position: absolute;
+  z-index: 99;
+  top: 45px;
+  right: 5px;
+  padding: 5px;
+  background-color: #fff;
+  color:#46465e;
+  border-radius: 3px;
+  font-size: 14px;
+  width: 110px;
+}
+.steer-tail {
+  transform-origin: center, center;
+  position: absolute;
+  top: -7px;
+  right: 5px;
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+  transform: rotate(45deg);
+}
+.steer-replace {
+  opacity: 0;
+}
+.replaceIcon:hover ~ .steer-replace {
+  opacity: .5;
+}
+.steer-delete {
+  right: 30px;
+  opacity: 0;
+}
+.delIcon:hover ~ .steer-delete {
+  opacity: .5;
+}

@@ -8,10 +8,28 @@
   <div class="d-flex justify-content-start" style="flex-wrap: wrap; height: 100%; padding: 20px;">
     <% if(photos){%>
     <%photos.forEach(photo => { %>
-      <figure class="figure growUp clientPic" style=" margin: 5px">
+      <figure class="figure growUp clientPic" style=" margin: 5px" data-album_id="<%= photo._id %>">
+ 
+        
+        
         <div class="iconImgGroup">
-          <i class="fal fa-trash-alt"></i>
-          <i class="fal fa-exchange"></i>
+          <label for="replacePhoto">
+            <i class="delIcon fal fa-trash-alt"></i>
+            <!-- steer -->
+            <div class="steer steer-delete">
+              <span>Delete photo</span>
+              <div class="steer-tail"></div>
+            </div>
+          </label>
+          <label for="replacePhoto">
+            <i class="replaceIcon fal fa-exchange"></i>
+            <!-- steer -->
+            <div class="steer steer-replace">
+              <span>Replace photo</span>
+              <div class="steer-tail"></div>
+            </div>
+            <input type="file" id="replacePhoto" name="replacePhoto_file" accept=".jpg, .jpeg, .png, .webp" hidden>
+          </label>
         </div>
         <img src="<%= photo.link %>" class="img-fluid rounded fitImg"  alt="">
         <!-- <figcaption class="figure-caption">A caption for the above image.</figcaption> -->
