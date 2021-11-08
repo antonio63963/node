@@ -31,11 +31,6 @@ const generalSchema = new Schema({
     type: Schema.Types.String,
     required: true,
     minLength: 22
-    },
-    id: {
-      type: Schema.Types.String,
-      minLength: 10,
-      required: true,
     }
   }],
 
