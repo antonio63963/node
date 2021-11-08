@@ -6,13 +6,21 @@ const { uploadArr } = require('../middlewares/upload');
 const validateAccessToken = require('../middlewares/validateAccess');
 const multer = require('multer');
 const upload = multer();
-const fs = require('fs');
 const gm = require('gm');
 
-
-const albumFormComponent = require('../components/albumForm');
 const { createAlbum, findAlbumById, findAllUserAlbums, getAlbumNameById, addPhotoToAlbum } = require('../controllers/cont_album');
 
+
+
+// const watermark = '../public/images/assets/watermark.png';
+// const pathTo = `../public/images/photo/61863b60975ec987a6d41f99_1636308992813.jpeg`;
+// const pathFrom = pathTo;
+
+// gm(pathFrom).
+// draw(['image Over 0,0 0,0 "'+watermark+'"']).
+// write(pathTo, function (err) {
+//   console.log("GM ERR: ", err);
+// });
 /* User panel control. */
 
 router.get('/', validateAccessToken, async (req, res) => {
@@ -47,11 +55,13 @@ router.get('/albumList', validateAccessToken, async (req, res) => {
   }
 });
 router.get('/album/:id', validateAccessToken, async (req, res) => {
+  console.log("album ID: ", req.params.id);
   const { auth } = req.params;
   if(auth) {
     const { name, uid } = auth;
     const albumID = req.params.id;
     const album = await findAlbumById(albumID);
+    console.log("ALBUM: ", album);
     res.render('pages/album', { auth: { albumName: album.name, albumID, name, uid }, content: 'album', photos: album.photos});
   }
 });

@@ -29,6 +29,12 @@
         font-size: 3.5rem;
       }
     }
+    img {
+      max-width: 100px;
+    }
+    header {
+      margin-bottom: 100px;
+    }
   </style>
 
 
@@ -38,10 +44,11 @@
 
 <body class="d-flex h-100 text-center text-white bg-dark">
 
-  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="mb-auto">
-      <div>
-        <h3 class="float-md-start mb-0">Cover</h3>
+  <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
+    <header >
+      <div class="wraper mb-auto d-flex justify-content-between mb-5">
+        <!-- <h3 class="float-md-start mb-0">Cover</h3> -->
+        <img src="/images/assets/photoWall.svg" alt="">
         <nav class="nav nav-masthead justify-content-center float-md-end">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
           <% if(auth) { %>

@@ -184,8 +184,9 @@ input.form-control.tagInput {
  object-fit: cover; /* Вписываем фотографию в область */
 }
 .userData {
-  width: 250px;
+  max-width: 100%;
   background-color: #45455c;
+  flex-grow: 1;
 }
 .avatarCircle {
   width: 50px;

@@ -8,10 +8,6 @@ const { verifyAccessToken, decodeAccessToken, checkRefreshToken } = require('../
 
 /* GET home page. */
 router.get('/', validateAccessToken, (req, res) => {
-  // const { accessToken, refreshToken } = req.cookies;
-  // const decodeToken = decodeAccessToken(accessToken);
-  // const parsePayload = JSON.parse(decodeToken.payload);
-  // res.render('index', { auth: { name: parsePayload.name, uid: parsePayload.uid }})
   if(req.params.auth) {
     console.log("START PAGE AUTH: ", req.params);
     const { name, uid } = req.params.auth;

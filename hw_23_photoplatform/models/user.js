@@ -11,9 +11,18 @@ const generalSchema = new Schema({
     required: true,
     index: true
   },
-  isAdmin: {
+  role: {
     type: Schema.Types.Boolean,
-    default: false,
+    enum: ['photographer', 'admin', 'moderator'],
+    default: 'photographer',
+  },
+  сity: {
+    type: Schema.Types.String,
+    maxLength: 255,
+  },
+  phone: {
+    type: Schema.Types.String,
+    minLength: 6
   },
   auth: {
     login: {

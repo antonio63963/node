@@ -19,7 +19,7 @@ const addPhotoToAlbum = async (albumID, photoArr) => {
 }
 
 const findAlbumById = async(id) => {
-  const album = await AlbumModel.findOne({ id });
+  const album = await AlbumModel.findOne({ _id: id });
   return album;
 };
 const getAlbumNameById = async (id) => {
