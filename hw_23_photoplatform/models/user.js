@@ -11,6 +11,10 @@ const generalSchema = new Schema({
     required: true,
     index: true
   },
+  avatar: {
+    type: Schema.Types.String,
+    minLength: 10
+  },
   role: {
     type: Schema.Types.Boolean,
     enum: ['photographer', 'admin', 'moderator'],

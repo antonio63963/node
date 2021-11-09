@@ -2,14 +2,21 @@ var express = require('express');
 var router = express.Router();
 const path = require('path');
 const { promises: FS } = require('fs');
+const fs = require('fs');
 const { uploadArr } = require('../middlewares/upload');
+const { uploadSingle } = require('../middlewares/uploadSingle');
 const validateAccessToken = require('../middlewares/validateAccess');
 const multer = require('multer');
 const upload = multer();
 const gm = require('gm');
 
-const { createAlbum, findAlbumById, findAllUserAlbums, getAlbumNameById, addPhotoToAlbum } = require('../controllers/cont_album');
-
+const { createAlbum, 
+  findAlbumById, 
+  findAllUserAlbums, 
+  getAlbumNameById, 
+  addPhotoToAlbum, 
+  replacePhotoWhithOtherOne,
+  getEl} = require('../controllers/cont_album');
 
 
 // const watermark = '../public/images/assets/watermark.png';
@@ -55,7 +62,7 @@ router.get('/albumList', validateAccessToken, async (req, res) => {
   }
 });
 router.get('/album/:id', validateAccessToken, async (req, res) => {
-  console.log("album ID: ", req.params.id);
+  // console.log('GET ELL:  ', await getEl())
   const { auth } = req.params;
   if(auth) {
     const { name, uid } = auth;
@@ -68,7 +75,6 @@ router.get('/album/:id', validateAccessToken, async (req, res) => {
 
 router.get('/userProfile', validateAccessToken, async (req, res) => {
   const { auth } = req.params;
-  console.log('USERPROFFFF', auth);
   if(auth) {
     const { name, uid } = auth;
     res.render('pages/userProfile', { auth: { name, uid }, content: 'userProfile'});
@@ -84,21 +90,6 @@ router.post('/sendPhotos', uploadArr, async (req, res) => {
     acc.push({ link: folder+link });
     return acc;
   }, []);
-  // watermark
-// photoArr.forEach(photo => {
-//   const watermark = '../public/images/assets/watermark.png';
-//   const pathTo = `../public${photo}`;
-//   const pathFrom = pathTo;
-  
-//   gm(pathFrom).
-//   gravity('SouthEast').
-//   draw(['image Over 0,0 0,0 "'+watermark+'"']).
-//   noProfile().
-//   write(pathTo, function (err) {
-//     console.log("GM ERR: ", err);
-//   });
-  
-// })
 
   console.log('PHOTOS: ', photoArr);
   const { albumID, albumName, uid, name }= req.body;
@@ -107,5 +98,24 @@ router.post('/sendPhotos', uploadArr, async (req, res) => {
   res.render('pages/album', { auth: { albumName: album.name, albumID, name, uid }, content: 'album', photos: album.photos});
 
 });
+
+router.post('/replacePhoto', uploadSingle, async (req, res) => {
+  console.log("AVATAR: ", req.params.photoPath);
+  console.log('Replace Data: ', req.body);
+  const { photoPath: newPhotoPath } = req.params;
+  if(newPhotoPath) {
+    const { albumID, photoID, photoSrc} = req.body;
+    fs.unlink(`public${photoSrc}`, (err) => {
+      if(err) {
+        console.log(`REMOVE file ${photoSrc}: `, err );
+        return;
+      }
+    });
+    const doc = await replacePhotoWhithOtherOne(albumID, photoID, newPhotoPath);
+    console.log('DOC REPL: ', doc);
+    doc ? res.json({status: 'ok'}) : res.json({status: 'err'})
+  }
+})
+
 
 module.exports = router;

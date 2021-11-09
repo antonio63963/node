@@ -32,10 +32,20 @@ const findAllUserAlbums = async(uid) => {
   return albums;
 };
 
+const replacePhotoWhithOtherOne = async (albumID, replaceID, newLink) => {
+  const doc = await AlbumModel.findOneAndUpdate(
+    { _id: albumID }, 
+    { $set: { "photos.$[elem].link": newLink }},
+    {arrayFilters: [ { "elem._id": replaceID } ] }
+  );  
+  return doc;
+}
+
 module.exports = {
   createAlbum,
   findAlbumById,
   findAllUserAlbums,
   getAlbumNameById,
-  addPhotoToAlbum
+  addPhotoToAlbum,
+  replacePhotoWhithOtherOne,
 };
