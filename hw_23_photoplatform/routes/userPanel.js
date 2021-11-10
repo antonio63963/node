@@ -10,13 +10,14 @@ const multer = require('multer');
 const upload = multer();
 const gm = require('gm');
 
-const { createAlbum, 
+const { 
+  createAlbum, 
   findAlbumById, 
   findAllUserAlbums, 
-  getAlbumNameById, 
   addPhotoToAlbum, 
   replacePhotoWhithOtherOne,
-  getEl} = require('../controllers/cont_album');
+  deletePhoto
+  } = require('../controllers/cont_album');
 
 
 // const watermark = '../public/images/assets/watermark.png';
@@ -68,7 +69,7 @@ router.get('/album/:id', validateAccessToken, async (req, res) => {
     const { name, uid } = auth;
     const albumID = req.params.id;
     const album = await findAlbumById(albumID);
-    console.log("ALBUM: ", album);
+    // console.log("ALBUM: ", album);
     res.render('pages/album', { auth: { albumName: album.name, albumID, name, uid }, content: 'album', photos: album.photos});
   }
 });
@@ -117,5 +118,12 @@ router.post('/replacePhoto', uploadSingle, async (req, res) => {
 
 router.post('/deletePhoto', upload.none(), async (req, res) => {
   const { photoID, photoSrc, albumID } = req.body;
-})
+  if(photoID){
+    const changeArrPhoto = await deletePhoto(albumID, photoID);
+    console.log("deletePhoto: ", changeArrPhoto);
+    fs.unlink(`public${photoSrc}`, (err) => {
+      err ? res.json({status: 'ok'}) : res.json({status: 'err'})
+    });
+  };
+});
 module.exports = router;

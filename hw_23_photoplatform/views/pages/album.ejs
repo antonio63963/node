@@ -1,7 +1,7 @@
 <% layout('../layouts/userPanel') -%>
 <% script("/javascripts/userPanel/album.js") -%>
 
-<div class="wrapper-album d-flex flex-column" style="width: 100%;" data-uid="<%=auth.uid %>">
+<div class="wrapper-album d-flex flex-column" style="width: 100%;" data-uid="<%=auth.uid %>" data-albumID="<%=auth.albumID %>" data->
   <header class="header-content lightDark">
     <h1 class="title-content"><%= auth.albumName %></h1>
   </header>
@@ -11,7 +11,7 @@
     <%photos.forEach(photo => { %>
       <figure class="figure growUp clientPic" style=" margin: 5px" data-album_id="<%= auth.albumID %>">
         <div class="iconImgGroup">
-          <label for=""">
+          <label data-photo_id="<%= photo._id %>">
             <i class="delIcon fal fa-trash-alt"></i>
             <!-- steer -->
             <div class="steer steer-delete">

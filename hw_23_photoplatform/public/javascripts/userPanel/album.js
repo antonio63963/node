@@ -34,6 +34,7 @@ const catchUserDataFromAlbum = (e) => {
     const photoSrc = e.target.closest('figure').lastElementChild.getAttribute('src');
     const albumID = e.target.closest('figure').dataset.album_id;
     const formData = new FormData();
+    console.log('photoID: ', photoID, 'photoSrc: ', photoSrc, 'albumID: ', albumID);
     formData.append('photoID', photoID);
     formData.append('photoSrc', photoSrc);
     formData.append('albumID', albumID);
@@ -49,8 +50,9 @@ photoContainer.addEventListener('click', async (e) => {
     return;
   }
   if (e.target.classList.contains('delIcon')) {
+    console.log('delIcon');
     const formData = catchUserDataFromAlbum(e);
-    getDataAndReload('/deletePhoto', formData)
+    await getDataAndReload('/userPanel/deletePhoto', formData)
     return;
   }
 });

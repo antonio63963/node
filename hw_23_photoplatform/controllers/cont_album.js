@@ -39,6 +39,14 @@ const replacePhotoWhithOtherOne = async (albumID, replaceID, newLink) => {
     {arrayFilters: [ { "elem._id": replaceID } ] }
   );  
   return doc;
+};
+
+const deletePhoto = async (albumID, photoID) => {
+  const doc = await AlbumModel.findOneAndUpdate(
+    { _id: albumID}, 
+    { $pull: { photos: {_id: photoID} }},
+    { new: true });
+  return doc;
 }
 
 module.exports = {
@@ -48,4 +56,5 @@ module.exports = {
   getAlbumNameById,
   addPhotoToAlbum,
   replacePhotoWhithOtherOne,
+  deletePhoto
 };
