@@ -14,7 +14,8 @@ const createAlbum = async (userData) => {
 };
 
 const addPhotoToAlbum = async (albumID, photoArr) => {
-  const doc = await AlbumModel.updateOne({ _id: albumID }, { $push: { photos: { "$each": photoArr } } });
+  const doc = await AlbumModel.updateOne({ _id: albumID }, 
+    { $push: { photos: { "$each": photoArr } } });
   return doc;
 }
 

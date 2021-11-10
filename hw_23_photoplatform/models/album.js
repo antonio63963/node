@@ -31,6 +31,10 @@ const generalSchema = new Schema({
     type: Schema.Types.String,
     required: true,
     minLength: 22
+    },
+    isApprove: {
+      type: Schema.Types.Boolean,
+      default: false
     }
   }],
 

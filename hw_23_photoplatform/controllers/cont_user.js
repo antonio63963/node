@@ -10,7 +10,8 @@ const createUser = async (userData) => {
   return doc;
 };
 const checkUserByEmail = async(data) => {
-  const user = await UserModel.findOne({email: data.email});
+  console.log("DATA in checkUser: ", data);
+  const user = await UserModel.findOne({ "auth.login": data.email });
   console.log("CHECK USER BY EMAIL", user);
   return user;
 }; 

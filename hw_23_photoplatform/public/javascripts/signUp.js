@@ -15,7 +15,7 @@ signUpForm.addEventListener('submit', async (e) => {
     const { data } = await axios.post('auth/signUpData', formData);
     console.log(data);
     if(data.status === 'ok') {
-      renderPage(data.payload);
+      window.location = '/userPanel';
     }
   }
   
