@@ -1,14 +1,13 @@
 var express = require('express');
 var router = express.Router();
 const path = require('path');
-const { promises: FS } = require('fs');
 const fs = require('fs');
 const { uploadArr } = require('../middlewares/upload');
 const { uploadSingle } = require('../middlewares/uploadSingle');
 const validateAccessToken = require('../middlewares/validateAccess');
+const overlayWatermark = require('../middlewares/jimp');
 const multer = require('multer');
 const upload = multer();
-const gm = require('gm');
 
 const { 
   createAlbum, 
@@ -18,18 +17,6 @@ const {
   replacePhotoWhithOtherOne,
   deletePhoto
   } = require('../controllers/cont_album');
-
-
-// const watermark = '../public/images/assets/watermark.png';
-// const pathTo = `../public/images/photo/61863b60975ec987a6d41f99_1636308992813.jpeg`;
-// const pathFrom = pathTo;
-
-// gm(pathFrom).
-// draw(['image Over 0,0 0,0 "'+watermark+'"']).
-// write(pathTo, function (err) {
-//   console.log("GM ERR: ", err);
-// });
-/* User panel control. */
 
 router.get('/', validateAccessToken, async (req, res) => {
   const { auth } = req.params;
@@ -126,4 +113,20 @@ router.post('/deletePhoto', upload.none(), async (req, res) => {
     });
   };
 });
+
+
+const ORIGINAL_IMAGE = path.resolve('public/images/photo/618912937fbfa75abbf92926_1636543355997.jpeg')
+
+
+const LOGO = path.resolve("public/images/assets/photoWall.png");
+
+const LOGO_MARGIN_PERCENTAGE = 5;
+
+const FILENAME = path.resolve("public/images/photo/test.jpg");
+
+
+
+overlayWatermark(ORIGINAL_IMAGE, LOGO, LOGO_MARGIN_PERCENTAGE, FILENAME).then(image => image.write(FILENAME));
+
+
 module.exports = router;
