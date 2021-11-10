@@ -100,22 +100,22 @@ router.post('/sendPhotos', uploadArr, async (req, res) => {
 });
 
 router.post('/replacePhoto', uploadSingle, async (req, res) => {
-  console.log("AVATAR: ", req.params.photoPath);
-  console.log('Replace Data: ', req.body);
   const { photoPath: newPhotoPath } = req.params;
   if(newPhotoPath) {
     const { albumID, photoID, photoSrc} = req.body;
-    fs.unlink(`public${photoSrc}`, (err) => {
-      if(err) {
-        console.log(`REMOVE file ${photoSrc}: `, err );
-        return;
-      }
-    });
     const doc = await replacePhotoWhithOtherOne(albumID, photoID, newPhotoPath);
+    if(doc) {
+      fs.unlink(`public${photoSrc}`, (err) => {
+        err ? res.json({status: 'ok'}) : res.json({status: 'err'})
+      });
+    }
     console.log('DOC REPL: ', doc);
-    doc ? res.json({status: 'ok'}) : res.json({status: 'err'})
   }
+});
+
+
+
+router.post('/deletePhoto', upload.none(), async (req, res) => {
+  const { photoID, photoSrc, albumID } = req.body;
 })
-
-
 module.exports = router;
