@@ -15,7 +15,7 @@
 <body>
   
 
-<div class="container p-0 d-flex myDarkColor" style="height: 100%; height: 100vh;">
+<div class="container p-0 d-flex myDarkColor" style="height: 100%; height: 100vh; width: 100%;">
   <!-- Photos -->
     <div class="wrapper-album d-flex flex-column flex-shrink-1" data-uid="<%=uid %>" data-albumID="<%=albumID %>">
       <header class="header-content lightDark" style="color: #fff;">
@@ -25,10 +25,10 @@
         <% if(photos){%>
           <%photos.forEach(photo => { %>
             <figure class="figure clientPic" style=" margin: 5px" data-album_id="<%= albumID %>">
-            <button type="button" class="btn iconImgGroup bg-white addPhotoBtn" data-price="<%= photo.price%>">
-              <i class="fal fa-cart-plus"></i>
-              <span class="badge bg-secondary">0</span>
-            </button>
+              <button type="button" class="btn iconImgGroup bg-white addPhotoBtn" data-price="<%= photo.price%>" data-photo_id="<%= photo._id %>">
+                <i class="fal fa-cart-plus"></i>
+                <span class="badge bg-secondary badge-addPhoto">0</span>
+              </button>
               <img src="<%= photo.link %>" class="img-fluid rounded fitImg album-img"  alt="photo", data-photo_id="<%= photo._id %>">
               <!-- <figcaption class="figure-caption">A caption for the above image.</figcaption> -->
             </figure>
@@ -67,6 +67,7 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 
+  <script src="/javascripts/storage.js"></script>
   <script src="/javascripts/link.js"></script>
 
 </body>
