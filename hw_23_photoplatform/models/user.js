@@ -16,7 +16,7 @@ const generalSchema = new Schema({
     minLength: 10
   },
   role: {
-    type: Schema.Types.Boolean,
+    type: Schema.Types.String,
     enum: ['photographer', 'admin', 'moderator'],
     default: 'photographer',
   },

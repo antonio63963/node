@@ -55,9 +55,13 @@ router.get('/album/:id', validateAccessToken, async (req, res) => {
   if(auth) {
     const { name, uid } = auth;
     const albumID = req.params.id;
-    const album = await findAlbumById(albumID);
+    const album = await findAlbumById(uid, albumID);
     // console.log("ALBUM: ", album);
-    res.render('pages/album', { auth: { albumName: album.name, albumID, name, uid }, content: 'album', photos: album.photos});
+    if(album) {
+      return res.render('pages/album', { auth: { albumName: album.name, albumID, name, uid }, content: 'album', photos: album.photos});
+    }else {
+      return res.render('index', {auth: false});
+    }
   }
 });
 
