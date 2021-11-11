@@ -168,7 +168,6 @@ input.form-control.tagInput {
   flex: 1 2 auto
 }
 .clientPic {
-  position: relative;
   /* album link */
   flex: 1 1 250px;
   position: relative;
@@ -283,7 +282,6 @@ input.form-control.tagInput {
 .photo-container {
   position: relative;
   width: 100%;
-  max-width: 100vh;
 }
 
 

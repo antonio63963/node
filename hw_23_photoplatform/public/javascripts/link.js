@@ -1,6 +1,7 @@
 const carousel = document.querySelector('#carouselExampleInterval');
 const carouselPics = document.querySelectorAll('.pic-carousel');
 const wrapperAlbum = document.querySelector('.wrapper-album');
+const headerContent = document.querySelector('.right-content');
 
 
 wrapperAlbum.addEventListener('click', (e) => {
@@ -31,6 +32,8 @@ wrapperAlbum.addEventListener('click', (e) => {
     addToStore(photo_id, price);
     const badge = parent.querySelector('.badge-addPhoto');
     badge.textContent = +badge.textContent +1;
+    const headerBadge = headerContent.querySelector('.badge-addPhoto');
+    headerBadge.textContent = +headerBadge.textContent +1;
   }
 
 });

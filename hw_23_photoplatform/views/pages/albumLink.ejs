@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,34 +13,39 @@
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <title>Link</title>
 </head>
-<body>
-  
 
-<div class="container p-0 d-flex myDarkColor" style="height: 100%; height: 100vh; width: 100%;">
-  <!-- Photos -->
-    <div class="wrapper-album d-flex flex-column flex-shrink-1" data-uid="<%=uid %>" data-albumID="<%=albumID %>">
+<body>
+
+
+  <div class="container p-0 d-flex myDarkColor" style="height: 100%;  width: 100%;">
+    <!-- Photos -->
+    <div class="wrapper-album d-flex flex-column flex-shrink-1" data-uid="<%=uid %>" data-albumID="<%=albumID %>" style="width: 100%">
       <header class="header-content lightDark" style="color: #fff;">
         <h1 class="title-content"><%= name %></h1>
       </header>
-      <div class="photo-container d-flex justify-content-start" style="flex-wrap: wrap;  padding: 20px;" >
+      <div class="photo-container d-flex justify-content-start flex-grow-1" style="flex-wrap: wrap;  padding: 20px; width: 100%;">
         <% if(photos){%>
-          <%photos.forEach(photo => { %>
-            <figure class="figure clientPic" style=" margin: 5px" data-album_id="<%= albumID %>">
-              <button type="button" class="btn iconImgGroup bg-white addPhotoBtn" data-price="<%= photo.price%>" data-photo_id="<%= photo._id %>">
-                <i class="fal fa-cart-plus"></i>
-                <span class="badge bg-secondary badge-addPhoto">0</span>
-              </button>
-              <img src="<%= photo.link %>" class="img-fluid rounded fitImg album-img"  alt="photo", data-photo_id="<%= photo._id %>">
-              <!-- <figcaption class="figure-caption">A caption for the above image.</figcaption> -->
-            </figure>
-          <% }) %>
+        <%photos.forEach(photo => { %>
+        <figure class="figure clientPic" style=" margin: 5px" data-album_id="<%= albumID %>">
+          <button type="button" class="btn iconImgGroup bg-white addPhotoBtn" data-price="<%= photo.price%>"
+            data-photo_id="<%= photo._id %>">
+            <i class="fal fa-cart-plus"></i>
+            <span class="badge bg-secondary badge-addPhoto">0</span>
+          </button>
+          <img src="<%= photo.link %>" class="img-fluid rounded fitImg album-img" alt="photo" ,
+            data-photo_id="<%= photo._id %>">
+          <!-- <figcaption class="figure-caption">A caption for the above image.</figcaption> -->
+        </figure>
+        <% }) %>
         <% } %>
       </div>
     </div>
     <!-- Pay -->
     <section class="rightSide d-flex flex-column" style="color: #fff;">
-      <header class="header-content lightDark" >
-        <h1 class="title-content"><%= name %></h1>
+      <header class="right-content lightDark d-flex align-items-center justify-content-center" style="height: 79px">
+        <h4 class="title-content mx-5 m-0">Store:</h4>
+        <i class="mx-3 fal fa-cart-plus"></i>
+        <span class="badge bg-secondary badge-addPhoto">0</span>
       </header>
       <section class="userData rounded d-flex flex-column flex-grow-1" style="width: 280px;">
         <div class="d-flex align-items-center justify-content-between" style="padding: 30px">
@@ -51,7 +57,7 @@
           <span>City: Odessa <i class="fas fa-map-marker-alt"></i></span>
           <p>Phone: +38097-555-55-55</p>
         </div>
-       <div class="details-profile">
+        <div class="details-profile">
           <a href="#">portfolio link</a>
           <div class="socials">
             <i class="fab fa-twitter-square"></i>
@@ -59,7 +65,7 @@
             <i class="fab fa-telegram"></i>
             <i class="fab fa-instagram"></i>
           </div>
-       </div>
+        </div>
       </section>
     </section>
 
@@ -71,4 +77,5 @@
   <script src="/javascripts/link.js"></script>
 
 </body>
+
 </html>
