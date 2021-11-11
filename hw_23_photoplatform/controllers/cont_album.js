@@ -21,9 +21,12 @@ const addPhotoToAlbum = async (albumID, photoArr) => {
 
 const findAlbumById = async(uid, id) => {
   const album = await AlbumModel.findOne({uid, _id: id });
-  console.log("findAlbum", album);
   return album;
 };
+const findAlbumForLink = async( albumID ) => {
+  const album = await AlbumModel.findOne({ _id: albumID });
+  return album;
+}
 const getAlbumNameById = async (id) => {
   const { name } = await AlbumModel.findOne({ id }, { name: 1, _id: 0 });
   return name;
@@ -58,5 +61,6 @@ module.exports = {
   getAlbumNameById,
   addPhotoToAlbum,
   replacePhotoWhithOtherOne,
-  deletePhoto
+  deletePhoto,
+  findAlbumForLink
 };

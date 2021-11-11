@@ -30,26 +30,26 @@ albumForm.addEventListener('submit', async (e) => {
 });
 
 function responseDB_album(title, name, tags, description, uid, id) {
-const temp = `
+  const temp = `
   <div class="modal-body pointer rounded bg-success text-white" onclick="this.remove()">
-    <div class="d-flex justify-content-between><h5>${title}</h5><span class"text-dark">x</span></div>
-    <hr>
-    <p>Name: ${name}</p>
-    <p>ID: ${id}</p>
-    <p>Creator: ${uid}</p>
-    <p>${description}</p>
-    <hr>
-    <p>${tags}</p>
+  <div class="d-flex justify-content-between><h5>${title}</h5><span class"text-dark">x</span></div>
+  <hr>
+  <p>Name: ${name}</p>
+  <p>ID: ${id}</p>
+  <p>Creator: ${uid}</p>
+  <p>${description}</p>
+  <hr>
+  <p>${tags}</p>
   </div>
-`;
-albumForm.innerHTML += temp;
+  `;
+  albumForm.innerHTML += temp;
 };
 
 applyTag.addEventListener('click', () => {
   if(!tagInput.value || tagInput.value === '') return false;
   const index = Math.floor(Math.random()*colorClasses.length + 1);
   const pill = `
-    <span class="badge m-3 rounded-pill ${colorClasses[index]}">${tagInput.value}<span class="p-2 pointer x">x</span></span>
+  <span class="badge m-3 rounded-pill ${colorClasses[index]}">${tagInput.value}<span class="p-2 pointer x">x</span></span>
   `;
   tagList.innerHTML += pill;
   tagInput.value = '';
@@ -60,3 +60,4 @@ tagList.addEventListener('click', (e) => {
   const delElem = e.target.closest('.badge');
   delElem.remove();
 });
+

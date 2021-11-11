@@ -75,19 +75,19 @@ router.get('/userProfile', validateAccessToken, async (req, res) => {
 
 router.post('/sendPhotos', uploadArr, async (req, res) => {
   const { photoPath } = req.params;
-  
+  const { albumID, albumName, uid, name, price }= req.body;
+  console.log('FIND PRICE', req.body);
   const photoLinks = photoPath.split(',').slice(1);
   const folder = '/images/photo/';
   const photoArr = photoLinks.reduce((acc, link) =>  {
-    acc.push({ link: folder+link });
+    acc.push({ link: folder+link, price: price });
     return acc;
   }, []);
 
   console.log('PHOTOS: ', photoArr);
-  const { albumID, albumName, uid, name }= req.body;
   const albumRefresh = await addPhotoToAlbum(albumID, photoArr);
-  const album = await findAlbumById(albumID);
-  res.render('pages/album', { auth: { albumName: album.name, albumID, name, uid }, content: 'album', photos: album.photos});
+  const album = await findAlbumById(uid, albumID);
+  res.render('pages/album', { auth: { albumName: album.name, albumID, name, uid, price }, content: 'album', photos: album.photos});
 
 });
 
@@ -118,19 +118,19 @@ router.post('/deletePhoto', upload.none(), async (req, res) => {
   };
 });
 
-
-const ORIGINAL_IMAGE = path.resolve('public/images/photo/618912937fbfa75abbf92926_1636543355997.jpeg')
-
-
-const LOGO = path.resolve("public/images/assets/photoWall.png");
-
-const LOGO_MARGIN_PERCENTAGE = 5;
-
-const FILENAME = path.resolve("public/images/photo/test.jpg");
+// WATERMARLK=====
+// const ORIGINAL_IMAGE = path.resolve('public/images/photo/618912937fbfa75abbf92926_1636543355997.jpeg')
 
 
+// const LOGO = path.resolve("public/images/assets/photoWall.png");
 
-overlayWatermark(ORIGINAL_IMAGE, LOGO, LOGO_MARGIN_PERCENTAGE, FILENAME).then(image => image.write(FILENAME));
+// const LOGO_MARGIN_PERCENTAGE = 5;
+
+// const FILENAME = path.resolve("public/images/photo/test.jpg");
+
+
+
+// overlayWatermark(ORIGINAL_IMAGE, LOGO, LOGO_MARGIN_PERCENTAGE, FILENAME).then(image => image.write(FILENAME));
 
 
 module.exports = router;

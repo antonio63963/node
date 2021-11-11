@@ -35,6 +35,10 @@ const generalSchema = new Schema({
     isApprove: {
       type: Schema.Types.Boolean,
       default: false
+    },
+    price: {
+      type: Schema.Types.String,
+      default: '0'
     }
   }],
 

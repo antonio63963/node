@@ -1,3 +1,4 @@
+const samePrice = document.querySelector('.samePrice');
 const sendPhotoForm = document.forms.sendPhoto;
 const wrapperAlbum = document.querySelector('.wrapper-album');
 const replacePhotoInp = document.querySelector('#replacePhoto');
@@ -7,6 +8,10 @@ const photoContainer = document.querySelector('.photo-container');
 sendPhotoForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
+  const price = document.querySelector('#price').value;
+  console.log(price)
+  formData.append('price', price);
+
   const { data } = await axios.post('/userPanel/sendPhotos', formData);
   if(data) {
     const albumID = document.querySelector('.wrapper-album').dataset.albumid;
@@ -34,11 +39,12 @@ const catchUserDataFromAlbum = (e) => {
     const photoSrc = e.target.closest('figure').lastElementChild.getAttribute('src');
     const albumID = e.target.closest('figure').dataset.album_id;
     const formData = new FormData();
-    console.log('photoID: ', photoID, 'photoSrc: ', photoSrc, 'albumID: ', albumID);
+    console.log('photoID: ', photoID, 'photoSrc: ', photoSrc, 'albumID: ', albumID, 'price: ', price);
     formData.append('photoID', photoID);
     formData.append('photoSrc', photoSrc);
     formData.append('albumID', albumID);
     formData.append('uid', uid);
+
     return formData;
 }
 
@@ -56,3 +62,9 @@ photoContainer.addEventListener('click', async (e) => {
     return;
   }
 });
+
+samePrice.addEventListener('click', (e) => {
+  console.log('btn');
+  const priceInp = document.querySelector('.priceInp');
+  priceInp.classList.remove('hidden');
+})

@@ -162,8 +162,15 @@ input.form-control.tagInput {
 .growUp {
   flex: 1 1 400px;
   overflow: hidden;
+  position: relative;
+}
+.gorwFull {
+  flex: 1 2 auto
 }
 .clientPic {
+  position: relative;
+  /* album link */
+  flex: 1 1 250px;
   position: relative;
 }
 .replaceIcon, .delIcon {
@@ -182,8 +189,8 @@ input.form-control.tagInput {
 }
 .fitImg {
   width: 100%; /* Ширина изображений */
- height: 100%; /* Высота изображении */
- object-fit: cover; /* Вписываем фотографию в область */
+  height: 100%; /* Высота изображении */
+  object-fit: cover; /* Вписываем фотографию в область */
 }
 .userData {
   max-width: 100%;
@@ -244,3 +251,46 @@ input.form-control.tagInput {
 .delIcon:hover ~ .steer-delete {
   opacity: .5;
 }
+.addPhotoBtn {
+  opacity: .5;
+}
+.addPhotoBtn:hover {
+  opacity: 1;
+}
+.wrapper-album {
+  position: relative;
+}
+.sliderAlbum {
+  position: absolute;
+  z-index: 555;
+}
+.imgFullSize {
+  position: absolute;
+  z-index: 699;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+/* left: calc(50% - 640px /2); */
+
+
+}
+.photo-container {
+  position: relative;
+  width: 100%;
+  max-width: 100vh;
+}
+
+
+
+
+
+
+
+
+
