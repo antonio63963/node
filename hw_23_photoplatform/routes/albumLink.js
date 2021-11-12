@@ -5,12 +5,20 @@ const { findAlbumForLink } = require('../controllers/cont_album');
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
+  console.log('Byer link: ', id)
   const album = await findAlbumForLink(id);
-  console.log("LINK albom: ", album);
+  console.log("LINK albom: ", album.createdAt);
   if(album) {
-    const { photos, uid, name } = album;
-    return res.render('pages/albumLink', { photos, uid, albumID: id, name })
-    // res.render('pages/ggg')
+    const { photos, author, name, description, createdAt } = album;
+    console.log('createdAt: ', createdAt);
+    return res.render('pages/albumLink', { 
+      photos, 
+      author, 
+      albumID: id, 
+      name, 
+      description,
+      eventDate: createdAt
+    })
   }
 });
 

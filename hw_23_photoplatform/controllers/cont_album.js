@@ -24,7 +24,11 @@ const findAlbumById = async(uid, id) => {
   return album;
 };
 const findAlbumForLink = async( albumID ) => {
-  const album = await AlbumModel.findOne({ _id: albumID });
+  const album = await AlbumModel.findOne({ _id: albumID })
+    .populate('uid');
+  const { name, role, _id: id } = album.uid;
+  delete album.uid;
+  album.author = { name, role, id }
   return album;
 }
 const getAlbumNameById = async (id) => {

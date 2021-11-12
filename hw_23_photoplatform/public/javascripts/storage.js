@@ -7,7 +7,7 @@ function getStore() {
   const data = JSON.parse(dataJson);
   return data;
 };
-function addToStore(id, price) {
+function addToStore(id, price, src) {
   if(!id || !price) {
     console.log('addToStore: id or price not found!');
     return false
@@ -16,7 +16,7 @@ function addToStore(id, price) {
   const existPhoto = store.find(prod => prod.id === id);
     existPhoto ? 
     existPhoto.amount += 1 :
-    store.push({id: id, amount: 1, price: price});
+    store.push({id: id, amount: 1, price: price, src});
   setStore(store);
 };
 function decAmount(id) {

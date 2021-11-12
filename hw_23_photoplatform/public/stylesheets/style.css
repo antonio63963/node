@@ -283,6 +283,24 @@ input.form-control.tagInput {
   position: relative;
   width: 100%;
 }
+.addinionalInfo p {
+  font-weight: 700;
+  font-size: 18px;
+  color: rgb(235, 235, 235);
+}
+.addinionalInfo h5 {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+.right-content:hover {
+  background-color: #3c3c4b;
+}
+.store {
+  color: white; 
+  position: absolute; 
+  z-index: 30; 
+  top: 50px
+}
 
 
 
