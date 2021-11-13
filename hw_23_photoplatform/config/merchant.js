@@ -1,5 +1,6 @@
 module.exports = {
   url: 'https://api.wayforpay.com/api',
+  merchantSecretKey: 'flk3409refn54t54t*FNJRET',
   apiParams: {
     merchantAccount: 'test_merch_n1',
     merchantDominName: 'http://localhost:3000',

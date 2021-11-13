@@ -20,9 +20,16 @@ const addPhotoToAlbum = async (albumID, photoArr) => {
 }
 
 const findAlbumById = async(uid, id) => {
+  console.log('uid', uid, id);
   const album = await AlbumModel.findOne({uid, _id: id });
   return album;
 };
+const getAllPhotosFormAlbum = async(id) => {
+  const photos = await AlbumModel.findOne({_id: id}, {photos: 1, _id: 0});
+  console.log('PHOTOS: ', photos);
+  return photos;
+}
+
 const findAlbumForLink = async( albumID ) => {
   const album = await AlbumModel.findOne({ _id: albumID })
     .populate('uid');
@@ -56,6 +63,10 @@ const deletePhoto = async (albumID, photoID) => {
     { $pull: { photos: {_id: photoID} }},
     { new: true });
   return doc;
+};
+
+const getUsefulPhotos = async (albumID, arr) => {
+  const res = await AlbumModel.findOne({_id: albumID}, )
 }
 
 module.exports = {
@@ -66,5 +77,6 @@ module.exports = {
   addPhotoToAlbum,
   replacePhotoWhithOtherOne,
   deletePhoto,
-  findAlbumForLink
+  findAlbumForLink,
+  getAllPhotosFormAlbum
 };

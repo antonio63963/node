@@ -66,7 +66,7 @@ storeCont.addEventListener('click', async (e) => {
   if(e.target.matches('#get-invoice')) {
     const store = getStore();
     const orderArr = store.reduce((acc, item) => {
-      acc.push({ photoID: item.id, amount: item.amount });
+      acc.push({ photoID: item.id, amount: item.amount, price: item.price });
       return acc;
     }, []);
     const {album_id: albumID, uid} = e.currentTarget.dataset;

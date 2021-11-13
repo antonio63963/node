@@ -6,15 +6,19 @@ const generalSchema = new Schema({
   photographer: {
     type: Schema.Types.ObjectId,
   }, 
+  albumID: {
+    type: Schema.Types.ObjectId,
+    ref: 'album'
+  },
   photos: [{
    photoID: {
-    type: Schema.Types.String
+    type: Schema.Types.ObjectId,
+    ref: 'album.photos',
+    required: true
    },
    amount: {
-    type: Schema.Types.Number
-   },
-   price: {
-     type: Schema.Types.Number
+    type: Schema.Types.Number,
+    default: 0
    },
   }],
   currency: {
@@ -23,10 +27,12 @@ const generalSchema = new Schema({
     default: 'USD'
   },
   sum: {
-   type: Schema.Types.Number
+   type: Schema.Types.Number,
+   default: 0
   },
   isExecuted: {
-    type: Schema.Types.Boolean
+    type: Schema.Types.Boolean,
+    default: false
   }
 }, 
 {
