@@ -299,7 +299,8 @@ input.form-control.tagInput {
   color: white; 
   position: absolute; 
   z-index: 30; 
-  top: 50px
+  top: 79px;
+  right: 0;
 }
 
 

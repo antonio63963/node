@@ -6,8 +6,9 @@ const logger = require('morgan');
 const engine = require('ejs-locals');
 const indexRouter = require('../routes/index');
 const authRouter = require('../routes/auth');
-const albumLinkRouter = require('../routes/albumLink')
-const userPanelRouter = require('../routes/userPanel')
+const albumLinkRouter = require('../routes/albumLink');
+const userPanelRouter = require('../routes/userPanel');
+const orderRouter = require('../routes/order');
 const { url } = require('../config').db;
 
 const app = express();
@@ -28,8 +29,7 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/userPanel', userPanelRouter);
 app.use('/albumLink', albumLinkRouter);
-
-
+app.use('/sendOrder', orderRouter);
 
 
 // catch 404 and forward to error handler

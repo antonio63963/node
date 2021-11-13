@@ -17,13 +17,13 @@
 <body>
 
 
-  <div class="container p-0 d-flex myDarkColor" style="height: 100%;  width: 100%;">
+  <div class="container p-0 d-flex myDarkColor" style="height: 100%;  width: 100%; position: relative">
     <!-- store -->
-    <div class="store hidden purpleBG p-5 rounded">
-      <h1>Store: </h1>
+    <div class="store hidden lightDark p-5 rounded" data-album_id="<%= albumID %>" data-uid="<%= author.id %>">
+      <h3>Store: </h3>
       <ul class="list-group storeList">
       </ul>
-      <button type="button" class="btn btn-success" >Pay</button>
+      <button id="get-invoice" type="button" class="btn btn-success" >Get pay invoice</button>
   </div>
     <!-- Photos -->
     <div class="wrapper-album d-flex flex-column flex-shrink-1" data-uid="<%=author.id %>" data-albumID="<%=albumID %>" style="width: 100%">
@@ -98,7 +98,7 @@
     </footer>
   </div> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="/javascripts/storage.js"></script>
   <script src="/javascripts/link.js"></script>
 

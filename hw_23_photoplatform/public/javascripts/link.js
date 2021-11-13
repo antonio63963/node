@@ -58,6 +58,26 @@ storeInfo.addEventListener('click', (e) => {
   console.log(storeItems)
   storeList.innerHTML = storeItems.join('');
   storeCont.classList.remove('hidden')
+});
+
+
+storeCont.addEventListener('click', async (e) => {
+  console.log('store order: ');
+  if(e.target.matches('#get-invoice')) {
+    const store = getStore();
+    const orderArr = store.reduce((acc, item) => {
+      acc.push({ photoID: item.id, amount: item.amount });
+      return acc;
+    }, []);
+    const {album_id: albumID, uid} = e.currentTarget.dataset;
+    e.currentTarget.classList.add('hidden');
+    const { data } = await axios.post('/sendOrder', {albumID, photographer: uid, photos: orderArr});
+    console.log(data);
+    return;
+  };
+  if(e.currentTarget) {
+    e.currentTarget.classList.toggle('hidden');
+  }
 })
 
 
