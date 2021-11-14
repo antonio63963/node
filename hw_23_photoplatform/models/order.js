@@ -46,6 +46,17 @@ const generalSchema = new Schema({
   isExecuted: {
     type: Schema.Types.Boolean,
     default: false
+  },
+  merchant: {
+    invoiceUrl: {
+      type: Schema.Types.String,
+    },
+    reasonCode: {
+      type: Schema.Types.Number,
+    },
+    qrCode: {
+      type: Schema.Types.String,
+    }
   }
 }, 
 {

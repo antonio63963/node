@@ -16,10 +16,20 @@ const createOrder = async (userOrder) => {
 const getOrderById = async (id) => {
   const order = await OrderModel.findOne({ _id: id });
   return order;
+};
+const updateMerchant = async (orderID, merchant) => {
+  const order = await OrderModel.updateOne({_id: orderID}, {$set: {merchant: merchant}});
+  return order;
+};
+const getLinkForPay = async (orderID) => {
+  const link = await OrderModel.findOne({_id: orderID}, {"merchant.invoiceUrl": 1, _id: 0});
+  return link;
 }
 
 
 module.exports = {
   createOrder,
   getOrderById,
+  updateMerchant,
+  getLinkForPay
 };

@@ -34,9 +34,7 @@
           <h3>General sum: </h3>
           <h5><%- order.generalSum %> <%- order.currency %></h5>
         </div>
-        <a href="/order/getPayForm/<%- order._id%>">
-          <button type="button" class="btn btn-success">Confirm your order</button>
-        </a>
+          <button type="button" id="getInvoice" class="btn btn-success" data-order_id="<%= order._id %>">Confirm your order</button>
       </div>
     </div>
   </div>
@@ -44,5 +42,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="/javascripts/storage.js"></script>
+  <script src="/javascripts/order.js"></script>
+
 </body>
 </html>
