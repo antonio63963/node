@@ -7,7 +7,7 @@ const createOrder = async (userOrder) => {
   order.albumID = userOrder.albumID;
   order.photos = userOrder.photos;
   order.currency = userOrder.currency;
-  order.sum = 0;
+  order.generalSum = userOrder.generalSum;
   let doc = await order.save();
   console.log(doc);
   return doc;

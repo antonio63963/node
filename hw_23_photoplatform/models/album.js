@@ -37,8 +37,8 @@ const generalSchema = new Schema({
       default: false
     },
     price: {
-      type: Schema.Types.String,
-      default: '0'
+      type: Schema.Types.Number,
+      default: 0
     }
   }],
 

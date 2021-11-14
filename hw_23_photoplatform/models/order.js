@@ -11,24 +11,32 @@ const generalSchema = new Schema({
     ref: 'album'
   },
   photos: [{
-   photoID: {
-    type: Schema.Types.ObjectId,
-    ref: 'album.photos',
-    required: true
-   },
-   amount: {
-    type: Schema.Types.Number,
-    default: 0
-   },
+    photoID: {
+      type: Schema.Types.ObjectId,
+      ref: 'album.photos',
+      required: true
+    },
+    amount: {
+      type: Schema.Types.Number,
+      min: 1,
+    },
+    price: {
+      type: Schema.Types.Number,
+      required: true
+    },
+    sum: {
+      type: Schema.Types.Number,
+      required: true
+    }
   }],
   currency: {
     type: Schema.Types.String,
     enum: ['USD', 'UA', 'EU'],
     default: 'USD'
   },
-  sum: {
+  generalSum: {
    type: Schema.Types.Number,
-   default: 0
+   required: true
   },
   isExecuted: {
     type: Schema.Types.Boolean,

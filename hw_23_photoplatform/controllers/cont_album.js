@@ -26,7 +26,6 @@ const findAlbumById = async(uid, id) => {
 };
 const getAllPhotosFormAlbum = async(id) => {
   const photos = await AlbumModel.findOne({_id: id}, {photos: 1, _id: 0});
-  console.log('PHOTOS: ', photos);
   return photos;
 }
 
