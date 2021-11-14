@@ -5,6 +5,8 @@ const { Schema } = mongoose;
 const generalSchema = new Schema({
   photographer: {
     type: Schema.Types.ObjectId,
+    ref: 'user',
+    required: true
   }, 
   albumID: {
     type: Schema.Types.ObjectId,
@@ -15,6 +17,9 @@ const generalSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'album.photos',
       required: true
+    },
+    link: {
+      type: Schema.Types.String,
     },
     amount: {
       type: Schema.Types.Number,

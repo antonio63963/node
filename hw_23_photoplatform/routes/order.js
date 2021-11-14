@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { createOrder } = require('../controllers/cont_order');
+const { createOrder, getOrderById } = require('../controllers/cont_order');
 const { getAllPhotosFormAlbum } = require('../controllers/cont_album')
-router.post('/', async (req, res) => {
+router.post('/sendOrder', async (req, res) => {
   const {photos, albumID, photographer} = req.body;
   const {photos: albumPhotos} = await getAllPhotosFormAlbum(albumID);
 
@@ -10,9 +10,10 @@ router.post('/', async (req, res) => {
     map(item => {
       const photoFromAlbum = albumPhotos.
       find(photo => photo._id.toString() === item.photoID);
-      const { price } = photoFromAlbum;
+      const { price, link } = photoFromAlbum;
       const newPhotoItem = {
-        photoID: item.photoID, 
+        photoID: item.photoID,
+        link, 
         amount: item.amount, 
         price,
         sum: price * item.amount
@@ -30,9 +31,14 @@ router.post('/', async (req, res) => {
     }, 0)
   };
 
-  console.log('orderObj: ', orderObj);
-    const order = await createOrder(orderObj);
-    console.log("ALBUM: ", order);
+  const order = await createOrder(orderObj);
+  res.send({status: 'ok',  payload: { orderID: order._id } });
 });
+
+router.get('/confirmOrder/:id', async (req, res) => {
+  const orderID = req.params.id;
+  const order = await getOrderById(orderID);
+  res.render('pages/confirmOrder', { order })
+})
 
 module.exports = router;

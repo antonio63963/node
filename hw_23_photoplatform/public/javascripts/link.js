@@ -71,8 +71,14 @@ storeCont.addEventListener('click', async (e) => {
     }, []);
     const {album_id: albumID, uid} = e.currentTarget.dataset;
     e.currentTarget.classList.add('hidden');
-    const { data } = await axios.post('/sendOrder', {albumID, photographer: uid, photos: orderArr});
+    const { data } = await axios.post('/order/sendOrder', {albumID, photographer: uid, photos: orderArr});
     console.log(data);
+    if(data.status === 'ok') {
+      const { orderID } = data.payload;
+      window.location = `/order/confirmOrder/${orderID}`;
+    }else {
+      alert('Sorry, Smth has gone wrong!');
+    }
     return;
   };
   if(e.currentTarget) {

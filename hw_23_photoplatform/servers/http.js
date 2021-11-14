@@ -29,7 +29,7 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/userPanel', userPanelRouter);
 app.use('/albumLink', albumLinkRouter);
-app.use('/sendOrder', orderRouter);
+app.use('/order', orderRouter);
 
 
 // catch 404 and forward to error handler
