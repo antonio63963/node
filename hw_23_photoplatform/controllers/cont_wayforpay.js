@@ -13,24 +13,26 @@ const createSignature = (strData) => {
 const createInvoice = (order) => {
   const { merchantDomainName, merchantAccount, apiVersion, language } = apiParams;
   const { _id: orderID, generalSum, currency, photos } = order;
-  const data = {
+  let data = {
     transactionType: 'CREATE_INVOICE',
-    merchantAccount,
-    merchantDomainName,
     apiVersion,
     language,
+    orderTimeout: 60*60*24*12,
+  };
+  const dataForSingnature = {
+    merchantAccount,
+    merchantDomainName,
     orderReference: orderID.toString(), 
     orderDate: Date.now(), // only timestamp
-    orderTimeout: 60*60*24*12,
     amount: generalSum,
     currency,
     productName: photos.map(photo => photo._id.toString()),
-    productPrice: photos.map(photo => photo.price),
-    productCount: photos.map(photo => photo.amount)
-  };
-  
+    productCount: photos.map(photo => photo.amount),
+    productPrice: photos.map(photo => photo.price)
+  }
+
   // create string for signature
-  const strData = Object.values(data)
+  const strData = Object.values(dataForSingnature)
   .map(item => Array.isArray(item) ?
     item.join(';') :
     item
@@ -39,6 +41,7 @@ const createInvoice = (order) => {
 
   // add merchantSignature
   data.merchantSignature = createSignature(strData);
+  data = {...data, ...dataForSingnature}
   return data;
 };
 
