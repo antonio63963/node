@@ -5,6 +5,12 @@ const headerContent = document.querySelector('.right-content');
 const storeInfo = document.querySelector('.right-content');
 const storeCont = document.querySelector('.store')
 const storeList = document.querySelector('.storeList');
+const badgePhotoHeader = document.querySelector('.badgePhotoHeader');
+
+badgePhotoHeader.textContent = getStore().reduce((acc, item) => {
+  acc += item.amount;
+  return acc;
+}, 0);
 
 wrapperAlbum.addEventListener('click', (e) => {
   // console.log('e.target: ', e.target);
@@ -62,7 +68,6 @@ storeInfo.addEventListener('click', (e) => {
 
 
 storeCont.addEventListener('click', async (e) => {
-  console.log('store order: ');
   if(e.target.matches('#get-invoice')) {
     const store = getStore();
     const orderArr = store.reduce((acc, item) => {
@@ -84,7 +89,8 @@ storeCont.addEventListener('click', async (e) => {
   if(e.currentTarget) {
     e.currentTarget.classList.toggle('hidden');
   }
-})
+});
+
 
 
 
