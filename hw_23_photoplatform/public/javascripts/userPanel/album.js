@@ -5,6 +5,7 @@ const replacePhotoInp = document.querySelector('#replacePhoto');
 const photoContainer = document.querySelector('.photo-container');
 const copyLink = document.querySelector('.copyLink');
 const link = document.querySelector('#copyLink');
+
 copyLink.addEventListener('click', () => {
   navigator.clipboard.writeText(link.textContent);
   const saveLink = link.textContent;

@@ -1,3 +1,4 @@
+
 const carousel = document.querySelector('#carouselExampleInterval');
 const carouselPics = document.querySelectorAll('.pic-carousel');
 const wrapperAlbum = document.querySelector('.wrapper-album');
@@ -7,11 +8,28 @@ const storeCont = document.querySelector('.store')
 const storeList = document.querySelector('.storeList');
 const badgePhotoHeader = document.querySelector('.badgePhotoHeader');
 
-badgePhotoHeader.textContent = getStore().reduce((acc, item) => {
-  acc += item.amount;
-  return acc;
-}, 0);
+// badgePhotoHeader.textContent = getStore().reduce((acc, item) => {
+//   acc += item.amount;
+//   return acc;
+// }, 0);
 
+const updateAllBadges = () => {
+  const allFigures = Array.from(document.querySelectorAll('figure'));
+  const store = getStore();
+  if(!store) return false;
+  let photoAmount = 0;
+  store.forEach(item => {
+    photoAmount += item.amount;
+    allFigures.find(fig => {
+      if(fig.querySelector('button').
+        dataset.photo_id === item.id) {
+          fig.querySelector('.badge-addPhoto').textContent = item.amount;
+      }
+    });
+  })
+  badgePhotoHeader.textContent = photoAmount;
+}
+updateAllBadges()
 wrapperAlbum.addEventListener('click', (e) => {
   // console.log('e.target: ', e.target);
   if(e.target.matches('.album-img')) {
