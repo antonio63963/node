@@ -7,6 +7,20 @@ const generalSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'user',
     required: true
+  },
+  buyer: {
+    nameBuyer: {
+      type: Schema.Types.String,
+      required: true,
+      minLength: 1
+    },
+    emailBuyer: {
+      type: Schema.Types.String,
+      required: true,
+    },
+    phoneBuyer: {
+      type: Schema.Types.String
+    }
   }, 
   albumID: {
     type: Schema.Types.ObjectId,

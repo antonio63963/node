@@ -25,11 +25,16 @@ const getLinkForPay = async (orderID) => {
   const link = await OrderModel.findOne({_id: orderID}, {"merchant.invoiceUrl": 1, _id: 0});
   return link;
 }
+const insertBuyerData = async (albumID, buyerData) => {
+  const doc = await OrderModel.findOneAndUpdate({_id: albumID }, {$set: { buyer: buyerData}}, { new: true});
+  return doc;
+}
 
 
 module.exports = {
   createOrder,
   getOrderById,
   updateMerchant,
-  getLinkForPay
+  getLinkForPay,
+  insertBuyerData
 };

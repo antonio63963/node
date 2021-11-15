@@ -4,10 +4,15 @@ const {
   createOrder,
   getOrderById,
   updateMerchant,
-  getLinkForPay
+  getLinkForPay,
+  insertBuyerData
 } = require('../controllers/cont_order');
 const { getAllPhotosFormAlbum } = require('../controllers/cont_album');
 const { initWayForPay } = require('../controllers/cont_wayforpay');
+const multer = require('multer');
+const upload = multer();
+
+
 router.post('/sendOrder', async (req, res) => {
   const {photos, albumID, photographer} = req.body;
   const {photos: albumPhotos} = await getAllPhotosFormAlbum(albumID);
@@ -47,9 +52,9 @@ router.get('/confirmOrder/:id', async (req, res) => {
   res.render('pages/confirmOrder', { order })
 });
 
-router.get('/getPayForm/:id', async (req, res) => {
+router.post('/getPayForm/:id', upload.none(), async (req, res) => {
   const orderID = req.params.id;
-  const order = await getOrderById(orderID);
+  const order = await insertBuyerData(orderID, req.body);
   const responseWayForPay = await initWayForPay(order);
   console.log("RESP WAY 4 PAY: ",responseWayForPay);
   if(!responseWayForPay.invoiceUrl && !responseWayForPay.reasonCode !== 1112) {

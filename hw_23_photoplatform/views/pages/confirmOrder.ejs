@@ -12,13 +12,13 @@
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <title>Order</title>
 </head>
-<body>
+<body class="myDarkColor">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 offset-md-3 purpleBG p-5">
-        <h1 style="color: #fff;">Order: </h1>
-        <p style="color: #fff;">#<%= order._id%></p>
-        <ul class="list-group orderList">
+      <form name="buyer" class="col-md-6 offset-md-3 purpleBG py-5" style="color: #fff;" data-order_id="<%= order._id%>">
+        <h1 class="">Order: </h1>
+        <p class="">#<%= order._id%></p>
+        <ul class="list-group orderList px5">
           <% if(order.photos){%>
             <% order.photos.forEach(photo => { %>
           <li class="list-group-item d-flex align-items-center">
@@ -30,12 +30,28 @@
           <% }) %>
           <% } %>
         </ul>
-        <div style="color: #fff;">
+        <div>
           <h3>General sum: </h3>
           <h5><%- order.generalSum %> <%- order.currency %></h5>
         </div>
-          <button type="button" id="getInvoice" class="btn btn-success" data-order_id="<%= order._id %>">Confirm your order</button>
-      </div>
+
+        <div class="rounded p-5" style="background-color: #45455c;">
+          <h3>Insert your contacts: </h3>
+          <div class="mb-3 nameBuyer">
+            <label for="nameBuyer" class="form-label">Name:</label>
+            <input name="nameBuyer" type="text" class="form-control" id="name" aria-describedby="name" placeholder="John Doe">
+          </div>
+          <div class="mb-3 emailBuyer">
+            <label for="emailBuyer" class="form-label">Email:</label>
+            <input name="emailBuyer" type="email" class="form-control" id="name" aria-describedby="email" placeholder="JohnDoe@gmail.com">
+          </div>
+          <div class="mb-5 phoneBuyer">
+            <label for="phoneBuyer" class="form-label">Phone:</label>
+            <input name="phoneBuyer" type="text" class="form-control" id="name" aria-describedby="phone" placeholder="+3 8067 456 88 93">
+          </div>
+            <button type="submit" id="getInvoice" class="btn btn-success" data-order_id="<%= order._id %>">Confirm your order</button>
+        </div>
+      </form>
     </div>
   </div>
 

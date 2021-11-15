@@ -1,8 +1,11 @@
-const getInvoiceBtn = document.querySelector('#getInvoice');
+// const getInvoiceBtn = document.querySelector('#getInvoice');
+const buyerForm = document.forms.buyer;
 
-getInvoiceBtn.addEventListener('click', async (e) => {
+buyerForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
   const { order_id } = e.currentTarget.dataset;
-  const { data } = await axios.get(`/order/getPayForm/${order_id}`);
+  const formData = new FormData(e.target);
+  const { data } = await axios.post(`/order/getPayForm/${order_id}`, formData);
   if(data.status === 'ok') {
     window.location = data.payload;
   }
