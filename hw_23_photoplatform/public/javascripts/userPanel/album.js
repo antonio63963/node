@@ -3,6 +3,14 @@ const sendPhotoForm = document.forms.sendPhoto;
 const wrapperAlbum = document.querySelector('.wrapper-album');
 const replacePhotoInp = document.querySelector('#replacePhoto');
 const photoContainer = document.querySelector('.photo-container');
+const copyLink = document.querySelector('.copyLink');
+const link = document.querySelector('#copyLink');
+copyLink.addEventListener('click', () => {
+  navigator.clipboard.writeText(link.textContent);
+  const saveLink = link.textContent;
+  link.textContent = `Link was saved to buffer`;
+  setTimeout(() =>link.textContent = saveLink, 2000)
+})
 
 
 sendPhotoForm.addEventListener('submit', async (e) => {

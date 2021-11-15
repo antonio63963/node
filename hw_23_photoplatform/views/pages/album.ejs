@@ -5,16 +5,27 @@
   <header class="header-content lightDark">
     <h1 class="title-content"><%= auth.albumName %></h1>
     <hr>
-    <div style="width: 20%">
-      <h4>Price:</h4>
-      <div class="btn-group d-flex my-3" role="group" aria-label="Basic mixed styles example">
-        <button type="button" class="btn btn-danger samePrice">same</button>
-        <button type="button" class="btn btn-success">different</button>
+    <div class="warap-header-options d-flex flex-colum">
+      <div>
+        <div style="width: 20%">
+          <h4>Price:</h4>
+          <div class="btn-group d-flex my-3" role="group" aria-label="Basic mixed styles example">
+            <button type="button" class="btn btn-danger samePrice">same</button>
+            <button type="button" class="btn btn-success">different</button>
+          </div>
+          
+          <div class="mb-3 hidden priceInp">
+            <label for="price" class="form-label">Price:</label>
+            <input name="price" type="number" class="form-control" id="price" aria-describedby="price" value="0">
+          </div>
+        </div>
       </div>
-      
-      <div class="mb-3 hidden priceInp">
-        <label for="price" class="form-label">Price:</label>
-        <input name="price" type="number" class="form-control" id="price" aria-describedby="price" value="0">
+      <div class="mx-3">
+        <div class="d-flex align-items-center pointer copyLink">
+          <i class="mx-3 fal fa-link"> </i> 
+          <h4>Copy link:</h4>
+        </div>
+        <h5 id="copyLink" class="px-3">http://localhost:3000/albumLink/<%=auth.albumID %></h5>
       </div>
     </div>
   </header>
