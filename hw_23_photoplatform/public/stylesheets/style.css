@@ -302,7 +302,15 @@ input.form-control.tagInput {
   top: 79px;
   right: 0;
 }
-
+.wrapper-option {
+  border: 4px solid #45455c;
+  border-width: 0 0 0 4px;
+  width: 25%;
+  overflow: hidden;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  padding: 0 10px
+}
 
 
 

@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const path = require('path');
 const fs = require('fs');
 const { uploadArr } = require('../middlewares/upload');
 const { uploadSingle } = require('../middlewares/uploadSingle');

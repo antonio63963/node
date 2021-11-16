@@ -3,30 +3,45 @@
 
 <div class="wrapper-album d-flex flex-column" style="width: 100%;" data-uid="<%=auth.uid %>" data-albumID="<%=auth.albumID %>" data->
   <header class="header-content lightDark">
-    <h1 class="title-content"><%= auth.albumName %></h1>
+    <h1 class="title-content"><%= auth.albumName %><i class="mx-3 fal fa-exchange"></i></h1>
     <hr>
     <div class="warap-header-options d-flex flex-colum">
-      <div>
-        <div style="width: 20%">
+      <div class="wrapper-option px-3">
+        <div>
           <h4>Price:</h4>
           <div class="btn-group d-flex my-3" role="group" aria-label="Basic mixed styles example">
             <button type="button" class="btn btn-danger samePrice">same</button>
             <button type="button" class="btn btn-success">different</button>
           </div>
-          
           <div class="mb-3 hidden priceInp">
             <label for="price" class="form-label">Price:</label>
             <input name="price" type="number" class="form-control" id="price" aria-describedby="price" value="0">
           </div>
         </div>
       </div>
-      <div class="mx-3">
+
+        <!-- check currency -->
+        <div class="wrapper-option">
+          <div class="d-flex align-items-center pointer copyLink">
+            <i class="mx-3 fal fa-money-bill-wave"></i> 
+            <h4>Check currency:</h4>
+          </div>
+          <select class="form-select mx-3" >
+            <option value="USD">USD</option>
+            <option value="EU">EU</option>
+            <option value="UAH">UAH</option>
+          </select>
+        </div>
+      <div class="wrapper-option">
         <div class="d-flex align-items-center pointer copyLink">
           <i class="mx-3 fal fa-link"> </i> 
           <h4>Copy link:</h4>
         </div>
         <h5 id="copyLink" class="px-3">http://localhost:3000/albumLink/<%=auth.albumID %></h5>
       </div>
+
+    
+      
     </div>
   </header>
   <div class="photo-container d-flex justify-content-start" style="flex-wrap: wrap; height: 100%; padding: 20px;">

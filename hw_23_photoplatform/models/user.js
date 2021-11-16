@@ -28,6 +28,9 @@ const generalSchema = new Schema({
     type: Schema.Types.String,
     minLength: 6
   },
+  socials: [{
+    type: Schema.Types.String,
+  }],
   auth: {
     login: {
       type: Schema.Types.String,

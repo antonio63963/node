@@ -41,7 +41,11 @@ const generalSchema = new Schema({
       default: 0
     }
   }],
-
+  currency: {
+    type: Schema.Types.String,
+    enum: ['USD', 'UAH', 'EU'],
+    default: 'USD'
+  },
   isApprove: {
     type: Schema.Types.Boolean,
     default: false,
