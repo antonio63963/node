@@ -7,7 +7,7 @@ const validateAccessToken = require('../middlewares/validateAccess');
 const overlayWatermark = require('../middlewares/jimp');
 const multer = require('multer');
 const upload = multer();
-
+const { changePwd } = require('../controllers/cont_user')
 const { 
   createAlbum, 
   findAlbumById, 
@@ -57,7 +57,17 @@ router.get('/album/:id', validateAccessToken, async (req, res) => {
     const album = await findAlbumById(uid, albumID);
     // console.log("ALBUM: ", album);
     if(album) {
-      return res.render('pages/album', { auth: { albumName: album.name, albumID, name, uid }, content: 'album', photos: album.photos});
+      return res.render('pages/album', 
+      { auth: { 
+        albumName: album.name, 
+        albumID, 
+        name, 
+        uid 
+      }, 
+        content: 'album', 
+        photos: album.photos,
+        currency: album.currency,
+      });
     }else {
       return res.render('index', {auth: false});
     }
@@ -72,21 +82,26 @@ router.get('/userProfile', validateAccessToken, async (req, res) => {
   }
 });
 
-router.post('/sendPhotos', uploadArr, async (req, res) => {
+router.post('/editAlbum', uploadArr, async (req, res) => {
   const { photoPath } = req.params;
-  const { albumID, albumName, uid, name, price }= req.body;
+  const { albumID, albumName, uid, name, price, currency } = req.body;
   console.log('FIND PRICE', req.body);
-  const photoLinks = photoPath.split(',').slice(1);
-  const folder = '/images/photo/';
-  const photoArr = photoLinks.reduce((acc, link) =>  {
-    acc.push({ link: folder+link, price: price });
-    return acc;
-  }, []);
+  console.log("foto has not added");
+  if(photoPath && photoPath.length > 10) {
+    const photoLinks = photoPath.split(',').slice(1);
+    const folder = '/images/photo/';
+    const photoArr = photoLinks.reduce((acc, link) =>  {
+      acc.push({ link: folder+link, price: price });
+      return acc;
+    }, []);
+  
+    console.log('PHOTOS: ', photoArr);
+    const albumRefresh = await addPhotoToAlbum(albumID, photoArr);
+    // const album = await findAlbumById(uid, albumID);
+    res.render('pages/album', { auth: { albumName: albumRefresh.name, albumID, name, uid, price }, content: 'album', photos: albumRefresh.photos});
+  } else {
 
-  console.log('PHOTOS: ', photoArr);
-  const albumRefresh = await addPhotoToAlbum(albumID, photoArr);
-  const album = await findAlbumById(uid, albumID);
-  res.render('pages/album', { auth: { albumName: album.name, albumID, name, uid, price }, content: 'album', photos: album.photos});
+  }
 
 });
 
@@ -116,6 +131,13 @@ router.post('/deletePhoto', upload.none(), async (req, res) => {
     });
   };
 });
+
+router.post('/newPwd', upload.none(), async (req, res) => {
+  const { uid, newPwd } = req.body;
+  console.log("UID::::", uid);
+  const doc = await changePwd(uid, newPwd);
+  console.log('NEW PWD: ', doc);
+})
 
 // WATERMARLK=====
 // const ORIGINAL_IMAGE = path.resolve('public/images/photo/618912937fbfa75abbf92926_1636543355997.jpeg')

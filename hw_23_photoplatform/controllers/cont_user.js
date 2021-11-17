@@ -33,6 +33,13 @@ const loginUser = async (email, password) => {
     };
   }
 };
+const changePwd = async (id, newPwd) => {
+  // const doc = await UserModel.findOneAndUpdate({_id: id}, {$set: {"auth.pwd": newPwd}}, {new: true});
+  const doc = await UserModel.findOne({_id: id});
+  doc.auth.pwd = newPwd;
+  const newDoc = await doc.save()
+  return newDoc;
+}
 
 
 
@@ -40,5 +47,6 @@ module.exports = {
   createUser,
   loginUser,
   checkUserByEmail,
-  findUserById
+  findUserById,
+  changePwd
 };

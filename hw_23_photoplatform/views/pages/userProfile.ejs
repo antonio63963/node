@@ -58,5 +58,17 @@
       <button type="submit" class="btn btn-primary">Submit</button>
       
     </form>
+    <!-- change pwd -->
+    <form name="newPwd" class="rounded m-5 flex-grow-1 flex-shrink-1 formAlbum content-block createAlbum purpleBG p-5">
+      
+      <div class="mb-3">
+        <input type="text" name="uid" value="<%= auth.uid %>" hidden>
+        <label for="newPwd" class="form-label">newPwd: </label>
+        <input name="newPwd" type="text" class="form-control">
+      </div>
+    
+      <button type="submit" class="btn btn-primary">Submit</button>
+      
+    </form>
   </div>
 </div>

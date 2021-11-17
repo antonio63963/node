@@ -1,10 +1,13 @@
 const samePrice = document.querySelector('.samePrice');
+const diffPrice = document.querySelector('.diffPrice');
 const sendPhotoForm = document.forms.sendPhoto;
 const wrapperAlbum = document.querySelector('.wrapper-album');
 const replacePhotoInp = document.querySelector('#replacePhoto');
 const photoContainer = document.querySelector('.photo-container');
 const copyLink = document.querySelector('.copyLink');
 const link = document.querySelector('#copyLink');
+const currencyAlbum = document.querySelector('.currencyAlbum');
+const priceBlock = document.querySelector('.priceBlock');
 
 copyLink.addEventListener('click', () => {
   navigator.clipboard.writeText(link.textContent);
@@ -18,10 +21,14 @@ sendPhotoForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const price = document.querySelector('#price').value;
-  console.log(price)
+  const currency = currencyAlbum.value;
   formData.append('price', price);
+ 
+  if(currency !== currencyAlbum.dataset.currency) {
+    formData.append('currency', currency);
+  };
 
-  const { data } = await axios.post('/userPanel/sendPhotos', formData);
+  const { data } = await axios.post('/userPanel/editAlbum', formData);
   if(data) {
     const albumID = document.querySelector('.wrapper-album').dataset.albumid;
     window.location = `/userPanel/album/${albumID}`;
@@ -76,4 +83,8 @@ samePrice.addEventListener('click', (e) => {
   console.log('btn');
   const priceInp = document.querySelector('.priceInp');
   priceInp.classList.remove('hidden');
+});
+
+diffPrice.addEventListener('click', (e) => {
+  document.querySelector('#price').value = 0;
 })

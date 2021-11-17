@@ -55,6 +55,7 @@ function hashingPwd(pwd) {
 
 generalSchema.virtual('auth.pwd')
 .set(function(pwd) {
+  console.log("PWD=====", pwd);
   const hash = hashingPwd(pwd);
   this.auth.pwdHash = hash;
 });
