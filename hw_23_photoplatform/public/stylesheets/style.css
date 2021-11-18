@@ -144,7 +144,7 @@ input.form-control.tagInput {
 .lightDark {
   background-color: #24242e;
 }
-.formAlbum input, .formAlbum textarea {
+.formAlbum input, .formAlbum textarea, .formAlbum select {
   background-color: #45455c;
   border: none;
   color: rgb(255, 252, 228);

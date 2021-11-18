@@ -17,7 +17,7 @@ const generalSchema = new Schema({
     required: true,
   },
   eventDate: {
-    type: Schema.Types.Date,
+    type: Schema.Types.String,
   },
   description: {
     type: Schema.Types.String,
@@ -46,7 +46,7 @@ const generalSchema = new Schema({
   currency: {
     type: Schema.Types.String,
     enum: ['USD', 'UAH', 'EU'],
-    default: 'USD'
+    default: 'USD',
   },
   isApprove: {
     type: Schema.Types.Boolean,

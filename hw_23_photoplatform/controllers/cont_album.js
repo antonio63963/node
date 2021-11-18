@@ -8,6 +8,8 @@ const createAlbum = async (userData) => {
   album.description = userData.description;
   album.photos = [];
   album.isApprove = true;
+  album.eventDate = userData.eventDate;
+  album.currency = userData.currency;
   const doc = await album.save();
   console.log(doc._id);
   return doc;

@@ -23,9 +23,22 @@
     <div class="form-floating mb-3">
       <textarea name="description" class="form-control" placeholder="Leave a comment here"
         id="floatingTextarea"></textarea>
-      <label for="floatingTextarea">Description</label>
+      <label for="floatingTextarea">Description:</label>
     </div>
-    
+
+    <div class="mb-3">
+      <label for="event" class="form-label">Event date:</label>
+      <input name="eventDate" type="date" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="currency" class="form-label">Currency:</label>
+      <select class="form-select currencyAlbum" name="currency">
+        <option value="USD">USD</option>
+        <option value="EU">EU</option>
+        <option value="UAH">UAH</option>
+      </select>
+    </div>
    
 
     <button type="submit" class="btn btn-primary">Submit</button>
