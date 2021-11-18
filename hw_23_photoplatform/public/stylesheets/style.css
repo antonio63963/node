@@ -315,10 +315,26 @@ input.form-control.tagInput {
 .sidebar {
   width: 100%;
 }
-@media (max-width: 753.98px) { 
-
- }
-
+.priceBlock {
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #45455c;
+}
+.sendPhoto {
+  position: relative;
+}
+.btn.myDarkColor {
+  background-color: #24242e;
+  color: white;
+}
 
 
 

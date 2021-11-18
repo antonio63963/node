@@ -16,7 +16,9 @@ const generalSchema = new Schema({
     ref: 'user',
     required: true,
   },
-  
+  eventDate: {
+    type: Schema.Types.Date,
+  },
   description: {
     type: Schema.Types.String,
   },

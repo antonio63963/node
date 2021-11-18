@@ -8,41 +8,51 @@ const copyLink = document.querySelector('.copyLink');
 const link = document.querySelector('#copyLink');
 const currencyAlbum = document.querySelector('.currencyAlbum');
 const priceBlock = document.querySelector('.priceBlock');
+const photosInput = sendPhotoForm.querySelector('#photosInput');
+const priceConfirmBtn = document.querySelector('.confirmPriceBtn');
+
+function onPriceData() {
+  document.querySelector('.priceFormData')
+    .value = document.querySelector('#price').value;
+  priceBlock.classList.add('hidden');
+};
+
 
 copyLink.addEventListener('click', () => {
   navigator.clipboard.writeText(link.textContent);
   const saveLink = link.textContent;
   link.textContent = `Link was saved to buffer`;
-  setTimeout(() =>link.textContent = saveLink, 2000)
-})
+  setTimeout(() => link.textContent = saveLink, 2000)
+});
 
 
 sendPhotoForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
-  const price = document.querySelector('#price').value;
   const currency = currencyAlbum.value;
-  formData.append('price', price);
- 
-  if(currency !== currencyAlbum.dataset.currency) {
+  if (currency !== currencyAlbum.dataset.currency) {
     formData.append('currency', currency);
   };
 
-  const { data } = await axios.post('/userPanel/editAlbum', formData);
-  if(data) {
+  const {
+    data
+  } = await axios.post('/userPanel/editAlbum', formData);
+  if (data) {
     const albumID = document.querySelector('.wrapper-album').dataset.albumid;
     window.location = `/userPanel/album/${albumID}`;
   }
 });
 
 const getDataAndReload = async (url, formData) => {
-  const { data } = await axios.post(url, formData);
-  if(!data.status == 'ok' ) {
+  const {
+    data
+  } = await axios.post(url, formData);
+  if (!data.status == 'ok') {
     console.log('Replace photo: ', data);
-  }else {
+  } else {
     window.location.reload();
   };
-}
+};
 
 const onFileInput = async (formData) => {
   formData.append('photoReplace', replacePhotoInp.files[0], 'photo');
@@ -50,23 +60,25 @@ const onFileInput = async (formData) => {
   replacePhotoInp.removeEventListener('change', onFileInput);
 };
 const catchUserDataFromAlbum = (e) => {
-  const { uid } = document.querySelector('.wrapper-album').dataset;
-    const photoID = e.target.closest('label').dataset.photo_id;
-    const photoSrc = e.target.closest('figure').lastElementChild.getAttribute('src');
-    const albumID = e.target.closest('figure').dataset.album_id;
-    const formData = new FormData();
-    console.log('photoID: ', photoID, 'photoSrc: ', photoSrc, 'albumID: ', albumID, 'price: ', price);
-    formData.append('photoID', photoID);
-    formData.append('photoSrc', photoSrc);
-    formData.append('albumID', albumID);
-    formData.append('uid', uid);
+  const {
+    uid
+  } = document.querySelector('.wrapper-album').dataset;
+  const photoID = e.target.closest('label').dataset.photo_id;
+  const photoSrc = e.target.closest('figure').lastElementChild.getAttribute('src');
+  const albumID = e.target.closest('figure').dataset.album_id;
+  const formData = new FormData();
+  console.log('photoID: ', photoID, 'photoSrc: ', photoSrc, 'albumID: ', albumID, 'price: ', price);
+  formData.append('photoID', photoID);
+  formData.append('photoSrc', photoSrc);
+  formData.append('albumID', albumID);
+  formData.append('uid', uid);
 
-    return formData;
-}
+  return formData;
+};
 
 photoContainer.addEventListener('click', async (e) => {
   e.stopPropagation()
-  if(e.target.classList.contains('replaceIcon')) {
+  if (e.target.classList.contains('replaceIcon')) {
     const formData = catchUserDataFromAlbum(e);
     replacePhotoInp.addEventListener('change', async () => onFileInput(formData));
     return;
@@ -87,4 +99,11 @@ samePrice.addEventListener('click', (e) => {
 
 diffPrice.addEventListener('click', (e) => {
   document.querySelector('#price').value = 0;
-})
+});
+
+priceConfirmBtn.addEventListener('click', onPriceData);
+
+photosInput.addEventListener('change', (e) => {
+  console.log('change!!!')
+  priceBlock.classList.remove('hidden');
+});

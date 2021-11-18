@@ -1,27 +1,20 @@
 <% layout('../layouts/userPanel') -%>
 <% script("/javascripts/userPanel/album.js") -%>
 
-<div class="wrapper-album d-flex flex-column" style="width: 100%;" data-uid="<%=auth.uid %>" data-albumID="<%=auth.albumID %>" data->
+<div class="wrapper-album d-flex flex-column" style="width: 100%;" data-uid="<%=auth.uid %>" data-albumID="<%=auth.albumID %>">
+
   <header class="header-content lightDark d-flex flex-column">
     <h1 class="title-content"><%= auth.albumName %><i class="mx-3 fal fa-exchange"></i></h1>
     <hr style="margin-top: 0">
     <div class="warap-header-options d-flex flex-wrap">
-      <div class=" wrapper-option px-3 priceBlock">
-        <div>
-          <h4>Price:</h4>
-          <div class="btn-group d-flex my-3" role="group" aria-label="Basic mixed styles example">
-            <button type="button" class="btn btn-danger samePrice">same</button>
-            <button type="button" class="btn btn-success diffPrice">different</button>
-          </div>
-          <div class="mb-3 hidden priceInp">
-            <label for="price" class="form-label">Price:</label>
-            <input name="price" type="number" class="form-control" id="price" aria-describedby="price" value="0">
-          </div>
+      <div class=" wrapper-option">
+        <div class="d-flex align-items-center pointer copyLink">
+          <i class="mx-3 fal fa-clock"></i>
+          <h4>Event date:</h4>
         </div>
+        <h5 id="copyLink" class="px-3">SOme date</h5>
       </div>
-
-        <!-- check currency -->
-        <div class=" wrapper-option">
+      <div class=" wrapper-option">
           <div class="d-flex align-items-center pointer copyLink">
             <i class="mx-3 fal fa-money-bill-wave"></i> 
             <h4>Check currency:</h4>
@@ -75,10 +68,27 @@
     <% }) %>
     <% } %>
   
-    <form name="sendPhoto" style=" margin: 5px">
+    <form name="sendPhoto" class="sendPhoto" style=" margin: 5px">
+<!-- check price  -->
+      <div class="rounded px-3 priceBlock hidden">
+        <div>
+          <h4>Price:</h4>
+          <div class="btn-group d-flex my-3" role="group" aria-label="Basic mixed styles example">
+            <button type="button" class="btn btn-danger samePrice">same</button>
+            <button type="button" class="btn btn-success diffPrice">different</button>
+          </div>
+          <div class="mb-3 hidden priceInp">
+            <label for="price" class="form-label">Price:</label>
+            <input name="price" type="number" class="form-control" id="price" aria-describedby="price" value="0">
+          </div>
+          <button type=button class="btn myDarkColor confirmPriceBtn">Confirm</button>
+        </div>
+      </div>
+
       <input type="text" name="uid" value="<%= auth.uid %>" hidden>
       <input type="text" name="albumName" value="<%= auth.albumName %>" hidden>
       <input type="text" name="albumID" value="<%= auth.albumID %>" hidden>
+      <input type="number" name="price" class="priceFormData" value="0" hidden>
       <div style="color: #868e96; height: 300px; width: 300px;">
         <label for="photosInput" class="rounded addPhoto bg-darkd-flex">
           <div class="rounded pointer d-flex flex-column align-items-center justify-content-center"
