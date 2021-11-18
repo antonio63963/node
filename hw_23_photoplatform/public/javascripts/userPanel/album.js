@@ -12,9 +12,10 @@ const photosInput = sendPhotoForm.querySelector('#photosInput');
 const priceConfirmBtn = document.querySelector('.confirmPriceBtn');
 
 function onPriceData() {
-  document.querySelector('.priceFormData')
-    .value = document.querySelector('#price').value;
+  // document.querySelector('.priceFormData')
+  //   .value = document.querySelector('#price').value;
   priceBlock.classList.add('hidden');
+ 
 };
 
 
@@ -34,10 +35,8 @@ sendPhotoForm.addEventListener('submit', async (e) => {
     formData.append('currency', currency);
   };
 
-  const {
-    data
-  } = await axios.post('/userPanel/editAlbum', formData);
-  if (data) {
+  const { data } = await axios.post('/userPanel/editAlbum', formData);
+  if (data.status === 'ok') {
     const albumID = document.querySelector('.wrapper-album').dataset.albumid;
     window.location = `/userPanel/album/${albumID}`;
   }
@@ -104,6 +103,5 @@ diffPrice.addEventListener('click', (e) => {
 priceConfirmBtn.addEventListener('click', onPriceData);
 
 photosInput.addEventListener('change', (e) => {
-  console.log('change!!!')
   priceBlock.classList.remove('hidden');
 });

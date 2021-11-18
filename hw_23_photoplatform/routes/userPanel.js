@@ -55,7 +55,6 @@ router.get('/album/:id', validateAccessToken, async (req, res) => {
     const { name, uid } = auth;
     const albumID = req.params.id;
     const album = await findAlbumById(uid, albumID);
-    // console.log("ALBUM: ", album);
     if(album) {
       return res.render('pages/album', 
       { auth: { 
@@ -67,6 +66,7 @@ router.get('/album/:id', validateAccessToken, async (req, res) => {
         content: 'album', 
         photos: album.photos,
         currency: album.currency,
+        eventDate: album.eventDate
       });
     }else {
       return res.render('index', {auth: false});
@@ -86,19 +86,17 @@ router.post('/editAlbum', uploadArr, async (req, res) => {
   const { photoPath } = req.params;
   const { albumID, albumName, uid, name, price, currency } = req.body;
   console.log('FIND PRICE', req.body);
-  console.log("foto has not added");
   if(photoPath && photoPath.length > 10) {
     const photoLinks = photoPath.split(',').slice(1);
     const folder = '/images/photo/';
     const photoArr = photoLinks.reduce((acc, link) =>  {
-      acc.push({ link: folder+link, price: price });
+      acc.push({ link: folder+link, price: +price });
       return acc;
     }, []);
   
-    console.log('PHOTOS: ', photoArr);
     const albumRefresh = await addPhotoToAlbum(albumID, photoArr);
-    // const album = await findAlbumById(uid, albumID);
-    res.render('pages/album', { auth: { albumName: albumRefresh.name, albumID, name, uid, price }, content: 'album', photos: albumRefresh.photos});
+    console.log('UPDATED ALBUM: ', albumRefresh);
+    return res.send({status: 'ok'})
   } else {
 
   }

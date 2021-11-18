@@ -12,7 +12,7 @@
           <i class="mx-3 fal fa-clock"></i>
           <h4>Event date:</h4>
         </div>
-        <h5 id="copyLink" class="px-3">SOme date</h5>
+        <h5 id="copyLink" class="px-3"><%= eventDate %></h5>
       </div>
       <div class=" wrapper-option">
           <div class="d-flex align-items-center pointer copyLink">
@@ -88,7 +88,6 @@
       <input type="text" name="uid" value="<%= auth.uid %>" hidden>
       <input type="text" name="albumName" value="<%= auth.albumName %>" hidden>
       <input type="text" name="albumID" value="<%= auth.albumID %>" hidden>
-      <input type="number" name="price" class="priceFormData" value="0" hidden>
       <div style="color: #868e96; height: 300px; width: 300px;">
         <label for="photosInput" class="rounded addPhoto bg-darkd-flex">
           <div class="rounded pointer d-flex flex-column align-items-center justify-content-center"
