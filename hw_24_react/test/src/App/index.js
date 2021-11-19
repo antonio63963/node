@@ -1,7 +1,7 @@
 import Header from '../components/Header.js';
 import Footer from '../components/Footer.js';
 import About from '../containers/About.js';
-import WorldCat from '../containers/WorldCat.js';
+import WorldCat from '../containers/WorldCat';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {

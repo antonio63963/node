@@ -1,7 +1,8 @@
+import style from './style.module.css';
 function Footer() {
   return (
     <div>
-      <footer>
+      <footer className= {style.footer}>
         Все права котиков защищены, Мяу!
       </footer>
     </div>

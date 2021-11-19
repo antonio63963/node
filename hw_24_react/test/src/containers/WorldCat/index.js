@@ -1,8 +1,8 @@
-
+import photo1 from './img/1.jpg';
 function World() {
   return (
     <div>
-      <h1>World</h1>
+      <img src={photo1} alt="cat1" />
     </div>
   )
 };
