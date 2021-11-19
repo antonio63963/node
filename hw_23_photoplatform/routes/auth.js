@@ -31,7 +31,7 @@ router.post('/signUpData', upload.none(), registration, async (req, res) => {
       if(accessToken && refreshToken) {
         res.cookie('accessToken', accessToken, { httpOnly: true });
         res.cookie('refreshToken', refreshToken, { httpOnly: true });
-        res.send({status: 'ok', payload:{ uid, name, component: userPanel }});
+        res.send({status: 'ok'});
       }
     } else {
       res.send({status: 'error', message: 'This user already exists'})

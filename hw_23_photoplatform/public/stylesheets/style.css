@@ -308,7 +308,7 @@ input.form-control.tagInput {
   max-width: 25%;
   overflow: hidden;
   margin-bottom: 20px;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   padding: 0 10px;
   flex: 1 0 auto;
 }
@@ -335,6 +335,10 @@ input.form-control.tagInput {
   background-color: #24242e;
   color: white;
 }
+.iconRelative {
+  position
+}
+
 
 
 

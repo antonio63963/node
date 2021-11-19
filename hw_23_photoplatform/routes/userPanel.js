@@ -66,7 +66,8 @@ router.get('/album/:id', validateAccessToken, async (req, res) => {
         content: 'album', 
         photos: album.photos,
         currency: album.currency,
-        eventDate: album.eventDate
+        eventDate: album.eventDate,
+        description: album.description
       });
     }else {
       return res.render('index', {auth: false});
@@ -84,7 +85,7 @@ router.get('/userProfile', validateAccessToken, async (req, res) => {
 
 router.post('/editAlbum', uploadArr, async (req, res) => {
   const { photoPath } = req.params;
-  const { albumID, albumName, uid, name, price, currency } = req.body;
+  const { albumID, albumName, uid, name, price } = req.body;
   console.log('FIND PRICE', req.body);
   if(photoPath && photoPath.length > 10) {
     const photoLinks = photoPath.split(',').slice(1);

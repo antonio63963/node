@@ -32,14 +32,14 @@ albumForm.addEventListener('submit', async (e) => {
 function responseDB_album(title, name, tags, description, uid, id) {
   const temp = `
   <div class="modal-body pointer rounded bg-success text-white" onclick="this.remove()">
-  <div class="d-flex justify-content-between><h5>${title}</h5><span class"text-dark">x</span></div>
-  <hr>
-  <p>Name: ${name}</p>
-  <p>ID: ${id}</p>
-  <p>Creator: ${uid}</p>
-  <p>${description}</p>
-  <hr>
-  <p>${tags}</p>
+    <div class="d-flex justify-content-between><h5>${title}</h5><span class"text-dark">x</span></div>
+    <hr>
+    <p>Name: ${name}</p>
+    <p class="newAlbumID">ID: ${id}</p>
+    <p>Creator: ${uid}</p>
+    <p>${description}</p>
+    <hr>
+    <p>${tags}</p>
   </div>
   `;
   albumForm.innerHTML += temp;

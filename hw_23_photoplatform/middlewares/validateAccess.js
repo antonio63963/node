@@ -3,6 +3,7 @@ const { verifyAccessToken, decodeAccessToken, checkRefreshToken } = require('../
 const validateAccessToken = async (req, res, next) => {
   const { accessToken, refreshToken } = req.cookies;
   const isValid = accessToken ? await verifyAccessToken(accessToken) : null;
+  console.log('IS VALID: ', isValid);
   if(isValid) {
     const decodeToken = decodeAccessToken(accessToken);
     const parsePayload = JSON.parse(decodeToken.payload);
@@ -16,6 +17,8 @@ const validateAccessToken = async (req, res, next) => {
       checkedToken ? 
         req.params.auth =  parsePayload  : 
         req.params.auth = null ;
+    }else{
+      req.params.auth = parsePayload
     };
     // console.log("DECODE TOKEN: ", decodeToken);
     // req.params = decodeToken;

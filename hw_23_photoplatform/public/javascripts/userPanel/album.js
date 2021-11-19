@@ -29,11 +29,12 @@ copyLink.addEventListener('click', () => {
 
 sendPhotoForm.addEventListener('submit', async (e) => {
   e.preventDefault();
+  priceBlock.classList.add('hidden');
   const formData = new FormData(e.target);
-  const currency = currencyAlbum.value;
-  if (currency !== currencyAlbum.dataset.currency) {
-    formData.append('currency', currency);
-  };
+  // const currency = currencyAlbum.value;
+  // if (currency !== currencyAlbum.dataset.currency) {
+  //   formData.append('currency', currency);
+  // };
 
   const { data } = await axios.post('/userPanel/editAlbum', formData);
   if (data.status === 'ok') {
@@ -100,7 +101,7 @@ diffPrice.addEventListener('click', (e) => {
   document.querySelector('#price').value = 0;
 });
 
-priceConfirmBtn.addEventListener('click', onPriceData);
+// priceConfirmBtn.addEventListener('click', onPriceData);
 
 photosInput.addEventListener('change', (e) => {
   priceBlock.classList.remove('hidden');

@@ -4,22 +4,43 @@
 <div class="wrapper-album d-flex flex-column" style="width: 100%;" data-uid="<%=auth.uid %>" data-albumID="<%=auth.albumID %>">
 
   <header class="header-content lightDark d-flex flex-column">
-    <h1 class="title-content"><%= auth.albumName %><i class="mx-3 fal fa-exchange"></i></h1>
+    <div class="d-flex justify-content-center align-items-center">
+      <h1 class="title-content"><%= auth.albumName %></h1> 
+      <span><i class=" mx-5 pointer fas fa-caret-down"></i></span>
+    </div>
     <hr style="margin-top: 0">
-    <div class="warap-header-options d-flex flex-wrap">
+    <div class="warap-header-options d-flex flex-wrap mx-5">
+      <div class="wrapper-option" style="max-width: 25%;">
+       <div class="d-flex align-items-center">
+          <i class="fal fa-comments"></i>
+          <div class="d-flex align-items-center p-3">
+            <h4>Description:</h4>
+            <span><i class="conRelative mx-3 pointer fas fa-caret-down"></i></span>
+          </div>
+       </div>
+        <div style="max-width: 100%; overflow: hidden">
+          <p><%= description %></p>
+        </div>
+      </div>
       <div class=" wrapper-option">
         <div class="d-flex align-items-center pointer copyLink">
-          <i class="mx-3 fal fa-clock"></i>
-          <h4>Event date:</h4>
+          <i class="fal fa-clock"></i>
+         <div class="d-flex align-items-center p-3">
+            <h4>Event date:</h4>
+            <span><i class="conRelative mx-3 pointer fas fa-caret-down"></i></span>
+         </div>
         </div>
         <h5 id="copyLink" class="px-3"><%= eventDate %></h5>
       </div>
-      <div class=" wrapper-option">
+      <div class=" wrapper-option" style="max-width: 100%;">
           <div class="d-flex align-items-center pointer copyLink">
-            <i class="mx-3 fal fa-money-bill-wave"></i> 
-            <h4>Check currency:</h4>
+            <i class="fal fa-money-bill-wave"></i> 
+           <div class="d-flex align-items-center p-3">
+              <h4>Check currency:</h4>
+              <span><iconRelative class=" mx-3 pointer fas fa-caret-down"></i></span>
+           </div>
           </div>
-          <select class="form-select mx-3 currencyAlbum" data-currency="<%= currency %>">
+          <select class="form-select  currencyAlbum" style="width: 90%" data-currency="<%= currency %>">
             <option value="USD">USD</option>
             <option value="EU">EU</option>
             <option value="UAH">UAH</option>
@@ -36,6 +57,14 @@
     
       
     </div>
+    <form name="confirmChanges">
+      <input type="text" name="title">
+      <input type="text" name="description">
+      <input type="text" name="eventDate">
+      <input type="text" name="currency">
+      <input type="text" name="price">
+      <button type="" class="btn btn-dark mt-3 confirmChanges">Confirm changes</button>
+    </form>
   </header>
   <div class="photo-container d-flex justify-content-start" style="flex-wrap: wrap; height: 100%; padding: 20px;">
     <input type="file" id="replacePhoto" name="replacePhoto" accept=".jpg, .jpeg, .png, .webp" hidden>
@@ -81,7 +110,7 @@
             <label for="price" class="form-label">Price:</label>
             <input name="price" type="number" class="form-control" id="price" aria-describedby="price" value="0">
           </div>
-          <button type=button class="btn myDarkColor confirmPriceBtn">Confirm</button>
+          <button type="submit" class="btn myDarkColor confirmPriceBtn">Confirm</button>
         </div>
       </div>
 
@@ -98,8 +127,6 @@
           <input type="file" multiple id="photosInput" name="uploaded_file" accept=".jpg, .jpeg, .png, .webp" hidden>
         </label>
       </div>
-  
-      <button type="submit" class="btn btn-dark mt-3 sendFotos">Confirm changes</button>
     </form>
   </div>
 </div>

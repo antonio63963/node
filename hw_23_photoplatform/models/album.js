@@ -24,7 +24,6 @@ const generalSchema = new Schema({
   },
   tags: [{
     type: Schema.Types.String,
-    minLength: 1, 
     maxLength: 255
   }],
 
