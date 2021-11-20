@@ -1,0 +1,17 @@
+.photoContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+.wpapPhoto {
+  width: 400px;
+  height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.wpapPhoto img {
+  width: 100%; /* Ширина изображений */
+  height: 100%; /* Высота изображении */
+  object-fit: cover; /* Вписываем фотографию в область */
+}

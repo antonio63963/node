@@ -1,4 +1,4 @@
-import style from './style.module.css';
+import style from '../WorldCat/style.module.css';
 import photo1 from './img/1.jpg';
 import photo2 from './img/2.jpg';
 import photo3 from './img/3.jpg';
@@ -6,8 +6,7 @@ import photo4 from './img/4.jpg';
 import photo5 from './img/5.jpg';
 import photo6 from './img/6.jpg';
 
-
-function World() {
+function WorldAfter() {
   return (
     <div className={style.photoContainer}>
       <div className={style.wpapPhoto}>
@@ -31,6 +30,5 @@ function World() {
       </div>
     </div>
   )
-};
-
-export default World;
+}
+export default WorldAfter;
