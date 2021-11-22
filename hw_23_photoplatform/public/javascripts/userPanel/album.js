@@ -18,22 +18,25 @@ const descriptionContent = header.querySelector('.descriptionContent');
 const changeDescriptionInput = header.querySelector('.changeDescriptionInput');
 const changeEventInput = header.querySelector('.changeEventInput');
 const eventDate = header.querySelector('#eventDate');
+const albumChanges = {};
+let toggleElems = null;
+const confirmChanges = header.querySelector('.confirmChanges');
 
 
 // edit details
 
 const toggleHide = (hideElem, showElem) => {
-  console.log(hideElem, showElem);
+  // console.log(hideElem, showElem);
   hideElem.classList.add('hidden');
   showElem.classList.remove('hidden');
 }
 const onInputChange = (editElem) => (e) => {
   editElem.textContent = e.currentTarget.value;
+  albumChanges[e.currentTarget.getAttribute('name')] = e.currentTarget.value; 
   toggleHide(e.currentTarget, editElem);
   e.currentTarget.removeEventListener('change', onInputChange);
 }
 const onKeyEnter = (hideElem, showElem) => (e) => {
-  // console.log(e.code)
   if(e.code === 'Enter' || e.code === 'Escape') {
     toggleHide(hideElem, showElem);
     e.currentTarget.removeEventListener('keydown', onKeyEnter)
@@ -42,29 +45,18 @@ const onKeyEnter = (hideElem, showElem) => (e) => {
 
 const onClickToChange = (toChangeElem, fromChangeElement) => {
   toChangeElem.value = fromChangeElement.textContent;
+
   toggleHide(fromChangeElement, toChangeElem);
 };
 
-// const onWindowClick = (existingValueElem, input) => (e) => {
-//   console.log('Its window!!!');
-//   if(e.target !== input) {
-//     toggleHide(input, existingValueElem);
-//     e.currentTarget.removeEventListener('click', onWindowClick);
-//   }
-//   return false;
-// };
-
 const onEditParam = (existingValueElem, input) => {
-  // window.addEventListener('click', onWindowClick(existingValueElem, input));
   onClickToChange(input, existingValueElem);
   input.addEventListener('change', onInputChange(existingValueElem));
   input.addEventListener('keydown', onKeyEnter(input, existingValueElem));
   return { existingValueElem, input }
 };
 
-
-let toggleElems = null;
-header.addEventListener('click', (e) => {
+header.addEventListener('click', async (e) => {
   if(e.target.matches('.iconChangeTitle')) {
     toggleElems = onEditParam(titleContent, changeTitleInput);
     console.log(toggleElems);
@@ -72,8 +64,12 @@ header.addEventListener('click', (e) => {
     toggleElems = onEditParam(descriptionContent, changeDescriptionInput);
   } else if (e.target.matches('.iconChangeEvent')) {
     toggleElems = onEditParam(eventDate, changeEventInput);
+  } else if (e.target.matches('.confirmChanges')) { // CONFIRM CHANGES!!!
+    albumChanges.currency = currencyAlbum.value;
+    const { data } = await axios.post('/userPanel/albumChanges', albumChanges);
+    console.log(data);
   } else {
-    if(toggleElems) {
+    if(toggleElems && e.target !== toggleElems.input) {
       toggleHide(toggleElems.input, toggleElems.existingValueElem);
       toggleElems = null;
     } else {
@@ -81,6 +77,8 @@ header.addEventListener('click', (e) => {
     }
   }
 });
+
+
 
 // =====================================================
 
@@ -97,10 +95,6 @@ sendPhotoForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   priceBlock.classList.add('hidden');
   const formData = new FormData(e.target);
-  // const currency = currencyAlbum.value;
-  // if (currency !== currencyAlbum.dataset.currency) {
-  //   formData.append('currency', currency);
-  // };
 
   const { data } = await axios.post('/userPanel/editAlbum', formData);
   if (data.status === 'ok') {

@@ -83,6 +83,10 @@ router.get('/userProfile', validateAccessToken, async (req, res) => {
   }
 });
 
+router.post('/albumChanges', validateAccessToken, async (req, res) => {
+  console.log('changes: ', req.body)
+})
+
 router.post('/editAlbum', uploadArr, async (req, res) => {
   const { photoPath } = req.params;
   const { albumID, albumName, uid, name, price } = req.body;

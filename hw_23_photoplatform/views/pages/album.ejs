@@ -7,7 +7,7 @@
   <header class="header-content lightDark d-flex flex-column">
     <div class="d-flex justify-content-center align-items-center">
       <h1 class="title-content"><%= auth.albumName %></h1>
-      <input class="changeTitleInput hidden my-5 rounded" type="text" name="title"
+      <input class="changeTitleInput hidden my-5 rounded" type="text" name="name"
         style="border: none; background-color: #45455c; padding: 5px;">
       <span><i class="iconChangeTitle mx-5 pointer fas fa-caret-down"></i></span>
     </div>
@@ -23,7 +23,7 @@
         </div>
         <div style="max-width: 100%; overflow: hidden">
           <p class="descriptionContent"><%= description %></p>
-          <textarea class="changeDescriptionInput hidden my-2 rounded" type="text" name="title"
+          <textarea class="changeDescriptionInput hidden my-2 rounded" type="text" name="description"
             style="border: none; background-color: #45455c; padding: 5px; position: absolute"></textarea>
         </div>
       </div>
@@ -36,7 +36,7 @@
          </div>
         </div>
         <h5 id="eventDate" class="px-3"><%= eventDate %></h5>
-        <input class="changeEventInput hidden my-2 rounded" type="text" name="title"
+        <input class="changeEventInput hidden my-2 rounded" type="text" name="eventDate"
         style="border: none; background-color: #45455c; padding: 5px;">
       </div>
       <div class=" wrapper-option" style="max-width: 100%;">
@@ -47,7 +47,7 @@
               <span><iconRelative class=" mx-3 pointer fas fa-caret-down"></i></span>
            </div>
           </div>
-          <select class="form-select  currencyAlbum" style="width: 90%" data-currency="<%= currency %>">
+          <select class="form-select  currencyAlbum" name="currency" style="width: 90%" data-currency="<%= currency %>">
             <option value="USD">USD</option>
             <option value="EU">EU</option>
             <option value="UAH">UAH</option>
@@ -64,14 +64,14 @@
     
       
     </div>
-    <form name="confirmChanges">
-      <input type="text" name="title">
+    <!-- <form name="confirmChanges"> -->
+      <!-- <input type="text" name="title">
       <input type="text" name="description">
       <input type="text" name="eventDate">
       <input type="text" name="currency">
-      <input type="text" name="price">
-      <button type="" class="btn btn-dark mt-3 confirmChanges">Confirm changes</button>
-    </form>
+      <input type="text" name="price"> -->
+      <button type="button" class="btn btn-success mt-3 mx-5 confirmChanges">Confirm changes</button>
+    <!-- </form> -->
   </header>
   <div class="photo-container d-flex justify-content-start" style="flex-wrap: wrap; height: 100%; padding: 20px;">
     <input type="file" id="replacePhoto" name="replacePhoto" accept=".jpg, .jpeg, .png, .webp" hidden>
