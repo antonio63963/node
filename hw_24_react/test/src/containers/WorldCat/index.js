@@ -5,7 +5,10 @@ import photo3 from './img/3.jpg';
 import photo4 from './img/4.jpg';
 import photo5 from './img/5.jpg';
 import photo6 from './img/6.jpg';
-
+// function importAll(context) {
+//   return context.keys().map(context)
+// };
+// const images = importAll(require.context('./img', false, /\.(png|jpe?g|svg)$/))
 
 function World() {
   return (
