@@ -10,13 +10,51 @@ const currencyAlbum = document.querySelector('.currencyAlbum');
 const priceBlock = document.querySelector('.priceBlock');
 const photosInput = sendPhotoForm.querySelector('#photosInput');
 const priceConfirmBtn = document.querySelector('.confirmPriceBtn');
+const header = document.querySelector('.header-content');
+// edit details
+const changeTitleInput = header.querySelector('.changeTitleInput');
+const titleContent = header.querySelector('.title-content');
 
-function onPriceData() {
-  // document.querySelector('.priceFormData')
-  //   .value = document.querySelector('#price').value;
-  priceBlock.classList.add('hidden');
- 
+
+// edit details
+const toggleHide = (hideElem, showElem) => {
+  hideElem.classList.add('hidden');
+  showElem.classList.remove('hidden');
+}
+const onInputChange = (editElem) => (e) => {
+  editElem.textContent = e.currentTarget.value;
+  toggleHide(e.target, editElem);
+  e.currentTarget.removeEventListener('change', onInputChange);
+}
+const onKeyEnter = (hideElem, showElem) => (e) => {
+  if(e.code === 'Enter') {
+    console.log(e.code)
+    toggleHide(hideElem, showElem);
+    e.currentTarget.removeEventListener('keydown', onKeyEnter)
+  };
 };
+
+const onClickToChange = (toChangeElem, fromChangeElement) => {
+  console.log('click to change')
+  toChangeElem.value = fromChangeElement.textContent;
+  toggleHide(fromChangeElement, toChangeElem);
+};
+
+const onEditParam = (existingValue, input) => {
+  console.log('onEditParam')
+  onClickToChange(input, existingValue);
+  input.addEventListener('change', onInputChange(titleContent));
+  input.addEventListener('keydown', onKeyEnter(changeTitleInput, titleContent));
+};
+
+
+header.addEventListener('click', (e) => {
+  if(e.target.matches('.iconChangeTitle')) {
+    onEditParam(titleContent, changeTitleInput)
+  }
+});
+
+// =====================================================
 
 
 copyLink.addEventListener('click', () => {
@@ -100,8 +138,6 @@ samePrice.addEventListener('click', (e) => {
 diffPrice.addEventListener('click', (e) => {
   document.querySelector('#price').value = 0;
 });
-
-// priceConfirmBtn.addEventListener('click', onPriceData);
 
 photosInput.addEventListener('change', (e) => {
   priceBlock.classList.remove('hidden');

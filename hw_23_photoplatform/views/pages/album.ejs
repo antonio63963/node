@@ -5,8 +5,10 @@
 
   <header class="header-content lightDark d-flex flex-column">
     <div class="d-flex justify-content-center align-items-center">
-      <h1 class="title-content"><%= auth.albumName %></h1> 
-      <span><i class=" mx-5 pointer fas fa-caret-down"></i></span>
+      <h1 class="title-content"><%= auth.albumName %></h1>
+        <input class="changeTitleInput hidden my-5 rounded"
+        type="text" name="title" style="border: none; background-color: #45455c; padding: 5px;"> 
+      <span><i class="iconChangeTitle mx-5 pointer fas fa-caret-down"></i></span>
     </div>
     <hr style="margin-top: 0">
     <div class="warap-header-options d-flex flex-wrap mx-5">
