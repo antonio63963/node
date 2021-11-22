@@ -14,43 +14,71 @@ const header = document.querySelector('.header-content');
 // edit details
 const changeTitleInput = header.querySelector('.changeTitleInput');
 const titleContent = header.querySelector('.title-content');
+const descriptionContent = header.querySelector('.descriptionContent');
+const changeDescriptionInput = header.querySelector('.changeDescriptionInput');
+const changeEventInput = header.querySelector('.changeEventInput');
+const eventDate = header.querySelector('#eventDate');
 
 
 // edit details
+
 const toggleHide = (hideElem, showElem) => {
+  console.log(hideElem, showElem);
   hideElem.classList.add('hidden');
   showElem.classList.remove('hidden');
 }
 const onInputChange = (editElem) => (e) => {
   editElem.textContent = e.currentTarget.value;
-  toggleHide(e.target, editElem);
+  toggleHide(e.currentTarget, editElem);
   e.currentTarget.removeEventListener('change', onInputChange);
 }
 const onKeyEnter = (hideElem, showElem) => (e) => {
-  if(e.code === 'Enter') {
-    console.log(e.code)
+  // console.log(e.code)
+  if(e.code === 'Enter' || e.code === 'Escape') {
     toggleHide(hideElem, showElem);
     e.currentTarget.removeEventListener('keydown', onKeyEnter)
   };
 };
 
 const onClickToChange = (toChangeElem, fromChangeElement) => {
-  console.log('click to change')
   toChangeElem.value = fromChangeElement.textContent;
   toggleHide(fromChangeElement, toChangeElem);
 };
 
-const onEditParam = (existingValue, input) => {
-  console.log('onEditParam')
-  onClickToChange(input, existingValue);
-  input.addEventListener('change', onInputChange(titleContent));
-  input.addEventListener('keydown', onKeyEnter(changeTitleInput, titleContent));
+// const onWindowClick = (existingValueElem, input) => (e) => {
+//   console.log('Its window!!!');
+//   if(e.target !== input) {
+//     toggleHide(input, existingValueElem);
+//     e.currentTarget.removeEventListener('click', onWindowClick);
+//   }
+//   return false;
+// };
+
+const onEditParam = (existingValueElem, input) => {
+  // window.addEventListener('click', onWindowClick(existingValueElem, input));
+  onClickToChange(input, existingValueElem);
+  input.addEventListener('change', onInputChange(existingValueElem));
+  input.addEventListener('keydown', onKeyEnter(input, existingValueElem));
+  return { existingValueElem, input }
 };
 
 
+let toggleElems = null;
 header.addEventListener('click', (e) => {
   if(e.target.matches('.iconChangeTitle')) {
-    onEditParam(titleContent, changeTitleInput)
+    toggleElems = onEditParam(titleContent, changeTitleInput);
+    console.log(toggleElems);
+  } else if (e.target.matches('.iconChangeDescription')) {
+    toggleElems = onEditParam(descriptionContent, changeDescriptionInput);
+  } else if (e.target.matches('.iconChangeEvent')) {
+    toggleElems = onEditParam(eventDate, changeEventInput);
+  } else {
+    if(toggleElems) {
+      toggleHide(toggleElems.input, toggleElems.existingValueElem);
+      toggleElems = null;
+    } else {
+      false;
+    }
   }
 });
 
