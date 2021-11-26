@@ -5,8 +5,6 @@ import requestObj from '../apiReq/api.js'
 export default function Card({content}) {
   const [ character, setCharacter ] = useState({name: "JACK"});
   const [ count, setCount ] = useState(1);
-  // const [ page, setPage ] = useState(content);
-  // console.log(page)
   function countIncrease() {
     setCount(count + 1);
     console.log(count)
