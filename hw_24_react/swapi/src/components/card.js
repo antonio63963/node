@@ -1,17 +1,19 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import requestFunction from '../apiReq/api.js'
+import requestObj from '../apiReq/api.js'
 
-export default function Card() {
+export default function Card({content}) {
   const [ character, setCharacter ] = useState({name: "JACK"});
-  const [ count, setCount ] = useState(1)
+  const [ count, setCount ] = useState(1);
+  // const [ page, setPage ] = useState(content);
+  // console.log(page)
   function countIncrease() {
     setCount(count + 1);
     console.log(count)
   }
+  console.log(requestObj[`get${content}`])
   useEffect(async() => {
-
-    setCharacter(await requestFunction(count));
+    setCharacter(await requestObj[`get${content}`](count));
     console.log(character)
 
   }, [count]);
