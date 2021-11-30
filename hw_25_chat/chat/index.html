@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <title>Chat</title>
+</head>
+
+<body>
+  <div class="app">
+    <sidebar class="users">
+      <header class="header">
+        <div class="input-group">
+          <input type="text" class="searchInput" placeholder="search">
+        </div>
+      </header>
+      <!-- participants -->
+
+      <ul class="users-list">
+        <li class="user-card">
+          <div class="card-avatar">
+            <img  src="" alt="">
+          </div>
+          <div class="user-info">
+            <span class="user-nik">Some nik</span>
+            <p class="last-message">last message</p>
+          </div>
+        </li>
+
+
+        <li class="user-card">
+          <div class="card-avatar">
+            <img  src="" alt="">
+          </div>
+          <div class="user-info">
+            <span class="user-nik">Some nik</span>
+            <p class="last-message">last message</p>
+          </div>
+        </li>
+      </ul>
+
+
+    </sidebar>
+    <section class="content">
+      <header class="header content-header">
+        <div class="">
+          <h4 class="title">Title chat</h3>
+            <span class="members-amount">members amount</span>
+        </div>
+        <i class="fal fa-search"></i>
+      </header>
+      <div class="chat">
+        <div class="userMessage">
+          <div class="userMessage-avatar">
+            <img src="" alt="">
+          </div>
+
+          <div class="userMessage-body">
+            <div class="userMessage-title">
+              <span class="userMessage-userName">Some nik</span>
+              <span class="userMessage-reply">reply</span>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae possimus dolorum sequi error cupiditate accusamus provident tempore quod soluta, expedita, sit accusantium voluptatibus esse laboriosam est nam aliquam neque quibusdam!</p>
+            <div class="sendTime-warapper">
+              <span class="sendTime">12:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="writeSms">
+        <textarea name="mySms" id="mySms" rows="2" placeholder="write a message..."></textarea>
+        <i class="fal fa-paper-plane"></i>
+        <!-- <div class="iconSendWrap">
+        </div> -->
+      </div>
+    </section>
+  </div>
+</body>
+
+</html>
