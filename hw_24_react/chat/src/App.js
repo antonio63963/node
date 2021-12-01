@@ -1,3 +1,5 @@
+import React from 'react';
+import { useState } from 'react';
 import Sidebar from './components/Sidebar.js';
 import Content from './components/Content.js';
 import './components/style.css';
@@ -19,8 +21,23 @@ const userList = [
   },
 ]
 function App() {
+  const [ userArr, setUserArr ] = useState([...userList])
+  // setUserArr(userList);
+  function onAppClick(e) {
+    if(e.target.closest('.user-card')) {
+    const indexCard = e.target.closest('.user-card').dataset.id;
+    console.log('ind: ', indexCard);
+    const newUserArr = userArr.map(( card, ind ) => {
+      ind === +indexCard ? card.isActive = true : card.isActive = false;
+      return card;
+    });
+    
+    setUserArr(newUserArr);
+    console.log(newUserArr);
+  }
+  };
   return (
-    <div className="app">
+    <div className="app" onClick={ onAppClick }>
       <Sidebar userList={ userList } />
       <Content />
     </div>

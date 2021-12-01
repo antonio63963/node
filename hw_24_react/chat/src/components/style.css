@@ -64,14 +64,14 @@ body, input {
   padding: 10px 15px;
   cursor: pointer;
 }
-.notActive-card {
+.user-notActive-card {
   background-color: #fff;
 }
-.user-card:hover {
+.user-notActive-card:hover {
   background-color: rgb(234, 244, 248);
   color:black
 }
-.active-card {
+.user-active-card {
   background-color: rgb(65, 157, 199);
   color: white;
 }
