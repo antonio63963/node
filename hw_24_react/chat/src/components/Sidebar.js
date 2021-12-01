@@ -3,7 +3,6 @@ import { useState } from 'react';
 import UserCard from './UserCard.js'
 
 export default function SidebarUsers({ userList }) {
-  
   return (
     <div className="users">
       <header className="header">
