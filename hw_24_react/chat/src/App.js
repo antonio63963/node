@@ -46,21 +46,23 @@ function App() {
     const newUserArr = userArr.map(( card, ind ) => {
       if(ind === +indexCard) {
         card.isActive = true;
-        card.isActive = false;
         setChatName(card.userName);
         setMessages(userChats[card.userName])
-      } 
+      } else {
+        card.isActive = false;
+      }
       return card;
     });
     
     setUserArr(newUserArr);
-    console.log(newUserArr);
+    console.log('newUserArr: ', newUserArr);
     console.log(chatName);
+
   }
   };
   return (
     <div className="app" onClick={ onAppClick }>
-      <Sidebar userList={ userList } />
+      <Sidebar userList={ userArr } />
       <Content messages={ messages } chatName={ chatName }/>
     </div>
   );

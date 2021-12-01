@@ -12,7 +12,7 @@ export default function Content(props) {
         <i className="fal fa-search"></i>
       </header>
       <div className="chat">
-        { messages.map( sms => <UserMessage sms={ sms } />)}
+        { messages.map( (sms, ind)=> <UserMessage sms={ sms } key={ ind }/>)}
       </div>
       <div className="writeSms">
         <textarea className="mySms" id="mySms" rows="2" placeholder="write a message..."></textarea>
