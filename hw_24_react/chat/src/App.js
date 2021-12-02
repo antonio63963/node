@@ -69,18 +69,15 @@ function App() {
         } else {
           card.isActive = false;
         }
-        if(window.outerWidth <= 520) {
-          setIsHideSidebar(true)
-          console.log("isHide:", isHideSidebar)
-        };
+        if(window.outerWidth <= 520) setIsHideSidebar(true);
         return card;
       });
       setUserArr(newUserArr);
     };
 
     if(e.target.matches('.openSidebar')) setIsHideSidebar(false);
-    
   };
+  
   return (
     <div className="app" onClick={ onAppClick }>
       <Sidebar userList={ userArr } isHide={ isHideSidebar }/>

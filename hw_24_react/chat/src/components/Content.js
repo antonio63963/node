@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import UserMessage from './UserMessage.js';
 export default function Content(props) {
   const { messages, chatName, isHide } = props;
