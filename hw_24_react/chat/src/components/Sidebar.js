@@ -3,7 +3,6 @@ import React from 'react';
 import UserCard from './UserCard.js'
 
 export default function SidebarUsers({ userList, isHide }) {
-  console.log('isHide in component: ', isHide)
   return (
     <div className={ `users ${isHide ? 'hidden': 'block'}`}>
       <header className="header">

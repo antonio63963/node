@@ -59,33 +59,32 @@ function App() {
   })
   function onAppClick(e) {
     if(e.target.closest('.user-card')) {
-    const indexCard = e.target.closest('.user-card').dataset.id;
-    console.log('ind: ', indexCard);
-    const newUserArr = userArr.map(( card, ind ) => {
-      if(ind === +indexCard) {
-        card.isActive = true;
-        setChatName(card.userName);
-        setMessages(userChats[card.userName])
-      } else {
-        card.isActive = false;
-      }
-      if(window.outerWidth <= 520) {
-        setIsHideSidebar(true)
-        console.log("isHide:", isHideSidebar)
-      };
-      return card;
-    });
-    
-    setUserArr(newUserArr);
-    console.log('newUserArr: ', newUserArr);
-    console.log(chatName);
+      const indexCard = e.target.closest('.user-card').dataset.id;
+      console.log('ind: ', indexCard);
+      const newUserArr = userArr.map(( card, ind ) => {
+        if(ind === +indexCard) {
+          card.isActive = true;
+          setChatName(card.userName);
+          setMessages(userChats[card.userName])
+        } else {
+          card.isActive = false;
+        }
+        if(window.outerWidth <= 520) {
+          setIsHideSidebar(true)
+          console.log("isHide:", isHideSidebar)
+        };
+        return card;
+      });
+      setUserArr(newUserArr);
+    };
 
-  }
+    if(e.target.matches('.openSidebar')) setIsHideSidebar(false);
+    
   };
   return (
     <div className="app" onClick={ onAppClick }>
       <Sidebar userList={ userArr } isHide={ isHideSidebar }/>
-      <Content messages={ messages } chatName={ chatName }/>
+      <Content messages={ messages } chatName={ chatName } isHide={ isHideSidebar }/>
     </div>
   );
 }

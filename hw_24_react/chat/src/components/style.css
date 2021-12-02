@@ -70,6 +70,13 @@ body, input {
 .content-header {
   border: 1px solid #eeeeee;
   border-width: 0 0 1px 1px;
+  justify-content: flex-start;
+}
+.searchIcon {
+  margin-left: auto;
+}
+.openSidebar {
+  margin-right: 20px;
 }
 
 /* card */
@@ -183,18 +190,10 @@ body, input {
 .writeSms {
   display: flex;
   align-items: center;
-  justify-content: start;
   border: 1px solid #eeeeee;
   border-width: 1px 0 0 1px;
 }
-footer {
-  position: fixed;
-  z-index: 5;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  /* width: 100%; */
-}
+
 #mySms {
  border: none;
   padding: 7px 15px;
