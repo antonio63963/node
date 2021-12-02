@@ -14,11 +14,12 @@ export default function Content(props) {
       <div className="chat">
         { messages.map( (sms, ind)=> <UserMessage sms={ sms } key={ ind }/>)}
       </div>
-      <div className="writeSms">
-        <textarea className="mySms" id="mySms" rows="2" placeholder="write a message..."></textarea>
-        <i className="fal fa-paper-plane"></i>
-  
-      </div>
+      <footer>
+        <div className="writeSms">
+          <textarea className="mySms" id="mySms" rows="2" placeholder="write a message..."></textarea>
+          <i className="fal fa-paper-plane"></i>
+        </div>
+      </footer>
     </section>
   )
 }

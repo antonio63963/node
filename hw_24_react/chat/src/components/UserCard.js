@@ -5,6 +5,7 @@ export default function UserCard({ user, dataId }) {
   return (
     <li className={ `user-card ${isActive ? 'user-active-card' : 'user-notActive-card'}`} data-id={ dataId }>
       <div className="card-avatar" style={{ backgroundImage: userPhoto}}>
+        <div className="onlineIndicator" ></div>
         <img  src={ userPhoto } alt="user avatar" />
       </div>
       <div className="user-info">

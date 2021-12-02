@@ -2,10 +2,13 @@ import React from 'react';
 
 import UserCard from './UserCard.js'
 
-export default function SidebarUsers({ userList }) {
+export default function SidebarUsers({ userList, isHide }) {
+  console.log('isHide in component: ', isHide)
   return (
-    <div className="users">
+    <div className={ `users ${isHide ? 'hidden': 'block'}`}>
       <header className="header">
+      {/* <i class="yourData fas fa-paw"></i> */}
+      <i className="yourData fal fa-paw"></i>
         <div className="input-group">
           <input type="text" className="searchInput" placeholder="search" />
         </div>
