@@ -1,19 +1,43 @@
 .catalogTitle {
-  margin-left: 20px;
+  /* margin-left: 20px; */
   background-color: #379424;
   color: #fff;
-  padding: 10px;
+  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
+
 }
 .greenBG {
   background-color: rgb(67, 176, 42);
 }
-.enterBtn {
-  background-color: #1c5a10;
+button.enterBtn {
+  background-color: #379424;
+  border: none !important;
 }
 .inputWrapper {
+  display: flex;
   padding: 10px 20px;
+}
+.menuWrapper {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  color: #fff;
+}
+/* .colFlex {
+  width: 100%;
+  display: flex;
+} */
+.iconWrapper {
+  padding: 0 20px;
+  display: flex;
+  border: 1px solid #fff;
+  border-width: 0 1px 0 0;
+  cursor: pointer;
+}
+.store {
+  padding: 15px 20px;
+  background-color: #379424;
 }

@@ -60,7 +60,7 @@ export default function HeaderFirstLine() {
   return (
 
      <>
-       <Row  align="center" justify="middle">
+       <Row  align="center" justify="middle" style={{'background-color': '#fff'}}>
         <Col span={4}>
           <div className={style.logo}>
           <img className={style.logoImg} src="https://findvectorlogo.com/wp-content/uploads/2019/10/comfy-ua-vector-logo.png" />
