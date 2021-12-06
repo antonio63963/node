@@ -1,0 +1,38 @@
+.signInForm {
+  width: 300px;
+  padding: 30px 20px;
+  border: 1px solid #37496d;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.formTile {
+  /* text-align: center; */
+  margin: 10px 0 35px 0;
+}
+.btn {
+  cursor: pointer;
+  border: none;
+  color: rgb(231, 231, 231);
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+}
+input {
+  background-color: #1f283f;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: #f3f3f3;
+  margin-bottom: 20px;
+}
+input[name="confirm-pwd"] {
+  margin-bottom: 35px;
+}
+.btnSubmit {
+  background-color: #56407a;
+  margin-bottom: 20px;
+}
+.btnLogin {
+  background-color: #40527c;
+}

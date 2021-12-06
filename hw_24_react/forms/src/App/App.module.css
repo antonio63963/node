@@ -1,0 +1,13 @@
+.app {
+  position: relative;
+  background-color: #111723;
+  color: rgb(243, 243, 243);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+}
+.content {
+  display: flex;
+  justify-content: center;
+}

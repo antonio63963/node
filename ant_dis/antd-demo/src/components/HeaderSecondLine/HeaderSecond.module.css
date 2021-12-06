@@ -1,0 +1,19 @@
+.catalogTitle {
+  margin-left: 20px;
+  background-color: #379424;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+.greenBG {
+  background-color: rgb(67, 176, 42);
+}
+.enterBtn {
+  background-color: #1c5a10;
+}
+.inputWrapper {
+  padding: 10px 20px;
+}
