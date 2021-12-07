@@ -9,7 +9,7 @@ export default function Products() {
     return (
       <Col flex={0, 1, '200px'}>
         <Card
-        key={index}
+        key={index + 20}
         hoverable
         style={{ width: 240 }}
         cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}

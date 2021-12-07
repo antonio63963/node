@@ -7,14 +7,14 @@ const { Search } = Input;
 
 const menu = (
   <Menu mode="horizontal">
-    <Menu.Item key="0">
+    <Menu.Item key="10">
     <ScanOutlined style={{color: '#fff', 'font-size': '18px' }}/>
     </Menu.Item>
-    <Menu.Item key="1">
+    <Menu.Item key="11">
     <HeartOutlined style={{color: '#fff', 'font-size': '18px' }} />
     </Menu.Item>
     <Menu.Divider />
-    <Menu.Item key="3">
+    <Menu.Item key="12">
     <ShoppingOutlined style={{color: '#fff', 'font-size': '18px' }} />
     </Menu.Item>
   </Menu>

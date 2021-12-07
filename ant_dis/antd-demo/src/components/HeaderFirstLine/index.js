@@ -23,10 +23,10 @@ const menu = (
 
 const other = (
   <Menu>
-    <Menu.Item key="0">
+    <Menu.Item key="4">
       Доставка
     </Menu.Item>
-    <Menu.Item key="1">
+    <Menu.Item key="5">
       <a href="https://www.aliyun.com">Возврат</a>
     </Menu.Item>
   
@@ -36,20 +36,20 @@ const other = (
 
 const contacts = (
   <Menu>
-    <Menu.Item key="0">
+    <Menu.Item key="6">
       <a href="https://www.antgroup.com">
       <WechatOutlined />
       Чат на сайте
       </a>
     </Menu.Item>
-    <Menu.Item key="1">
+    <Menu.Item key="7">
       <a href="https://www.antgroup.com">
       <MessageOutlined />
       </a>
       Месенджер
     </Menu.Item>
     <Menu.Divider />
-    <Menu.Item key="3">
+    <Menu.Item key="8">
     <SkypeOutlined />
       Skype
     </Menu.Item>
