@@ -6,8 +6,13 @@ import Star from './Star.js';
 
 const createArray = length => [...Array(length)];
 
-export default function StarRating({ style = {}, totalStars = 5, selectedStars = 0}) {
-  console.log(selectedStars)
+export default function StarRating({
+   style = {}, 
+   totalStars = 5, 
+   selectedStars = 0,
+   onRating = f => f
+  }) {
+
   return (
     <div style={{padding: "5px", ...style}}>
       {
@@ -16,6 +21,7 @@ export default function StarRating({ style = {}, totalStars = 5, selectedStars =
             key={i} 
             selected={ selectedStars > i } 
             style={ {backgroundColor: "lightblue"} } 
+            onSelect={ () => onRating(i + 1) }
           />)
         )
       }

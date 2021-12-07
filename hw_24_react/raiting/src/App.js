@@ -19,6 +19,10 @@ function App() {
             const newColors = colors.filter( color => color.id !== id );
             setColors(newColors)
           }}
+          onRating = { (id, rating) => {
+            const newColors = colors.map( color => color.id === id ? {...color, rating} : color );
+            setColors(newColors)
+          }}
         />
       </header>
     </div>
