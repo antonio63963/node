@@ -1,21 +1,21 @@
 import React from 'react';
 import StartRating from './StarRating';
 import { FaTrash } from "react-icons/fa";
+import { useColors } from '../hooks/colorHooks';
 
 export default function Color({
   id, 
   title, 
   color, 
   rating, 
-  onRemove = f => f,
-  onRating = f => f 
 }) {
+  const { onRemoveColor, onRating } = useColors();
   return (
     <section>
       <h1>{title}</h1>
     
         <span 
-          onClick={() => onRemove(id)} 
+          onClick={() => onRemoveColor(id)} 
           style={{color: "#fff", cursor: 'pointer'}}
         >
           <FaTrash />
