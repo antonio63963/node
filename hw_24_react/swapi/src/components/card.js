@@ -5,16 +5,13 @@ import requestObj from '../apiReq/api.js'
 export default function Card({content}) {
   const [ character, setCharacter ] = useState({name: "JACK"});
   const [ count, setCount ] = useState(1);
-  function countIncrease() {
-    setCount(count + 1);
-    console.log(count)
-  }
+
   console.log(requestObj[`get${content}`])
   useEffect(async() => {
     setCharacter(await requestObj[`get${content}`](count));
     console.log(character)
 
-  }, [count]);
+  }, [count, character]);
   return (
     <div>
       <img src={ character.img } alt="character" />
