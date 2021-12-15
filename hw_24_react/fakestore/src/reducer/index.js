@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { PRODUCT_LOAD_IN_PROGRESS, PRODUCT_LOAD_FAIL, PRODUCT_ADD, GET_ALL_PRODUCTS } from '../typesAction';
+import { PRODUCT_LOAD_IN_PROGRESS, PRODUCT_LOAD_FAIL, PRODUCT_ADD, GET_PRODUCTS_BY_LIMIT} from '../typesAction';
 // id: 0,
 // title: 'No title',
 // price: 0,
@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  console.log('action: ', action);
+
   const findFilmIdx = (id) => {
     return state.products.findIndex(product => product.id === id);
   };
@@ -41,8 +41,8 @@ const reducer = (state = initialState, action) => {
       }})
     };
 
-    case GET_ALL_PRODUCTS : {
-      return update(state, {products: {$each: action.payload}})
+    case GET_PRODUCTS_BY_LIMIT : {
+      return update(state, {products: {$set: action.payload.data}})
     }
 
     default: 
