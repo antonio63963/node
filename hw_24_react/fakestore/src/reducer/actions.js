@@ -1,23 +1,7 @@
 import axios from 'axios';
-import { PRODUCT_LOAD_IN_PROGRESS, PRODUCT_LOAD_FAIL, PRODUCT_ADD, GET_PRODUCTS_BY_LIMIT, LOADING } from '../typesAction';
+import { PRODUCT_LOAD_IN_PROGRESS, PRODUCT_LOAD_FAIL, PRODUCT_ADD_BY_ID, GET_PRODUCTS_BY_LIMIT, LOADING } from '../typesAction';
 
 
-
-
-// ifStatusOk
-// const ifStatusOk = (result, SUCCESS_TYPE) => {
-//   if(result.status !== 200) {
-//     return({
-//       type: PRODUCT_LOAD_FAIL,
-
-//     })
-//   };
-//   const action = {
-//     type: SUCCESS_TYPE,
-//     payload: { data: result.data}
-//   };
-//   return action;
-// }
 // ACTIONS
 const startLoadProduct = async(id) => {
   return ({ 
@@ -37,7 +21,7 @@ const resultOfLoadById = async(id) => {
     })
   };
   const action = {
-    type: PRODUCT_ADD,
+    type: PRODUCT_ADD_BY_ID,
     payload: { product: result.data}
   };
   // const action = ifStatusOk(result)
@@ -52,7 +36,8 @@ const getProductById = async(id, dispatch) => {
 
 const startLoading = () => {
   return ({
-    type: LOADING
+    type: LOADING,
+    arrProductStatus: LOADING
   })
 }
 const actionGetByLimit = async (limit) => {
@@ -71,8 +56,10 @@ const actionGetByLimit = async (limit) => {
 };
 
 const getProductsByLimit = async(limit, dispatch) => {
+  // dispatch(startLoading());
   dispatch(await actionGetByLimit(limit));
 }
+
 
 
 export {

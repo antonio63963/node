@@ -1,0 +1,12 @@
+.imgCard  {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.imgWrapper {
+  height: 300px;
+  width: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
