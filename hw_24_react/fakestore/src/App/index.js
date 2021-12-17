@@ -24,7 +24,7 @@ console.log(store)
     <div>
     <Row gutter={16} >
           {isLoading ?
-          <Sprinner /> :
+          <Sprinner style={{position: 'absolute', bottom: '50px'}}/> :
           store.products.map(prod =>  (
             <Col key={prod.id} >
               <Card product={prod} />

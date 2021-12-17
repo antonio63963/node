@@ -10,3 +10,7 @@
   align-items: center;
   justify-content: center;
 }
+.spinner {
+  position: absolute;
+  z-index: 2;
+}
