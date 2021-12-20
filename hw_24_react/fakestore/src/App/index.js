@@ -11,15 +11,15 @@ function App() {
   const store = useSelector( state => state);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log(store)
-    getProductsByLimit(5, dispatch)
+    getProductsByLimit(dispatch)
+    // console.log(store)
   }, []);
   const isLoading = store.arrProductStatus !== 'SUCCESS';
 
   const onButton = () => {
     getProductById(idNum, dispatch)
   }
-console.log(store)
+
   return (
     <div>
     <Row gutter={16} >
@@ -34,6 +34,7 @@ console.log(store)
      
     <input type="number" onChange={(e) => setIdNum(e.target.value)} />
     <button onClick={() => onButton()} type="button" >get products</button>
+    <button >click2</button>
     </div>
   );
 }

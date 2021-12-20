@@ -14,3 +14,7 @@
   position: absolute;
   z-index: 2;
 }
+.card {
+  position: relative;
+}
+

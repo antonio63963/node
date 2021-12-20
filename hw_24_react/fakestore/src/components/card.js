@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState} from 'react';
 // import { Image, Button, Space } from 'antd';
 import { Card } from 'antd';
 import style from './card.module.css'
@@ -7,19 +8,29 @@ const { Meta } = Card;
 
 export default function CardProduct({product}) {
   const {id = 0, title = 'some title', price = 1, image, description = 'some description'} = product;
+  const [ isHover, setIsHover ] = useState(false)
   return (
-    <Card
-    hoverable
-    style={{ width: 240 }}
-    cover={
-    <div className={style.imgWrapper}>
-      <img alt="example" className={style.imgCard} src={image} />
-    </div>
-  }
-  >
-    <Meta title={ title } />
-    ${price}
-  </Card>
+   <div className={style.card}>
+      <Card 
+        onMouseOver={(e) => {
+          // if(e.target.closest.classList.contains())
+          setIsHover(true)
+        }}
+        
+        hoverable
+        style={{ width: 240 }}
+        cover={
+        <div className={style.imgWrapper}>
+          <img alt="example" className={style.imgCard} src={image} />
+        </div>
+      }
+      >
+      <Meta title={ title } />
+        ${price}
+      </Card>
+
+      
+   </div>
   
   )
 }

@@ -40,9 +40,9 @@ const startLoading = () => {
     arrProductStatus: LOADING
   })
 }
-const actionGetByLimit = async (limit) => {
-  const url = `https://fakestoreapi.com/products?limit=${limit}`;
-  const result = await axios.get(url);
+const actionGetByLimit = async () => {
+  // const url = `https://fakestoreapi.com/products?limit=${limit}`;
+  const result = await axios.get('/products');
   if(result.status !== 200) {
     return({
       type: PRODUCT_LOAD_FAIL, 
@@ -50,14 +50,14 @@ const actionGetByLimit = async (limit) => {
   };
   const action = {
     type: GET_PRODUCTS_BY_LIMIT,
-    payload: { data: result.data}
+    payload: { data: result.data.payload}
   };
   return action;
 };
 
-const getProductsByLimit = async(limit, dispatch) => {
+const getProductsByLimit = async(dispatch) => {
   // dispatch(startLoading());
-  dispatch(await actionGetByLimit(limit));
+  dispatch(await actionGetByLimit());
 }
 
 
