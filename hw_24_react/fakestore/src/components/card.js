@@ -29,7 +29,22 @@ export default function CardProduct({product}) {
         ${price}
       </Card>
 
-      
+      <Card 
+      onMouseOut={() => setIsHover(false)}
+      className={isHover ? style.focussedCard : style.dispNone}
+      hoverable
+      style={{ width: 240 }}
+      cover={
+      <div className={style.imgWrapper}>
+        <img alt="example" className={style.imgCard} src={image} />
+      </div>
+    }
+    >
+      <Meta title={ title } />
+      ${price}
+      <hr/>
+      <p>{description}</p>
+    </Card>
    </div>
   
   )
