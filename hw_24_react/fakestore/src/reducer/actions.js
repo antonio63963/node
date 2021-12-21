@@ -11,9 +11,9 @@ const startLoadProduct = async(id) => {
 };
 
 const resultOfLoadById = async(id) => {
-  const url = `https://fakestoreapi.com/products/${ id }`;
-  const result = await axios.get(url);
-
+  // const url = `https://fakestoreapi.com/products/${ id }`;
+  const result = await axios.get(`/addProdID/${id}`);
+  console.log(result.data)
   if(result.status !== 200) {
     return({
       type: PRODUCT_LOAD_FAIL,
@@ -22,7 +22,7 @@ const resultOfLoadById = async(id) => {
   };
   const action = {
     type: PRODUCT_ADD_BY_ID,
-    payload: { product: result.data}
+    payload: { product: result.data.payload}
   };
   // const action = ifStatusOk(result)
   return action;
