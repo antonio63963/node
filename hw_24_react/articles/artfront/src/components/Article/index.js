@@ -1,11 +1,19 @@
 import { useSelect, useDispatch } from 'react-redux';
 
-export default function Article() {
-
+export default function Article({article}) {
+  console.log(article);
+  const { item, status } = article;
   return (
     <div>
-      <h2>title</h2>
-      <p>text</p>
+      {status !== 'ok' ? 
+        'Loading...' :
+      
+      <>
+        <h2>{item.title}</h2>
+        <p>{item.text}</p>
+      </>
+      
+      }
     </div>
   )
 }
