@@ -19,7 +19,7 @@ const actionGetPage = async(id) => {
     type: GET_PAGE,
     payload: data
   }
-  console.log('get page', newState);
+  // console.log('get page', newState);
   return newState;
 };
 

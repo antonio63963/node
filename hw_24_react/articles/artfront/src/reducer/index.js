@@ -1,3 +1,4 @@
+
 import update from 'immutability-helper';
 import {
   GET_PAGE,
@@ -17,21 +18,30 @@ const initState = {
 const reducer = ( state = initState, action ) => {
   switch (action.type) {
     case LOADING_IN_PROCESS: {
-      const isPush = state.articles.length === action.payload.id;
-      const article = {
-        item: {id: action.payload.id},
-        status: 'in_progress'
-      };
-      return isPush ? 
-        update(state, {
-          articles: {$push: [article]}
-        }) : update(state, {
-          articles: {$unshift: [article]}
-        });
+      // check is article exist in store
+      const payloadID = action.payload.id;
+      console.log('Payload.id: ', payloadID);
+      const isExist = state.articles.findIndex(article => article.item.id === payloadID);
+      console.log('isExist: ', state.articles);
+      if(isExist === -1 ) {
+        console.log('isExist: ', isExist, 'length: ', state.articles.length);
+        const isPush = state.articles.length === payloadID;
+        const article = {
+          item: {id: action.payload.id},
+          status: 'in_progress'
+        };
+        return !isPush ? 
+          update(state, {
+            articles: {$push: [article]}
+          }) : update(state, {
+            articles: {$unshift: [article]}
+          });
+      } else { console.log('fuck of!!!'); return state }
     };
+
     case GET_PAGE : {
       const ind = state.articles.findIndex(article => article.item.id === action.payload.payload.id);
-      console.log('sate: ', state)
+      // console.log('sate: ', state)
       const newState = update(state, {
         articles: {[ind]: {
           $set: {
