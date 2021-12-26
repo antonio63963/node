@@ -20,7 +20,7 @@ const reducer = ( state = initState, action ) => {
     case LOADING_IN_PROCESS: {
       // check is article exist in store
       const payloadID = action.payload.id;
-      console.log('Payload.id: ', payloadID);
+      // console.log('Payload.id: ', payloadID);
       const isExist = state.articles.findIndex(article => article.item.id === payloadID);
       console.log('isExist: ', state.articles);
       if(isExist === -1 ) {
@@ -40,19 +40,29 @@ const reducer = ( state = initState, action ) => {
     };
 
     case GET_PAGE : {
+      console.log('action payload: ', action.payload)
       const ind = state.articles.findIndex(article => article.item.id === action.payload.payload.id);
-      // console.log('sate: ', state)
-      const newState = update(state, {
-        articles: {[ind]: {
-          $set: {
-            item: action.payload.payload, 
-            status: action.payload.status
+      // const ind = state.articles.map(article => console.log(article.item.id) );
+      console.log('sate: ', state, 'ind: ', ind)
+      if(action.payload.payload.text) {
+        const newState = update(state, {
+          articles: {[ind]: {
+            $set: {
+              item: action.payload.payload, 
+              status: action.payload.status
+            }
           }
         }
+        })
+        console.log("newState: ", newState);
+        return newState;
+      } else {
+        const newState = update(state, {
+          $pull: {articles: [ind]}
+        });
+        console.log("Red get: ", newState);
+        return newState;
       }
-      })
-      console.log("newState: ", newState);
-      return newState;
     }
     default: 
       return state;

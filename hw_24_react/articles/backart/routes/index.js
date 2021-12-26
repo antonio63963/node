@@ -10,7 +10,14 @@ router.get('/article/:id', (req, res) => {
   const {id} = req.params;
   console.log('id: ', id)
 
-  res.send({status: 'ok', payload: articlesArr[id - 1]})
+  const ind = articlesArr.findIndex( article => article.id === +id)
+  console.log('ind: ', ind)
+  res.send({
+    status: 'ok', 
+    payload: 
+      ind !== -1 ? articlesArr[ind] : 
+      {text: null, id: +id}
+  });
 })
 
 module.exports = router;

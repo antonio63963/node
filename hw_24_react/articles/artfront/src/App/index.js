@@ -1,29 +1,37 @@
-import {useEffect} from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 import Article from '../components/Article';
 import { getPage } from '../reducer/actions'
 
 function App() {
+  const [ currentInd, setCurrentInd ] = useState(null);
   const store = useSelector(state => state);
   const dispatch = useDispatch();
   
   const handleScroll = (e) => {
-    console.log('height: ', e.target.clientHeight);
+    console.log('height: ', e.target.scrollHeight, "scrollTo0: ", e.target.scrollTop, e.target.clientHeight);
     const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    const top = e.target.scrollHeight - e.target.scrollTop === e.target.scrollHeight;
     if (bottom) { 
       console.log('bottom', bottom); 
-      getPage(2, dispatch)
-    }
+      const ind =  store.articles.length - 1;
+      const currArticle = store.articles[ind].item.id;
+      getPage(currArticle + 1, dispatch);
+    };
+    if(top) { console.log('top', top); }
   }
+  // INIT PAGE
   useEffect(() => {
     if(store.articles.length === 0) {
       getPage(1, dispatch);
-      console.log(store.articles)
+    // if(store.articles.)
     }
   },[]);
+  
+  // STORE CHANGE WATCHER
   useEffect(() => {
-    console.log(store.articles)
+    setCurrentInd()
   }, [store])
 
   return (
@@ -34,7 +42,7 @@ function App() {
           {store.articles.map(article => (
             <Article article={article} key={article.item.id}/>
           ))}
-          
+
         </div>
     </div>
   );
