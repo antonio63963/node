@@ -57,11 +57,9 @@ const reducer = ( state = initState, action ) => {
         console.log("newState: ", newState);
         return newState;
       } else {
-        const newState = update(state, {
-          $pull: {articles: [ind]}
-        });
-        console.log("Red get: ", newState);
-        return newState;
+        console.log('======im in pull arr!!!!');
+        state.articles.splice(ind, 1)
+        return state;
       }
     }
     default: 
