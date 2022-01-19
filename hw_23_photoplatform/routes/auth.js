@@ -53,7 +53,7 @@ router.post('/loginData', [upload.none(), checklogin], async (req, res) => {
     console.log('USER ID: ', loginResult.uid);
     const accessToken = await createAccessToken({uid, name});
     const refreshToken = createRefreshToken();
-    // const token_id = await createTokenDoc(uid, refreshToken);
+    const token_id = await createTokenDoc(uid, refreshToken);
     if(accessToken && refreshToken) {
       console.log(`i'm inside the loginData!!!`);
       res.clearCookie();

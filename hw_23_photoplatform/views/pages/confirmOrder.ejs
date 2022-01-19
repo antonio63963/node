@@ -39,15 +39,15 @@
           <h3>Insert your contacts: </h3>
           <div class="mb-3 nameBuyer">
             <label for="nameBuyer" class="form-label">Name:</label>
-            <input name="nameBuyer" type="text" class="form-control" id="name" aria-describedby="name" placeholder="John Doe">
+            <input required name="nameBuyer" type="text" class="form-control" id="name" aria-describedby="name" placeholder="John Doe">
           </div>
           <div class="mb-3 emailBuyer">
             <label for="emailBuyer" class="form-label">Email:</label>
-            <input name="emailBuyer" type="email" class="form-control" id="name" aria-describedby="email" placeholder="JohnDoe@gmail.com">
+            <input required name="emailBuyer" type="email" class="form-control" id="name" aria-describedby="email" placeholder="JohnDoe@gmail.com">
           </div>
           <div class="mb-5 phoneBuyer">
             <label for="phoneBuyer" class="form-label">Phone:</label>
-            <input name="phoneBuyer" type="text" class="form-control" id="name" aria-describedby="phone" placeholder="+3 8067 456 88 93">
+            <input required name="phoneBuyer" type="text" class="form-control" id="name" aria-describedby="phone" placeholder="+3 8067 456 88 93">
           </div>
             <button type="submit" id="getInvoice" class="btn btn-success" data-order_id="<%= order._id %>">Confirm your order</button>
         </div>

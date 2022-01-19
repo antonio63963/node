@@ -45,7 +45,7 @@ const checkRefreshToken = async (refreshToken) => {
 }
 const verifyAccessToken = async (token) => {
   const pubKey = await getPublicKey();
-  test(token, pubKey)
+  // test(token, pubKey)
   const isValid = jws.verify(token, 'RS256', pubKey);
   return isValid;
 };

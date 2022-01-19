@@ -79,7 +79,6 @@ storeInfo.addEventListener('click', (e) => {
     `;
     
   });
-  console.log(storeItems)
   storeList.innerHTML = storeItems.join('');
   storeCont.classList.remove('hidden')
 });

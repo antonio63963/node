@@ -17,7 +17,7 @@ router.get('/', async(req, res) => {
   const user = await findUserById(userID);
   const auth = userID ? {login: true, user}: {login: false};
   const products = await getAllProducts(10);
-  console.log(laptops);
+
   const categories = await getAllCategories();
   res.render('index', { title: 'Express', products, categories, auth});
 });

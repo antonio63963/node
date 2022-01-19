@@ -18,7 +18,7 @@ const normalizePort = (val) => {
 };
 
 // если порт передали в process.env.PORT - нормализируй и используй, иначе порт по умолчанию
-const httpPort = normalizePort(process.env.PORT) || 3000;
+const httpPort = normalizePort(process.env.PORT) || 8888;
 
 module.exports = {
   httpPort,

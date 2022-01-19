@@ -11,12 +11,12 @@ const generalSchema = new Schema({
   buyer: {
     nameBuyer: {
       type: Schema.Types.String,
-      required: true,
+      // required: true,
       minLength: 1
     },
     emailBuyer: {
       type: Schema.Types.String,
-      required: true,
+      // required: true,
     },
     phoneBuyer: {
       type: Schema.Types.String
